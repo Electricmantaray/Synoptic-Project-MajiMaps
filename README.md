@@ -72,3 +72,80 @@ Adding a new feature - can be done natively in vscode ui
       git commit -m "message description"
       git push -u origin features/{feature-name}
       ```
+
+
+---
+
+
+# GPT explanation of file structure
+
+Here's a solid starting point for your `README.md` that explains the structure and basic functionality of your project (`Synoptic-Project-MajiMaps`). Since you're still in the initialization/setup stage, this focuses on what you've built so far, keeping it clear and professional but not overkill:
+
+---
+
+## 📍 MajiMaps
+
+MajiMaps is an interactive web-based platform for showcasing water infrastructure reporting and mapping systems. This project is currently under development and is structured using Node.js, Express, and EJS templating. It emphasizes modular design, clean data separation, and scalability for future dynamic features.
+
+---
+
+## 📁 Project Structure
+
+```
+Synoptic-Project-MajiMaps/
+├── public/               # Static assets (CSS, images)
+│   ├── css/
+│   │   └── styles.css    # Global styles
+│   └── images/           # Publicly served images
+│
+├── src/
+│   ├── controllers/      # Request handlers (controllers)
+│   │   └── controller.js
+│   ├── data/             # JSON data files
+│   │   └── index.json    # Homepage content
+│   ├── routes/           # Express router definitions
+│   │   └── routes.js
+│   ├── services/         # Data access and service logic
+│   │   └── services.js
+│   └── views/            # EJS templates
+│       └── index.ejs     # Homepage view
+│
+├── .env                  # Environment variables (e.g., PORT)
+├── app.js                # App initialization and middleware
+├── server.js             # Main entry point (starts server)
+└── package.json
+```
+
+---
+
+## ⚙️ Functionality Overview
+
+### Home Page (`/`)
+
+* The homepage is rendered using `index.ejs`, which dynamically receives data from `index.json`.
+* This includes a title, description, and an image path – all handled through `indexData` fetched via a service module.
+* The image and CSS are served statically from the `public/` directory.
+
+### Static Files
+
+* All assets in the `public/` directory (e.g., stylesheets and images) are automatically served using Express’ static middleware.
+* This enables styling and media usage across multiple pages with just one CSS file.
+
+---
+
+## 🧠 How It Works (Flow)
+
+1. **Client requests `/`**
+2. The route defined in `routes.js` calls `getIndex` from the controller.
+3. `getIndex` fetches JSON data from `services.js`.
+4. The JSON is passed to `index.ejs` and rendered on the homepage.
+5. Any images or CSS referenced from `/public` are loaded directly by the browser.
+
+---
+
+## 📌 Notes
+
+* This project uses ESM (ECMAScript Modules), so `import`/`export` syntax is used.
+* The initial focus is content rendering via JSON and layout styling. Future plans include dynamic user interaction and database integration.
+
+
