@@ -42,8 +42,8 @@
 - Add .env file:
   - ```
     PORT=8000
-    EMAIL={majimaps@gmail.com}
-    APP_PASSWORD={mlxufEtuy@swEchAphE3}
+    EMAIL="majimaps@gmail.com"
+    APP_PASSWORD="mlxufEtuy@swEchAphE3"
     ```
 ---   
 
