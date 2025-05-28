@@ -2,6 +2,7 @@
   "name": "synoptic-project-majimaps",
   "version": "1.0.0",
   "description": "Synoptic project, MajiMaps",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",

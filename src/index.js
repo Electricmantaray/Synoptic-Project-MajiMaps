@@ -1,12 +1,11 @@
-// src/index.js
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
+import dotenv from "dotenv";
+import { app } from "./app.js";
 
-app.get('/', (req, res) => {
-  res.send('Hello from MajiMaps backend!');
-});
+// Loading the .env file
+dotenv.config();
+const PORT = process.env.PORT;
 
+// Run webserver
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
