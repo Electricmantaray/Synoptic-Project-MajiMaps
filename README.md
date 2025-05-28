@@ -24,6 +24,10 @@
   - ```
     git clone https://{Your GitHub username}:{Your personal access token}@github.com/Electricmantaray/Synoptic-Project-MajiMaps.git)
     ```
+  - Example:
+    - ```
+      git clone https://Electricmantaray:ACCESSCODE55555@github.com/Electricmantaray/Synoptic-Project-MajiMaps.git)
+      ```
 - Move into the project directory `cd` Synoptic-Project-MajiMaps
     
 - If you **HAVE NOT** setup before step:

@@ -1,0 +1,39 @@
+{
+  "name": "synoptic-project-majimaps",
+  "version": "1.0.0",
+  "description": "Synoptic project, MajiMaps",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon -i data/user_data.json src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Electricmantaray/Synoptic-Project-MajiMaps.git"
+  },
+  "keywords": [
+    "map",
+    "water",
+    "reporting",
+    "app",
+    "synoptic",
+    "project"
+  ],
+  "author": "Hayden Jones <hlsj1066@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Electricmantaray/Synoptic-Project-MajiMaps/issues"
+  },
+  "homepage": "https://github.com/Electricmantaray/Synoptic-Project-MajiMaps#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.1",
+    "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
