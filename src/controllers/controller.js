@@ -1,5 +1,6 @@
-import { fetchWelcomeMessage } from "../services/services.js";
+import { getIndexData } from "../services/services.js";
 
-export const getIndex = (req, res) => {
-  res.render("index");
+export const getIndex = async (req, res) => {
+    const data = await getIndexData();
+  res.render("index", {indexData: data});
 };

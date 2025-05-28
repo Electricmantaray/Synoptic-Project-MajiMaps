@@ -1,0 +1,20 @@
+/*Styling for ejs pages*/
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  background-color: #488eb7;
+  color: #333;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #3a2ed1;
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.1rem;
+  max-width: 600px;
+}

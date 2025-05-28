@@ -1,10 +1,12 @@
-<!-- views/index.ejs -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MajiMaps</title>
+  <title><%= indexData.title %></title>
+  <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
-  <h1>Welcome to MajiMaps Homepage</h1>
+  <h1><%= indexData.title %></h1>
+  <img src="<%= indexData.imgpath %>" alt="image">
+  <p><%= indexData.description %></p>
 </body>
 </html>
