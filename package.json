@@ -5,8 +5,11 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "build:css": "postcss src/css/styles.css -o public/css/styles.css",
+    "watch:css": "postcss src/css/styles.css -o public/css/styles.css --watch",
     "start": "node src/index.js",
     "dev": "nodemon -i data/user_data.json src/index.js"
+
   },
   "repository": {
     "type": "git",
@@ -35,9 +38,11 @@
     "nodemailer": "^6.10.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.8",
     "autoprefixer": "^10.4.21",
     "nodemon": "^3.1.10",
     "postcss": "^8.5.4",
+    "postcss-cli": "^11.0.1",
     "tailwindcss": "^4.1.8"
   }
 }
