@@ -5,8 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build:css": "postcss src/css/styles.css -o public/css/styles.css",
-    "watch:css": "postcss src/css/styles.css -o public/css/styles.css --watch",
+    "build:css": "postcss public/css/styles.css -o public/css/output.css",
+    "watch:css": "postcss public/css/styles.css -o public/css/output.css --watch",
     "start": "node src/index.js",
     "dev": "nodemon -i data/user_data.json src/index.js"
 
