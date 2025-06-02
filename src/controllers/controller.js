@@ -32,5 +32,5 @@ export const renderHome = async (req, res) => {
     data[section] = sectionData
   }
 
-  res.render("partials/layout", data);
+  res.render("pages/layout", data);
 };
