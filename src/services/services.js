@@ -1,12 +1,27 @@
-import { readFile } from "fs/promises";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from "fs";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// caching system
+const cache = {};
 
-export const getIndexData = async () => {
-  const dataPath = path.join(__dirname, "../data/index.json");
-  const jsonData = await readFile(dataPath, "utf-8");
-  return JSON.parse(jsonData);
-};
+
+// Loading JSON from a specific "page"/section
+async function getSectionData(section) {
+  // returns cache if present
+  if (cache[section]) {
+    return cache[section]
+  }
+
+  const filePath = `src/data/${section}.json`;
+
+  if (fs.existsSync(filePath)) {
+    const parsedData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+    // Caches current parsed section for future calls
+    cache[section] = parsedData;
+
+    return parsedData;
+  }
+  return {};
+}
+
+export { getSectionData }
