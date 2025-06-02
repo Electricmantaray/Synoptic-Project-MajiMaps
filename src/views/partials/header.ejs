@@ -1,5 +1,33 @@
 <!-- Mobile overlay for navigation -->
 <div id="overlay" class="fixed inset-0 bg-black/50 hidden z-40"></div>
 
-<!-- Header -->
-<header class="bi-white shadow-md z-50 relative"></header>
+<header class="pt-2.5 pr-[65px] pb-2.5 pl-[65px] flex flex-col gap-0 items-center justify-start relative overflow-hidden">
+
+  <div class="pr-2.5 pl-2.5 flex flex-row items-center justify-between w-full h-[147px] relative">
+
+    <!-- Logo -->
+    <img
+      src="/images/minimal-africa-flag-10.png"
+      alt="Minimal Africa Flag Logo"
+      class="shrink-0 w-[352.37px] h-[83px]"
+      style="object-fit: cover; aspect-ratio: 352.37 / 83"
+    />
+
+    <!-- Navigation -->
+    <nav aria-label="Primary navigation" class="pt-[5px] pr-[15px] pb-[5px] pl-[15px] flex flex-row gap-7 items-center justify-center shrink-0 relative">
+
+      <% navLinks.forEach(page => { %>
+        <a href="<%= page.href %>" 
+           class="text-text-colour text-center font-medium text-[32px] font-['Inter-Medium',_sans-serif] relative <%= page.active ? 'underline decoration-2 underline-offset-4' : '' %>">
+          <%= page.name %>
+        </a>
+      <% }); %>
+
+    </nav>
+
+  </div>
+
+  <!-- Bottom underline bar -->
+  <div class="bg-[#bebebe] rounded-[60px] w-full h-[5px] relative"></div>
+
+</header>

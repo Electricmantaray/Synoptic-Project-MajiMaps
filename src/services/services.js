@@ -7,14 +7,36 @@ const cache = {};
 // Loading JSON from a specific "page"/section
 async function getSectionData(section) {
   // returns cache if present
-  if (cache[section]) {
-    return cache[section]
-  }
+  if (cache[section]) { return cache[section] }
 
+  // Initialise filepath
   const filePath = `src/data/${section}.json`;
 
+  // Checking if json file exists
+  if (!fs.existsSync(filePath)) {
+    console.warn(`\n====== WARNING =====\n${section}.json not found.`);
+    return null
+  }
+
+
   if (fs.existsSync(filePath)) {
-    const parsedData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
+    // Reads file
+  const content = fs.readFileSync(filePath, "utf-8")  
+
+  // Checking if json file has content
+  if (!content.trim()) {
+    console.warn(`\n====== WARNING =====\n${section}.json is empty. Skipping.`);
+    return null;
+  }
+
+    const parsedData = JSON.parse(content);
+
+    // Checking if content is completely empty when parsed
+    if (Array.isArray(parsedData) && parsedData.length === 0) {
+      console.warn(`\n====== WARNING =====\n${section}.json parsed is empty. Skipping.`);
+      return null;
+    }
 
     // Caches current parsed section for future calls
     cache[section] = parsedData;
