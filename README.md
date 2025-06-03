@@ -51,6 +51,7 @@
 
 Start Web server with nodemon:
   - ```
+    npm run build:css
     npm run dev
     ```
 
