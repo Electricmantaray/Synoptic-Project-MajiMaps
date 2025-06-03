@@ -1,22 +1,18 @@
 <!-- Mobile overlay for navigation -->
 <div id="overlay" class="fixed inset-0 bg-black/50 hidden z-40"></div>
 
-<header class="pt-2.5 pr-[65px] pb-2.5 pl-[65px] flex flex-col gap-0 items-center justify-start relative overflow-hidden">
+<!-- Header -->
+<header class="flex w-full justify-center px-4 py-2">
+  <div class="flex w-full max-w-6xl items-center justify-between rounded-[15px] bg-[#e5e5eb] px-6 py-3 shadow-md">
+    <!-- Logo Title -->
+    <h1 class="text-2xl font-black text-black">Maji<span class="font-normal">Maps</span></h1>
 
-  <div class="pr-2.5 pl-2.5 flex flex-row items-center justify-between w-full h-[147px] relative">
-
-    <!-- Logo -->
-    <img
-      src="\images\Minimal - MajiMapsIcon.png"
-      alt="Minimal Africa Flag Logo"
-      class="shrink-0 w-[352.37px] h-[83px]"
-      style="object-fit: cover; aspect-ratio: 352.37 / 83"
-    />
-
-
+    <!-- Navigation -->
+    <nav class="flex gap-6 text-sm font-medium text-black">
+      <a href="#home" class="transition-colors hover:text-blue-600">Home</a>
+      <a href="#map" class="transition-colors hover:text-blue-600">Map</a>
+      <a href="#report" class="transition-colors hover:text-blue-600">Report</a>
+      <a href="#contact" class="transition-colors hover:text-blue-600">Contact</a>
+    </nav>
   </div>
-
-  <!-- Bottom underline bar -->
-  <div class="bg-[#bebebe] rounded-[60px] w-full h-[5px] relative"></div>
-
 </header>
