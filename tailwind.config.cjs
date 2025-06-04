@@ -10,7 +10,7 @@ module.exports = {
             letterSpacing: {},
             borderRadius: {},
             colors: {
-                "text-colour": "#040316",
+                "text-colour": "#333333",
             },
             spacing: {},
             width: {},

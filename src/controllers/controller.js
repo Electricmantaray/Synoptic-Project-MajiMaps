@@ -14,9 +14,10 @@ const sections = [
 export const renderHome = async (req, res) => {
   const data = {};
 
+  console.warn("########## RENDER ##########\n############################")
+
   for (const section of sections) {
     const sectionData = await getSectionData(section);
-
     // Check for empty object or json if so they return null
     // TODO: Improve this section
     const isEmpty = sectionData === null || 
