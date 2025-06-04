@@ -41,9 +41,19 @@
     ```
 - Add .env file:
   - ```
+    # Environment
     PORT=8000
-    EMAIL="majimaps@gmail.com"
-    APP_PASSWORD="mlxufEtuy@swEchAphE3"
+    NODE_ENV=development
+    
+    # Email config
+    EMAIL=majimaps@gmail.com
+    APP_PASSWORD=mlxufEtuy@swEchAphE3
+    
+    # PostgreSQL (for later)
+    DATABASE_URL=postgres://username:password@localhost:5432/majimaps
+    
+    # Feature flags
+    USE_CACHE=false
     ```
 ---   
 
