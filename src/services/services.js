@@ -1,13 +1,20 @@
 import fs from "fs";
+import dotenv from "dotenv";
+dotenv.config()
 
 // caching system
+const useCache = process.env.USE_CACHE === "true";
 const cache = {};
 
 
 // Loading JSON from a specific "page"/section
 async function getSectionData(section) {
+
+  console.log(JSON.stringify(cache, null, 2));
+
+
   // returns cache if present
-  if (cache[section]) { return cache[section] }
+  if (useCache && cache[section]) { return cache[section] }
 
   // Initialise filepath
   const filePath = `src/data/${section}.json`;
@@ -39,7 +46,9 @@ async function getSectionData(section) {
     }
 
     // Caches current parsed section for future calls
-    cache[section] = parsedData;
+    if (useCache) {
+      cache[section] = parsedData;
+    }
 
     return parsedData;
   }
