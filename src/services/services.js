@@ -10,9 +10,6 @@ const cache = {};
 // Loading JSON from a specific "page"/section
 async function getSectionData(section) {
 
-  console.log(JSON.stringify(cache, null, 2));
-
-
   // returns cache if present
   if (useCache && cache[section]) { return cache[section] }
 
