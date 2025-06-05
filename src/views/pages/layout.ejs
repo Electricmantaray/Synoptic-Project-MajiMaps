@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 	<%- include("../partials/head") %>
-	<body class="scroll-smooth">
+	<body class="scroll-smooth bg-gray-50 font-inter">
 		<%- include("../partials/header") %>
-		<main>
-			<%- include("../pages/hero") %>
-			<%- include("../pages/introduction") %>
-			<%- include("../pages/maps") %>
-			<%- include("../pages/report") %>
-			<%- include("../pages/contacts") %>
-			<%- include("../pages/team") %>
-
+		<main class="flex flex-col pt-6 pb-6 items-center justify-center">
+			
+			<section class="w-full">
+				<%- include("../pages/hero") %>
+				<%- include("../pages/introduction") %>
+				<%- include("../pages/maps") %>
+				<%- include("../pages/report") %>
+				<%- include("../pages/contacts") %>
+				<%- include("../pages/team") %>
+			</section>
 
 		</main>
 		<%- include("../partials/footer") %>

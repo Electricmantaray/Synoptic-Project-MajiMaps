@@ -9,6 +9,7 @@
       "Courier New", monospace;
     --color-blue-600: oklch(54.6% 0.245 262.881);
     --color-blue-700: oklch(48.8% 0.243 264.376);
+    --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-300: oklch(87.2% 0.01 258.338);
     --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-500: oklch(55.1% 0.027 264.364);
@@ -227,9 +228,6 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
-  .top-\[50\%\] {
-    top: 50%;
-  }
   .right-4 {
     right: calc(var(--spacing) * 4);
   }
@@ -238,9 +236,6 @@
   }
   .left-0 {
     left: calc(var(--spacing) * 0);
-  }
-  .left-\[50\%\] {
-    left: 50%;
   }
   .z-0 {
     z-index: 0;
@@ -362,9 +357,6 @@
   .min-w-\[300px\] {
     min-width: 300px;
   }
-  .flex-1 {
-    flex: 1;
-  }
   .shrink-0 {
     flex-shrink: 0;
   }
@@ -426,9 +418,6 @@
       margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
-  .self-stretch {
-    align-self: stretch;
-  }
   .overflow-hidden {
     overflow: hidden;
   }
@@ -463,9 +452,6 @@
   .border-gray-300 {
     border-color: var(--color-gray-300);
   }
-  .bg-\[\#000000\] {
-    background-color: #000000;
-  }
   .bg-\[\#3a31d8\] {
     background-color: #3a31d8;
   }
@@ -498,6 +484,9 @@
   }
   .bg-blue-600 {
     background-color: var(--color-blue-600);
+  }
+  .bg-gray-50 {
+    background-color: var(--color-gray-50);
   }
   .bg-gray-400\/80 {
     background-color: color-mix(in srgb, oklch(70.7% 0.022 261.325) 80%, transparent);
@@ -614,14 +603,14 @@
   .pt-6 {
     padding-top: calc(var(--spacing) * 6);
   }
+  .pb-6 {
+    padding-bottom: calc(var(--spacing) * 6);
+  }
   .text-center {
     text-align: center;
   }
   .text-left {
     text-align: left;
-  }
-  .font-\[\'Inter-Medium\'\,_sans-serif\] {
-    font-family: 'Inter-Medium', sans-serif;
   }
   .text-2xl {
     font-size: var(--text-2xl);
@@ -674,9 +663,6 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
-  }
-  .text-\[rgba\(255\,255\,255\,0\.38\)\] {
-    color: rgba(255,255,255,0.38);
   }
   .text-black {
     color: var(--color-black);
