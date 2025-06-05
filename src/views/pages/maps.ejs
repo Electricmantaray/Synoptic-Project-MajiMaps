@@ -1,21 +1,13 @@
+<section id="maps" class="relative flex flex-col items-center bg-[#b7d0ee] px-6 py-8 scroll-mt-32">
+    <!-- Section Title -->
+    <h2 class="text-5xl font-extrabold text-black py-5">Map</h2>
 
-<section id="map" class="relative flex flex-col items-center bg-[#b7d0ee] px-6 py-8">
-  <!-- Section Title -->
-  <h2 class="text-5xl font-extrabold text-black">Map</h2>
+    <!-- Map Container -->
+    <div id="map" class="relative w-full max-w-[1400px] overflow-hidden rounded-[15px] bg-[#a7a7a7] aspect-[16/9] md:h-[550px]"></div>
 
-  <!-- Map Container -->
-  <div class="relative w-full max-w-[1400px] overflow-hidden rounded-[15px] bg-[#a7a7a7] aspect-[16/9] md:h-[850px]">
-    <!-- Floating Map Tools -->
-    <div class="absolute right-4 bottom-4 flex flex-col gap-2">
-      <img src="/images/layers0.svg" alt="Layer Control" class="h-12 w-12 cursor-pointer" />
-      <img src="/images/map2.svg" alt="Map View Toggle" class="h-12 w-12 cursor-pointer" />
-      <img src="/images/check0.svg" alt="Map Confirmation" class="h-12 w-12 cursor-pointer" />
+    <!-- Coordinates Display -->
+    <div class="flex w-full max-w-[1440px] flex-wrap items-center justify-between gap-4 px-6 py-5">
+        <h3 class="text-2xl font-semibold text-black md:text-3xl w-full md:w-auto">Coordinates:</h3>
+        <div class="text-2xl font-medium text-black md:text-3xl w-full md:w-auto">Latitude: , Longitude: </div>
     </div>
-  </div>
-
-  <!-- Coordinates Display -->
-  <div class="flex w-full max-w-[1440px] flex-wrap items-center justify-between gap-4 px-6">
-    <h3 class="text-2xl font-semibold text-black md:text-3xl w-full md:w-auto">Coordinates:</h3>
-    <div class="text-2xl font-medium text-black md:text-3xl w-full md:w-auto">0000000000000000</div>
-  </div>
 </section>
