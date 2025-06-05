@@ -3,7 +3,8 @@ import { getSectionData } from "../services/services.js";
 // array of current sections to iterate through
 const sections = [
   "common",
-  "index",
+  "hero",
+  "introduction",
   "maps",
   "report",
   "contacts",
@@ -14,7 +15,7 @@ const sections = [
 export const renderHome = async (req, res) => {
   const data = {};
 
-  console.warn("########## RENDER ##########\n############################")
+  console.warn("\n########## RENDER ##########\n############################")
 
   for (const section of sections) {
     const sectionData = await getSectionData(section);

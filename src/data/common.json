@@ -1,3 +1,40 @@
 {
-    "siteTitle": "MajiMaps"
+    "meta": {
+        "charset": "utf-8",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "title": "MajiMaps"
+    },
+    "styles": {
+        "leafletCSS": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+        "tailwindCSS": "/css/output.css"
+    },
+    "scripts": {
+        "leafletJS": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    },
+    "logo": {
+        "src": "/images/Minimal - MajiMapsIcon.png",
+        "alt": "MajiMaps"
+    },
+    "navLinks": [
+        {
+            "label": "Home",
+            "href": "#home"
+        },
+        {
+            "label": "Map",
+            "href": "#maps"
+        },
+        {
+            "label": "Report",
+            "href": "#report"
+        },
+        {
+            "label": "Contact",
+            "href": "#contact"
+        }
+    ],
+    "footer": {
+        "text": "Maji Maps. All rights reserved",
+        "email": "majimaps@gmail.com"
+    }
 }
