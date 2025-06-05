@@ -1,97 +1,110 @@
-<section class="flex w-full items-start justify-center bg-gradient-to-b from-white to-black px-6 py-16">
-  <div class="flex w-full max-w-[1400px] rounded-[25px] bg-black/75 px-10 py-8 shadow-inner shadow-black backdrop-blur-sm">
-    <!-- Container split into two halves -->
-    <div class="flex w-full gap-8">
-      <!-- Left half: Contact Us -->
-      <div class="flex w-1/2 flex-col gap-10">
-        <!-- Header + description + divider -->
-        <div class="flex flex-col items-center gap-3 text-center text-white">
-          <h2 class="font-inter text-4xl font-medium">Contact Us</h2>
-          <p class="font-inter max-w-[900px] text-2xl font-medium">Reach out with any questions or issues</p>
-          <div class="h-[5px] w-full max-w-[600px] rounded-full bg-white/30"></div>
-        </div>
+<section id="contact" class="flex items-start justify-center bg-gradient-to-b from-white to-black px-6 py-8">
+    <div
+        class="flex w-full max-w-[1400px] rounded-[25px] bg-black/75 px-10 py-8 shadow-inner shadow-black backdrop-blur-sm">
+        <!-- Container split into two halves -->
+        <div class="flex flex-col gap-10 lg:flex-row w-full">
+            <!-- Left half: Contact Us -->
+            <div class="w-full lg:w-1/2 flex flex-col gap-10">
+                <!-- Header + description + divider -->
+                <div class="flex flex-col items-center gap-3 text-center text-white">
+                    <h2 class="font-inter text-4xl font-medium">Contact Us</h2>
+                    <p class="font-inter max-w-[900px] text-2xl font-medium">Reach out with any questions or issues</p>
+                    <div class="h-[5px] w-full max-w-[600px] rounded-full bg-white/30"></div>
+                </div>
 
-        <!-- Form -->
-        <form action="#" method="POST" class="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div class="flex flex-col gap-2">
-            <label for="reason" class="font-inter text-2xl font-medium text-white">Reason for enquiry</label>
-            <input type="text" id="reason" name="reason" required placeholder="Enter reason" class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-          </div>
+                <!-- Form -->
+                <form action="#" method="POST" class="grid grid-cols-1 gap-8 md:grid-cols-2">
+                    <div class="flex flex-col gap-2">
+                        <label for="reason" class="font-inter text-2xl font-medium text-white">Reason for
+                            enquiry</label>
+                        <input type="text" id="reason" name="reason" required placeholder="Enter reason"
+                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
+                    </div>
 
-          <div class="flex flex-col gap-2">
-            <label for="email" class="font-inter text-2xl font-medium text-white">Email</label>
-            <input type="email" id="email" name="email" required placeholder="Your email" class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-          </div>
+                    <div class="flex flex-col gap-2">
+                        <label for="email" class="font-inter text-2xl font-medium text-white">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="Your email"
+                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
+                    </div>
 
-          <div class="flex flex-col gap-2 md:col-span-2">
-            <label for="message" class="font-inter text-2xl font-medium text-white">Message</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Your message..." class="resize-none rounded-[20px] bg-[#d9d9d9] px-4 py-3 text-lg text-black placeholder:text-gray-600"></textarea>
-          </div>
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label for="message" class="font-inter text-2xl font-medium text-white">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Your message..."
+                            class="resize-none rounded-[20px] bg-[#d9d9d9] px-4 py-3 text-lg text-black placeholder:text-gray-600"></textarea>
+                    </div>
 
-          <div class="flex w-full justify-center md:col-span-2">
-            <button type="submit" class="rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]">Submit</button>
-          </div>
-        </form>
+                    <div class="flex w-full justify-center md:col-span-2">
+                        <button type="submit"
+                            class="rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]">Submit</button>
+                    </div>
+                </form>
 
-        <!-- Local Resources Section -->
-        <div class="mt-10 flex flex-col gap-3 text-white">
-          <h3 class="font-inter text-center text-3xl font-medium">Local Resources</h3>
-          <p class="font-inter mx-auto max-w-[900px] text-xl leading-relaxed font-medium">
-            City Helpline - 0000000000<br />
-            Leak Service Support - support@example.com<br />
-            Leak Response Unit - response@example.com
-          </p>
-        </div>
-      </div>
-
-      <!-- Vertical separator -->
-      <div class="w-[2px] bg-white/30"></div>
-
-      <!-- Right half: Email Service -->
-      <div class="flex w-1/2 flex-col gap-10">
-        <!-- Header + description + divider -->
-        <div class="flex flex-col items-center gap-3 text-center text-white">
-          <h2 class="font-inter text-4xl font-medium">Email Service</h2>
-          <p class="font-inter max-w-[900px] text-2xl font-medium">We’ll email you in case of urgent disruptions</p>
-          <div class="h-[5px] w-full max-w-[600px] rounded-full bg-white/30"></div>
-        </div>
-
-        <!-- Form -->
-        <form action="#" method="POST" class="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div class="flex flex-col gap-2">
-            <label for="forename" class="font-inter text-2xl font-medium text-white">Forename</label>
-            <input type="text" id="forename" name="forename" required placeholder="Enter your forename" class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <label for="surname" class="font-inter text-2xl font-medium text-white">Surname</label>
-            <input type="text" id="surname" name="surname" required placeholder="Enter your surname" class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-          </div>
-
-          <div class="flex flex-col gap-2 md:col-span-2">
-            <label for="email" class="font-inter text-2xl font-medium text-white">Email</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email" class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-          </div>
-
-          <fieldset class="flex flex-col gap-4 md:col-span-2">
-            <legend class="font-inter text-2xl font-medium text-white">Subscription Preferences</legend>
-            <div class="flex gap-8">
-              <label class="font-inter flex cursor-pointer items-center gap-2 text-xl text-white">
-                <input type="checkbox" name="emergencies" value="yes" class="h-5 w-5 rounded border-gray-300 bg-white" />
-                Emergencies
-              </label>
-              <label class="font-inter flex cursor-pointer items-center gap-2 text-xl text-white">
-                <input type="checkbox" name="newsletter" value="yes" class="h-5 w-5 rounded border-gray-300 bg-white" />
-                Newsletter
-              </label>
+                <!-- Local Resources Section -->
+                <div class="mt-10 flex flex-col gap-3 text-white">
+                    <h3 class="font-inter text-center text-3xl font-medium">Local Resources</h3>
+                    <p class="font-inter mx-auto max-w-[900px] text-xl leading-relaxed font-medium">
+                        City Helpline - 0000000000<br />
+                        Leak Service Support - support@example.com<br />
+                        Leak Response Unit - response@example.com
+                    </p>
+                </div>
             </div>
-          </fieldset>
 
-          <div class="flex w-full justify-center md:col-span-2">
-            <button type="submit" class="relative rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]">Submit</button>
-          </div>
-        </form>
-      </div>
+            <!-- Vertical separator -->
+            <div class="hidden lg:block w-[2px] bg-white/30 mx-6"></div>
+
+            <!-- Right half: Email Service -->
+            <div class="w-full lg:w-1/2 mt-10 lg:mt-0 flex flex-col gap-10">
+                <!-- Header + description + divider -->
+                <div class="flex flex-col items-center gap-3 text-center text-white">
+                    <h2 class="font-inter text-4xl font-medium">Email Service</h2>
+                    <p class="font-inter max-w-[900px] text-2xl font-medium">We’ll email you in case of urgent
+                        disruptions</p>
+                    <div class="h-[5px] w-full max-w-[600px] rounded-full bg-white/30"></div>
+                </div>
+
+                <!-- Form -->
+                <form action="#" method="POST" class="grid grid-cols-1 gap-8 md:grid-cols-2">
+                    <div class="flex flex-col gap-2">
+                        <label for="forename" class="font-inter text-2xl font-medium text-white">Forename</label>
+                        <input type="text" id="forename" name="forename" required placeholder="Enter your forename"
+                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label for="surname" class="font-inter text-2xl font-medium text-white">Surname</label>
+                        <input type="text" id="surname" name="surname" required placeholder="Enter your surname"
+                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
+                    </div>
+
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label for="email" class="font-inter text-2xl font-medium text-white">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email"
+                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
+                    </div>
+
+                    <fieldset class="flex flex-col gap-4 md:col-span-2">
+                        <legend class="font-inter text-2xl font-medium text-white">Subscription Preferences</legend>
+                        <div class="flex gap-8">
+                            <label class="font-inter flex cursor-pointer items-center gap-2 text-xl text-white">
+                                <input type="checkbox" name="emergencies" value="yes"
+                                    class="h-5 w-5 rounded border-gray-300 bg-white" />
+                                Emergencies
+                            </label>
+                            <label class="font-inter flex cursor-pointer items-center gap-2 text-xl text-white">
+                                <input type="checkbox" name="newsletter" value="yes"
+                                    class="h-5 w-5 rounded border-gray-300 bg-white" />
+                                Newsletter
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="flex w-full justify-center md:col-span-2">
+                        <button type="submit"
+                            class="relative rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
