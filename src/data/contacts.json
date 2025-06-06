@@ -9,6 +9,7 @@
             "dividerStyle": "h-[5px] w-full max-w-[600px] rounded-full bg-white/30"
         },
         "form": {
+            "id": "contactUsForm",
             "action": "/contact",
             "method": "POST",
             "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
@@ -74,6 +75,7 @@
             "dividerStyle": "h-[5px] w-full max-w-[600px] rounded-full bg-white/30"
         },
         "form": {
+            "id": "emailServiceForm",
             "action": "/subscribe",
             "method": "POST",
             "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
