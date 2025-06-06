@@ -1,13 +1,13 @@
-<section id="maps" class="relative flex flex-col items-center bg-[#b7d0ee] px-6 py-8 scroll-mt-32">
+<section id="<%= maps.id %>" class="relative flex flex-col items-center bg-[#b7d0ee] px-6 py-8 scroll-mt-32">
     <!-- Section Title -->
-    <h2 class="text-5xl font-extrabold text-black py-5">Map</h2>
+    <h2 class="<%= maps.title.style %>"><%= maps.title.text %></h2>
 
     <!-- Map Container -->
-    <div id="map" class="relative w-full max-w-[1400px] overflow-hidden rounded-[15px] bg-[#a7a7a7] aspect-[16/9] md:h-[550px]"></div>
+    <div id="<%= maps.mapContainer.id %>" class="<%= maps.mapContainer.style %>"></div>
 
     <!-- Coordinates Display -->
     <div class="flex w-full max-w-[1440px] flex-wrap items-center justify-between gap-4 px-6 py-5">
-        <h3 class="text-2xl font-semibold text-black md:text-3xl w-full md:w-auto">Coordinates:</h3>
-        <div class="text-2xl font-medium text-black md:text-3xl w-full md:w-auto">Latitude: , Longitude: </div>
+        <h3 class="<%= maps.coordsHeadingStyle %>"><%= maps.coordsHeadingText %></h3>
+        <div id="<%= maps.coordsPlaceholderId %>" class="<%= maps.coordsPlaceholderStyle %>"><%= maps.coordsPlaceholderText%></div>
     </div>
 </section>

@@ -1,0 +1,143 @@
+{
+    "id": "contact",
+    "contactUs": {
+        "header": {
+            "title": "Contact Us",
+            "titleStyle": "font-inter text-4xl font-medium",
+            "description": "Reach out with any questions or issues",
+            "descriptionStyle": "font-inter max-w-[900px] text-2xl font-medium",
+            "dividerStyle": "h-[5px] w-full max-w-[600px] rounded-full bg-white/30"
+        },
+        "form": {
+            "action": "/contact",
+            "method": "POST",
+            "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
+            "reason": {
+                "labelText": "Reason for enquiry",
+                "labelStyle": "font-inter text-2xl font-medium text-white",
+                "type": "text",
+                "id": "reason",
+                "name": "reason",
+                "placeholder": "Enter reason",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "containerStyle": "flex flex-col gap-2",
+                "required": true
+            },
+            "email": {
+                "labelText": "Email",
+                "labelStyle": "font-inter text-2xl font-medium text-white",
+                "type": "email",
+                "id": "email",
+                "name": "email",
+                "placeholder": "Your email",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "containerStyle": "flex flex-col gap-2",
+                "required": true
+            },
+            "message": {
+                "labelText": "Message",
+                "labelStyle": "font-inter text-2xl font-medium text-white",
+                "type": "textarea",
+                "id": "message",
+                "name": "message",
+                "placeholder": "Your message...",
+                "rows": 5,
+                "inputStyle": "resize-none rounded-[20px] bg-[#d9d9d9] px-4 py-3 text-lg text-black placeholder:text-gray-600",
+                "containerStyle": "flex flex-col gap-2 md:col-span-2",
+                "required": true
+            },
+            "submitButton": {
+                "text": "Submit",
+                "type": "submit",
+                "style": "rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]",
+                "containerStyle": "flex w-full justify-center md:col-span-2"
+            }
+        },
+        "localResources": {
+            "title": "Local Resources",
+            "titleStyle": "font-inter text-center text-3xl font-medium",
+            "contacts": [
+                "City Helpline - 0000000000",
+                "Leak Service Support - support@example.com",
+                "Leak Response Unit - response@example.com"
+            ],
+            "style": "mt-10 flex flex-col gap-3 text-white",
+            "textStyle": "font-inter mx-auto max-w-[900px] text-xl leading-relaxed font-medium"
+        }
+    },
+    "emailService": {
+        "header": {
+            "title": "Email Service",
+            "titleStyle": "font-inter text-4xl font-medium",
+            "description": "We’ll email you in case of urgent disruptions",
+            "descriptionStyle": "font-inter max-w-[900px] text-2xl font-medium",
+            "dividerStyle": "h-[5px] w-full max-w-[600px] rounded-full bg-white/30"
+        },
+        "form": {
+            "action": "/subscribe",
+            "method": "POST",
+            "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
+            "forename": {
+                "labelText": "Forename",
+                "labelStyle": "font-inter text-2xl font-medium text-white",
+                "type": "text",
+                "id": "forename",
+                "name": "forename",
+                "placeholder": "Enter your forename",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "containerStyle": "flex flex-col gap-2"
+            },
+            "surname": {
+                "labelText": "Surname",
+                "labelStyle": "font-inter text-2xl font-medium text-white",
+                "type": "text",
+                "id": "surname",
+                "name": "surname",
+                "placeholder": "Enter your surname",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "containerStyle": "flex flex-col gap-2"
+            },
+            "email": {
+                "labelText": "Email",
+                "labelStyle": "font-inter text-2xl font-medium text-white",
+                "type": "email",
+                "id": "email",
+                "name": "email",
+                "placeholder": "Enter your email",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "containerStyle": "flex flex-col gap-2 md:col-span-2",
+                "required": true
+            },
+            "preferences": {
+                "legendText": "Subscription Preferences",
+                "legendStyle": "font-inter text-2xl font-medium text-white",
+                "options": [
+                    {
+                        "type": "checkbox",
+                        "name": "emergencies",
+                        "value": "yes",
+                        "text": "Emergencies",
+                        "labelStyle": "font-inter flex cursor-pointer items-center gap-2 text-xl text-white",
+                        "inputStyle": "h-5 w-5 rounded border-gray-300 bg-white"
+                    },
+                    {
+                        "type": "checkbox",
+                        "name": "newsletter",
+                        "value": "yes",
+                        "text": "Newsletter",
+                        "labelStyle": "font-inter flex cursor-pointer items-center gap-2 text-xl text-white",
+                        "inputStyle": "h-5 w-5 rounded border-gray-300 bg-white"
+                    }
+                ],
+                "containerStyle": "flex flex-col gap-4 md:col-span-2",
+                "inputContainerStyle": "flex gap-8"
+            },
+            "submitButton": {
+                "text": "Submit",
+                "type": "submit",
+                "style": "relative rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]",
+                "containerStyle": "flex w-full justify-center md:col-span-2"
+            }
+        }
+    }
+}

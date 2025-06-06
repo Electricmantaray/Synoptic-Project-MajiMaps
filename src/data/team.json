@@ -1,0 +1,29 @@
+{
+    "id": "team",
+    "members": [
+        {
+            "name": "Name 1",
+            "image": "/images/1 1 - placeholder.jpg"
+        },
+        {
+            "name": "Name 2",
+            "image": "/images/1 1 - placeholder.jpg"
+        },
+        {
+            "name": "Name 3",
+            "image": "/images/1 1 - placeholder.jpg"
+        },
+        {
+            "name": "Name 4",
+            "image": "/images/1 1 - placeholder.jpg"
+        },
+        {
+            "name": "Name 5",
+            "image": "/images/1 1 - placeholder.jpg"
+        },
+        {
+            "name": "Name 6",
+            "image": "/images/1 1 - placeholder.jpg"
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "id": "introduction",
+
+    "cardStyles": {
+        "wrapperStyle": "flex flex-col items-center gap-4 rounded-[25px] bg-white p-4 shadow-md md:w-1/2",
+        "imageStyle": "aspect-[620/380] h-auto w-full rounded-[25px] object-cover",
+        "titleStyle": "text-2xl font-semibold text-black"
+    },
+
+    "cards": [
+        {   
+            "title": "Theft Functionality",
+            "image": {
+                "src": "",
+                "alt": "Theft Functionality"
+            }
+        },
+
+        {   
+            "title": "Leaking Functionality",
+            "image": {
+                "src": "",
+                "alt": "Leaking Functionality"
+            }
+        }        
+    ]
+}

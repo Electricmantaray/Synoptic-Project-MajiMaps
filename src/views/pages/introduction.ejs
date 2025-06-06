@@ -1,20 +1,16 @@
-
 <!-- Gifs introduction -->
 <section id="introduction"
     class="flex justify-center bg-gradient-to-b from-[#fbfbfe] to-[rgba(115,165,223,0.5)] px-4 sm:px-6">
     <div class="flex w-full max-w-6xl flex-col gap-8 md:flex-row">
-        <!-- Card 1 -->
-        <article class="flex flex-col items-center gap-4 rounded-[25px] bg-white p-4 shadow-md md:w-1/2">
-            <img src="/images/gif-11.gif" alt="Theft Functionality" loading="lazy"
-                class="aspect-[620/380] h-auto w-full rounded-[25px] object-cover" />
-            <h3 class="text-2xl font-semibold text-black">Theft Functionality</h3>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="flex flex-col items-center gap-4 rounded-[25px] bg-white p-4 shadow-md md:w-1/2">
-            <img src="/images/gif-21.gif" alt="Leaking Functionality" loading="lazy"
-                class="aspect-[620/380] h-auto w-full rounded-[25px] object-cover" />
-            <h3 class="text-2xl font-semibold text-black">Leaking Functionality</h3>
-        </article>
+        <% introduction.cards.forEach(card => { %>
+            <article class="<%= introduction.cardStyles.wrapperStyle %>">
+                <img 
+                    src="<%= card.image.src %>" 
+                    alt="<%= card.image.alt %>" 
+                    loading="lazy"
+                    class="<%= introduction.cardStyles.imageStyle %>" />
+                <h3 class="<%= introduction.cardStyles.titleStyle %>"><%= card.title %></h3>
+            </article>
+        <% }) %>
     </div>
 </section>

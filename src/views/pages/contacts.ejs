@@ -1,4 +1,4 @@
-<section id="contact" class="flex items-start justify-center bg-gradient-to-b from-white to-black px-6 py-8 scroll-mt-32">
+<section id="<%= contacts.id %>" class="flex items-start justify-center bg-gradient-to-b from-white to-black px-6 py-8 scroll-mt-32">
     <div
         class="flex w-full max-w-[1400px] rounded-[25px] bg-black/75 px-10 py-8 shadow-inner shadow-black backdrop-blur-sm">
         <!-- Container split into two halves -->
@@ -7,45 +7,52 @@
             <div class="w-full lg:w-1/2 flex flex-col gap-10">
                 <!-- Header + description + divider -->
                 <div class="flex flex-col items-center gap-3 text-center text-white">
-                    <h2 class="font-inter text-4xl font-medium">Contact Us</h2>
-                    <p class="font-inter max-w-[900px] text-2xl font-medium">Reach out with any questions or issues</p>
-                    <div class="h-[5px] w-full max-w-[600px] rounded-full bg-white/30"></div>
+                    <h2 class="<%= contacts.contactUs.header.titleStyle %>"><%= contacts.contactUs.header.title %></h2>
+                    <p class="<%= contacts.contactUs.header.descriptionStyle %>"><%= contacts.contactUs.header.description %></p>
+                    <div class="<%= contacts.contactUs.header.dividerStyle %>"></div>
                 </div>
 
                 <!-- Form -->
-                <form action="#" method="POST" class="grid grid-cols-1 gap-8 md:grid-cols-2">
-                    <div class="flex flex-col gap-2">
-                        <label for="reason" class="font-inter text-2xl font-medium text-white">Reason for
-                            enquiry</label>
-                        <input type="text" id="reason" name="reason" required placeholder="Enter reason"
-                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-                    </div>
+                <form action="<%= contacts.contactUs.form.action %>" method="<%= contacts.contactUs.method %>" class="<%= contacts.contactUs.form.style %>">
+                    <% ['reason', 'email', 'message'].forEach((entry) => { const field = contacts.contactUs.form[entry]; %>
+                        <div class="<%= field.containerStyle %>">
+                            <label 
+                                for="<%= field.id %>" 
+                                class="<%= field.labelStyle %>"><%= field.labelText %></label>
 
-                    <div class="flex flex-col gap-2">
-                        <label for="email" class="font-inter text-2xl font-medium text-white">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="Your email"
-                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-                    </div>
-
-                    <div class="flex flex-col gap-2 md:col-span-2">
-                        <label for="message" class="font-inter text-2xl font-medium text-white">Message</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Your message..."
-                            class="resize-none rounded-[20px] bg-[#d9d9d9] px-4 py-3 text-lg text-black placeholder:text-gray-600"></textarea>
-                    </div>
-
-                    <div class="flex w-full justify-center md:col-span-2">
-                        <button type="submit"
-                            class="rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]">Submit</button>
+                            <% if (field.type === 'textarea') { %>
+                                <textarea 
+                                    id="<%= field.id %>" 
+                                    name="field.name" 
+                                    placeholder="<%= field.placeholder %>"
+                                    class="<%= field.inputStyle %>"
+                                    <%= field.required ? 'required' : '' %>></textarea>
+                            <% } else { %>
+                                <input 
+                                    type="<%= field.type %>" 
+                                    id="<%= field.id %>" 
+                                    name="<%= field.name %>"  
+                                    placeholder="<%= field.placeholder %>"
+                                    class="<%= field.inputStyle %>"
+                                    <%= field.required ? 'required' : '' %> />
+                            <% } %>
+                        </div>
+                    <% }) %>
+                    <div class="<%= contacts.contactUs.form.submitButton.containterStyle %>">
+                        <button 
+                            type="<%= contacts.contactUs.form.submitButton.type %>"
+                            class="<%= contacts.contactUs.form.submitButton.style %>"><%= contacts.contactUs.form.submitButton.text %></button>
                     </div>
                 </form>
 
+
                 <!-- Local Resources Section -->
-                <div class="mt-10 flex flex-col gap-3 text-white">
-                    <h3 class="font-inter text-center text-3xl font-medium">Local Resources</h3>
-                    <p class="font-inter mx-auto max-w-[900px] text-xl leading-relaxed font-medium">
-                        City Helpline - 0000000000<br />
-                        Leak Service Support - support@example.com<br />
-                        Leak Response Unit - response@example.com
+                <div class="<%= contacts.contactUs.localResources.style %>">
+                    <h3 class="<%= contacts.contactUs.localResources.titleStyle %>"><%= contacts.contactUs.localResources.title %></h3>
+                    <p class="<%= contacts.contactUs.localResources.textStyle %>">
+                        <% contacts.contactUs.localResources.contacts.forEach((line) => { %>
+                            <%= line %><br />
+                        <% }) %>
                     </p>
                 </div>
             </div>
@@ -57,51 +64,50 @@
             <div class="w-full lg:w-1/2 mt-10 lg:mt-0 flex flex-col gap-10">
                 <!-- Header + description + divider -->
                 <div class="flex flex-col items-center gap-3 text-center text-white">
-                    <h2 class="font-inter text-4xl font-medium">Email Service</h2>
-                    <p class="font-inter max-w-[900px] text-2xl font-medium">We’ll email you in case of urgent
-                        disruptions</p>
-                    <div class="h-[5px] w-full max-w-[600px] rounded-full bg-white/30"></div>
+                    <h2 class="<%= contacts.emailService.header.titleStyle %>"><%= contacts.emailService.header.title %></h2>
+                    <p class="<%= contacts.emailService.header.descriptionStyle %>"><%= contacts.emailService.header.description %></p>
+                    <div class="<%= contacts.emailService.header.dividerStyle %>"></div>
                 </div>
 
                 <!-- Form -->
-                <form action="#" method="POST" class="grid grid-cols-1 gap-8 md:grid-cols-2">
-                    <div class="flex flex-col gap-2">
-                        <label for="forename" class="font-inter text-2xl font-medium text-white">Forename</label>
-                        <input type="text" id="forename" name="forename" required placeholder="Enter your forename"
-                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-                    </div>
+                <form action="<%= contacts.emailService.form.action %>" method="<%= contacts.emailService.form.method %>" class="<%= contacts.emailService.form.style %>">
+                    <% ['forename', 'surname', 'email'].forEach((entry) => { field = contacts.emailService.form[entry]; %> 
+                        <div class="<%= field.containerStyle %>">
+                            <label 
+                                for="<%= field.id %>" 
+                                class="<%= field.labelStyle %>"><%= field.labelText %></label>
+                            
+                            <input 
+                                type="<%= field.type %>" 
+                                id="<%= field.id %>" 
+                                name="<%= field.name %>" 
+                                placeholder="<%= field.placeholder %>"
+                                class="<%= field.inputStyle %>"
+                                <%= field.required ? 'required' : '' %> />
+                        </div>
+                    <% }) %>
 
-                    <div class="flex flex-col gap-2">
-                        <label for="surname" class="font-inter text-2xl font-medium text-white">Surname</label>
-                        <input type="text" id="surname" name="surname" required placeholder="Enter your surname"
-                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-                    </div>
-
-                    <div class="flex flex-col gap-2 md:col-span-2">
-                        <label for="email" class="font-inter text-2xl font-medium text-white">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="Enter your email"
-                            class="h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600" />
-                    </div>
-
-                    <fieldset class="flex flex-col gap-4 md:col-span-2">
-                        <legend class="font-inter text-2xl font-medium text-white">Subscription Preferences</legend>
-                        <div class="flex gap-8">
-                            <label class="font-inter flex cursor-pointer items-center gap-2 text-xl text-white">
-                                <input type="checkbox" name="emergencies" value="yes"
-                                    class="h-5 w-5 rounded border-gray-300 bg-white" />
-                                Emergencies
-                            </label>
-                            <label class="font-inter flex cursor-pointer items-center gap-2 text-xl text-white">
-                                <input type="checkbox" name="newsletter" value="yes"
-                                    class="h-5 w-5 rounded border-gray-300 bg-white" />
-                                Newsletter
-                            </label>
+                    <!-- Subscription preference -->
+                    <fieldset class="<%= contacts.emailService.form.preferences.containerStyle %>">
+                        <legend class="<%= contacts.emailService.form.preferences.legendStyle %>"><%= contacts.emailService.form.preferences.legendText %></legend>
+                        <div class="<%= contacts.emailService.form.preferences.inputContainerStyle %>">
+                            <% contacts.emailService.form.preferences.options.forEach(option => { %>
+                                <label class="<%= option.labelStyle %>">
+                                    <input 
+                                        type="<%= option.type %>"
+                                        name="<%= option.name %>" 
+                                        value="<%= option.value %>"
+                                        class="<%= option.inputStyle %>" />
+                                    <%= option.text %>
+                                </label>
+                            <% }) %>
                         </div>
                     </fieldset>
 
-                    <div class="flex w-full justify-center md:col-span-2">
-                        <button type="submit"
-                            class="relative rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]">Submit</button>
+                    <div class="<%= contacts.emailService.form.submitButton.containerStyle %>">
+                        <button 
+                            type="<%= contacts.emailService.form.submitButton.type %>"
+                            class="<%= contacts.emailService.form.submitButton.style %>"><%= contacts.emailService.form.submitButton.text %></button>
                     </div>
                 </form>
             </div>

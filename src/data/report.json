@@ -1,0 +1,83 @@
+{
+    "id": "report",
+    "infoText": {
+        "text": "Your reports help local teams identify areas needing attention. Submitted locations are anonymously stored and visualised to improve access and response planning.",
+        "style": "max-w-[1200px] text-2xl font-normal text-black md:text-3xl"
+    },
+
+    "form": {
+        "action": "/report",
+        "method": "POST",
+        "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
+        "location": {
+            "labelText": "Location",
+            "labelStyle": "text-2xl font-medium text-black",
+            
+            "type": "text",
+            "id": "location",
+            "name": "location",
+            "placeholder": "Pin location",
+            "placeholderStyle": "placeholder:text-gray-600",
+            "style": "h-[84px] rounded-[20px] bg-[#e8e8e8] px-4 text-lg text-black",
+            "required": true,
+            "readonly": true,
+            "autocomplete": "off",
+            "ariaRequired": true
+        },
+
+        "reportType": {
+            "labelText": "Report Type",
+            "labelStyle": "text-2xl font-medium text-black",
+            
+            "type": "select",
+            "id": "type",
+            "name": "type",
+            "style": "h-[84px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
+            "required": true,
+            "autocomplete": "off",
+            "ariaRequired": true,
+            "placeholder": {
+                "value": "",
+                "text": "Select report type",
+                "disabled": true,
+                "selected": true,
+                "hidden": true
+            },
+
+            "options": [
+                {
+                    "value": "leak",
+                    "text": "Leak"
+                },
+                {
+                    "value": "theft",
+                    "text": "Theft"
+                },
+                {
+                    "value": "waterPoint",
+                    "text": "New water collection points"
+                }
+            ]
+        },
+
+        "description": {
+            "labelText": "Description",
+            "labelStyle": "text-2xl font-medium text-black",                
+
+            "type": "textarea",
+            "id": "description",
+            "name": "description",
+            "placeholder": "Provide additional details...",
+            "placeholderStyle": "placeholder:text-gray-600",
+            "style": "resize-none rounded-[20px] bg-[#d9d9d9] px-4 py-3 text-lg text-black focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
+            "rows": 4,
+            "required": true,
+            "ariaRequired": true
+        },
+        "submitButton": {
+            "type": "submit",
+            "text": "Submit",
+            "style": "rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba] focus:outline-none focus:ring-4 focus:ring-[#2f28ba]"
+        }
+    }
+}

@@ -1,89 +1,20 @@
 <!-- TODO: REFACTOR this section in future -->
-<section id="team" class="bg-black p-3 scroll-mt-32">
-    <div class="
-      flex
-      overflow-x-auto snap-x snap-mandatory
-      flex-nowrap justify-start gap-4
-      scroll-px-4
-      scrollbar-thin scrollbar-thumb-[#3a31d8] scrollbar-track-black
-      sm:flex-wrap sm:overflow-visible sm:justify-center sm:snap-none
-    " style="scroll-padding-left: 1rem; scroll-padding-right: 1rem;">
-        <!-- Team Member 1 -->
-        <figure class="
-        flex shrink-0 snap-center flex-col items-center gap-3
-        w-[90vw] max-w-[400px]
-        sm:w-[400px]
-      " style="aspect-ratio: 400 / 444">
-            <img src="/images/1 1 - placeholder.jpg" alt="Name 1" class="h-96 w-auto rounded-md object-cover"
-                style="aspect-ratio: 1 / 1" />
-            <figcaption class="font-inter w-full text-left text-2xl font-medium text-white">
-                Name 1
-            </figcaption>
-        </figure>
-
-        <!-- Team Member 2 -->
-        <figure class="
-        flex shrink-0 snap-center flex-col items-center gap-3
-        w-[90vw] max-w-[400px]
-        sm:w-[400px]
-      " style="aspect-ratio: 400 / 444">
-            <img src="/images/1 1 - placeholder.jpg" alt="Name 2" class="h-96 w-auto rounded-md object-cover"
-                style="aspect-ratio: 1 / 1" />
-            <figcaption class="font-inter w-full text-left text-2xl font-medium text-white">
-                Name 2
-            </figcaption>
-        </figure>
-
-        <!-- Team Member 3 -->
-        <figure class="
-        flex shrink-0 snap-center flex-col items-center gap-3
-        w-[90vw] max-w-[400px]
-        sm:w-[400px]
-      " style="aspect-ratio: 400 / 444">
-            <img src="/images/1 1 - placeholder.jpg" alt="Name 3" class="h-96 w-auto rounded-md object-cover"
-                style="aspect-ratio: 1 / 1" />
-            <figcaption class="font-inter w-full text-left text-2xl font-medium text-white">
-                Name 3
-            </figcaption>
-        </figure>
-
-        <!-- Team Member 4 -->
-        <figure class="
-        flex shrink-0 snap-center flex-col items-center gap-3
-        w-[90vw] max-w-[400px]
-        sm:w-[400px]
-      " style="aspect-ratio: 400 / 444">
-            <img src="/images/1 1 - placeholder.jpg" alt="Name 4" class="h-96 w-auto rounded-md object-cover"
-                style="aspect-ratio: 1 / 1" />
-            <figcaption class="font-inter w-full text-left text-2xl font-medium text-white">
-                Name 4
-            </figcaption>
-        </figure>
-
-        <!-- Team Member 5 -->
-        <figure class="
-        flex shrink-0 snap-center flex-col items-center gap-3
-        w-[90vw] max-w-[400px]
-        sm:w-[400px]
-      " style="aspect-ratio: 400 / 444">
-            <img src="/images/1 1 - placeholder.jpg" alt="Name 5" class="h-96 w-auto rounded-md object-cover"
-                style="aspect-ratio: 1 / 1" />
-            <figcaption class="font-inter w-full text-left text-2xl font-medium text-white">
-                Name 5
-            </figcaption>
-        </figure>
-
-        <!-- Team Member 6 -->
-        <figure class="
-        flex shrink-0 snap-center flex-col items-center gap-3
-        w-[90vw] max-w-[400px]
-        sm:w-[400px]
-      " style="aspect-ratio: 400 / 444">
-            <img src="/images/1 1 - placeholder.jpg" alt="Name 6" class="h-96 w-auto rounded-md object-cover"
-                style="aspect-ratio: 1 / 1" />
-            <figcaption class="font-inter w-full text-left text-2xl font-medium text-white">
-                Name 6
-            </figcaption>
-        </figure>
+<section id="<%= team.id %>" class="bg-black p-3 scroll-mt-32">
+    <div class="flex overflow-x-auto snap-x snap-mandatory flex-nowrap justify-start gap-4 scroll-px-4 scrollbar-thin scrollbar-thumb-[#3a31d8] scrollbar-track-black sm:flex-wrap sm:overflow-visible sm:justify-center sm:snap-none" style="scroll-padding-left: 1rem; scroll-padding-right: 1rem;">
+        <!-- Team Member -->
+        <% team.members.forEach(member => { %>
+            <figure 
+                class="flex shrink-0 snap-center flex-col items-center gap-3 w-[90vw] max-w-[400px] sm:w-[400px]" 
+                style="aspect-ratio: 400 / 444">
+                <img 
+                    src="<%= member.image %>" 
+                    alt="<%= member.name %>" 
+                    class="h-96 w-auto rounded-md object-cover"
+                    style="aspect-ratio: 1 / 1" />
+                <figcaption class="font-inter w-full text-left text-2xl font-medium text-white">
+                    <%= member.name %>
+                </figcaption>
+            </figure>
+        <% }) %>
     </div>
 </section>

@@ -1,50 +1,80 @@
-<section id="report" class="flex items-start justify-center bg-gradient-to-b from-[#b7d0ee] to-white px-6 py-8 scroll-mt-32">
+<section id="<%= report.id %>" class="flex items-start justify-center bg-gradient-to-b from-[#b7d0ee] to-white px-6 py-8 scroll-mt-32">
     <div
         class="flex w-full max-w-[1400px] flex-col gap-10 rounded-[25px] bg-white/50 px-6 py-8 shadow-md backdrop-blur-md md:px-10">
         <!-- Divider + Text -->
         <div class="flex flex-col items-center gap-5 text-center">
             <div class="h-[5px] w-full rounded-full bg-[#bebebe]"></div>
-            <p class="max-w-[1200px] text-2xl font-normal text-black md:text-3xl">Your reports help local teams identify
-                areas needing attention. Submitted locations are anonymously stored and visualized to improve access and
-                response planning.</p>
+            <p class="<%= report.infoText.style %>"><%= report.infoText.text %></p>
             <div class="h-[5px] w-full rounded-full bg-[#bebebe]"></div>
         </div>
 
         <!-- Form -->
-        <form action="/report" method="POST" class="grid grid-cols-1 gap-8 md:grid-cols-2" novalidate>
+        <form action="<%= report.form.action %>" method="<%= report.form.method %>" class="<%= report.form.style %>">
             <!-- Location Input -->
             <div class="flex flex-col gap-2">
-                <label for="location" class="text-2xl font-medium text-black">Location</label>
-                <input type="text" id="location" name="location" required readonly autocomplete="off" aria-required="true"
-                    class="h-[84px] rounded-[20px] bg-[#e8e8e8] px-4 text-lg text-black placeholder:text-gray-600"
-                    placeholder="Pin location" />
+                <label 
+                    for="<%= report.form.location.id %>" 
+                    class="<%= report.form.location.labelStyle %>"><%= report.form.location.labelText %></label>
+
+                <input 
+                    type="<%= report.form.location.type %>" 
+                    id="<%= report.form.location.id %>" 
+                    name="<%= report.form.location.name %>" 
+                    placeholder="<%= report.form.location.placeholder %>"
+                    <%= report.form.location.required ? 'required' : '' %>
+                    <%= report.form.location.readonly ? 'readonly' : '' %>
+                    autocomplete="<%= report.form.location.autocomplete %>" 
+                    aria-required="<%= report.form.location.ariaRequired %>"
+                    class="<%= report.form.location.style %> <%= report.form.location.placeholderStyle %>" />
             </div>
 
             <!-- Report Type -->
             <div class="flex flex-col gap-2">
-                <label for="type" class="text-2xl font-medium text-black">Report Type</label>
-                <select id="type" name="type" required autocomplete="off" aria-required="true"
-                    class="h-[84px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black focus:outline-none focus:ring-2 focus:ring-[#3a31d8]">
-                    <option value="" disabled selected hidden>Select report type</option>
-                    <option value="leak">Leak</option>
-                    <option value="theft">Theft</option>
-                    <option value="outage">New water collection points</option>
+                <label 
+                    for="<%= report.form.reportType.id %>" 
+                    class="<%= report.form.reportType.labelStyle %>"><%= report.form.reportType.labelText %></label>
+
+                <select 
+                    id="<%= report.form.reportType.id %>" 
+                    name="<%= report.form.reportType.name %>" 
+                    <%= report.form.reportType.required ? 'required' : '' %>
+                    autocomplete="<%= report.form.reportType.autocomplete %>" 
+                    aria-required="<%= report.form.reportType.ariaRequired %>"
+                    class="<%= report.form.reportType.style %>">
+                    <option 
+                        value="<%= report.form.reportType.placeholder.value %>" 
+                        <%= report.form.reportType.placeholder.disabled ? 'disabled' : '' %>
+                        <%= report.form.reportType.placeholder.selected ? 'selected' : '' %>
+                        <%= report.form.reportType.placeholder.hidden ? 'hidden' : '' %> ><%= report.form.reportType.placeholder.text %></option>
+
+                    <% report.form.reportType.options.forEach (option => { %>
+                        <option value="<%= option.value %>"><%= option.text %></option>
+                    <% }); %>
                 </select>
             </div>
 
             <!-- Description (Full Width) -->
             <div class="flex flex-col gap-2 md:col-span-2">
-                <label for="description" class="text-2xl font-medium text-black">Description</label>
-                <textarea id="description" name="description" rows="4" required aria-required="true"
-                    class="resize-none rounded-[20px] bg-[#d9d9d9] px-4 py-3 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]"
-                    placeholder="Provide additional details..."></textarea>
+                <label 
+                    for="<%= report.form.description.id %>" 
+                    class="<%= report.form.description.labelStyle %>"><%= report.form.description.labelText %></label>
+                    
+                <textarea 
+                    id="<%= report.form.description.id %>" 
+                    name="<%= report.form.description.name %>" 
+                    rows="<%= report.form.description.rows %>" 
+                    placeholder="<%= report.form.description.placeholder %>"
+                    <%= report.form.description.required ? 'required' : '' %>
+                    aria-required="<%= report.form.description.ariaRequired %>"
+                    class="<%= report.form.description.style %> <%= report.form.description.placeholderStyle %>"></textarea>
             </div>
 
             <!-- Submit Button -->
             <div class="flex w-full justify-center pt-6 md:col-span-2">
-                <button type="submit"
-                    class="rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba] focus:outline-none focus:ring-4 focus:ring-[#2f28ba]">
-                    Submit
+                <button 
+                    type="<%= report.form.submitButton.type %>"
+                    class="<%= report.form.submitButton.style %>">
+                    <%= report.form.submitButton.text %>
                 </button>
             </div>
         </form>
