@@ -1,4 +1,4 @@
-<section id="<%= maps.id %>" class="relative flex flex-col items-center bg-[#b7d0ee] px-6 py-8 scroll-mt-32">
+<section id="<%= maps.id %>" class="relative flex flex-col items-center bg-[#b7d0ee] px-6 py-8 scroll-mt-8 md:scroll-mt-32">
     <!-- Section Title -->
     <h2 class="<%= maps.title.style %>"><%= maps.title.text %></h2>
 
@@ -10,4 +10,6 @@
         <h3 class="<%= maps.coordsHeadingStyle %>"><%= maps.coordsHeadingText %></h3>
         <div id="<%= maps.coordsPlaceholderId %>" class="<%= maps.coordsPlaceholderStyle %>"><%= maps.coordsPlaceholderText%></div>
     </div>
+
+    <button id="<%= maps.locateButton.id %>" class="<%= maps.locateButton.style %>"><%= maps.locateButton.text %></button>
 </section>

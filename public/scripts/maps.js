@@ -23,26 +23,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }).addTo(map)
 
     // ############## Geolocate user ##############
-    map.locate({ setView: true, maxZoom: 16});
+    let userMarker = null;
+    let accuracyCircle = null;
+
+    const locateButton = document.getElementById('locateButton');
+    if (locateButton) {
+        locateButton.addEventListener('click', () => {
+            map.locate({ setView: true, maxZoom: 16 });
+        });
+    }
 
     map.on('locationfound', (e) => {
-        const {latlng, accuracy} = e;
+        const { latlng, accuracy } = e;
 
-        L.marker(latlng).addTo(map)
+        if (userMarker) map.removeLayer(userMarker);
+        if (accuracyCircle) map.removeLayer(accuracyCircle);
+
+        userMarker = L.marker(latlng).addTo(map)
             .bindPopup("You are currently here").openPopup();
 
-        L.circle(latlng, {
+        accuracyCircle = L.circle(latlng, {
             radius: accuracy,
             color: '#3a31d8',
             fillOpacity: 0.1
         }).addTo(map);
     });
 
-
     map.on('locationerror', () => {
-        console.warn("Unavailable Locations")
+        console.warn("Unavailable Locations");
     });
-
 
     // ############## Click to mark ##############
     // TODO REFACTOR THIS

@@ -16,5 +16,12 @@
 
     "coordsPlaceholderId": "coordsPlaceholder",
     "coordsPlaceholderText": "Latitude: , Longitude: ",
-    "coordsPlaceholderStyle": "text-2xl font-medium text-black md:text-3xl w-full md:w-auto"
+    "coordsPlaceholderStyle": "text-2xl font-medium text-black md:text-3xl w-full md:w-auto",
+
+    "locateButton": {
+        "id": "locateButton",
+        "text": "Locate Me!",
+        "style": "rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba] focus:outline-none focus:ring-4 focus:ring-[#2f28ba]"
+    }
+
 }
