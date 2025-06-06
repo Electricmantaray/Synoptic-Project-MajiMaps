@@ -13,7 +13,7 @@
                 </div>
 
                 <!-- Form -->
-                <form action="<%= contacts.contactUs.form.action %>" method="<%= contacts.contactUs.method %>" class="<%= contacts.contactUs.form.style %>">
+                <form action="<%= contacts.contactUs.form.action %>" method="<%= contacts.contactUs.form.method %>" class="<%= contacts.contactUs.form.style %>">
                     <% ['reason', 'email', 'message'].forEach((entry) => { const field = contacts.contactUs.form[entry]; %>
                         <div class="<%= field.containerStyle %>">
                             <label 
@@ -23,7 +23,7 @@
                             <% if (field.type === 'textarea') { %>
                                 <textarea 
                                     id="<%= field.id %>" 
-                                    name="field.name" 
+                                    name="<%= field.name %>" 
                                     placeholder="<%= field.placeholder %>"
                                     class="<%= field.inputStyle %>"
                                     <%= field.required ? 'required' : '' %>></textarea>
@@ -38,7 +38,7 @@
                             <% } %>
                         </div>
                     <% }) %>
-                    <div class="<%= contacts.contactUs.form.submitButton.containterStyle %>">
+                    <div class="<%= contacts.contactUs.form.submitButton.containerStyle %>">
                         <button 
                             type="<%= contacts.contactUs.form.submitButton.type %>"
                             class="<%= contacts.contactUs.form.submitButton.style %>"><%= contacts.contactUs.form.submitButton.text %></button>
