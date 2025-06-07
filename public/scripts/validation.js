@@ -1,83 +1,6 @@
 // Initialise form submission
 document.addEventListener("DOMContentLoaded", () => {
-    Object.values(formsConfig).forEach( ({ id, fields, errorId }) => {
-        const form = document.getElementById(id);
-        
-        if (!form) return;
-
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            let isValid = true;
-            const errors = [];
-
-            // clear previous errors
-            const errorElement = document.getElementById(errorId);
-            if (errorElement) {
-                errorElement.textContent = "";
-            }
-
-
-            // Clear all styles first
-            Object.entries(fields).forEach(([fieldName, rules]) => {
-                if (rules.type === "checkboxGroup") {
-                    rules.names.forEach(name => {
-                        const input = form.querySelector(`input[name="${name}"]`);
-                        if (input) clearValidationStyles(input);
-                    });
-                    
-                } else {
-                    const input = form.querySelector(`[name="${fieldName}"]`);
-                    if (input) clearValidationStyles(input);
-                }
-            });
-
-            // Validate fields
-            Object.entries(fields).forEach(([fieldName, rules]) => {
-                if (rules.type === "checkboxGroup") {
-                    const errorMsg = validateField(null, rules, form);
-                    if (errorMsg) {
-                        errors.push(errorMsg);
-                        isValid = false;
-                        // Style all checkbox inputs as error
-                        rules.names.forEach(name => {
-                            const input = form.querySelector(`input[name="${name}"]`);
-                            if (input) applyErrorStyles(input);
-                        });
-                    } else {
-                        rules.names.forEach(name => {
-                            const input = form.querySelector(`input[name="${name}"]`);
-                            if (input) applySuccessStyles(input);
-                        });
-                    }
-                } else {
-                    const input = form.querySelector(`[name="${fieldName}"]`);
-                    const errorMsg = validateField(input, rules, form);
-                    if (errorMsg) {
-                        errors.push(`${capitalize(fieldName)}: ${errorMsg}`);
-                        isValid = false;
-                        if (input) applyErrorStyles(input);
-                    } else if (input) {
-                        applySuccessStyles(input);
-                    }
-                }
-            });
-
-            if (!isValid) {
-                if (errorElement) {
-                    errorElement.innerHTML = errors.join("<br />");
-                    errorElement.scrollIntoView({ behavior: "smooth" });
-                }
-                return;
-            }
-
-            // Form is valid
-            form.submit();
-        });
-    });
-
-
-    // ========== Validation config ==========
+        // ========== Validation config ==========
     // Define all forms and their entries
     const formsConfig = {
         // Simple Forms
@@ -209,4 +132,81 @@ document.addEventListener("DOMContentLoaded", () => {
         // no errors
         return null; 
     }
-})
+
+    // ========== Main Code structure =========
+    Object.values(formsConfig).forEach( ({ id, fields, errorId }) => {
+        const form = document.getElementById(id);
+        
+        if (!form) return;
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let isValid = true;
+            const errors = [];
+
+            // clear previous errors
+            const errorElement = document.getElementById(errorId);
+            if (errorElement) {
+                errorElement.textContent = "";
+            }
+
+
+            // Clear all styles first
+            Object.entries(fields).forEach(([fieldName, rules]) => {
+                if (rules.type === "checkboxGroup") {
+                    rules.names.forEach(name => {
+                        const input = form.querySelector(`input[name="${name}"]`);
+                        if (input) clearValidationStyles(input);
+                    });
+                    
+                } else {
+                    const input = form.querySelector(`[name="${fieldName}"]`);
+                    if (input) clearValidationStyles(input);
+                }
+            });
+
+            // Validate fields
+            Object.entries(fields).forEach(([fieldName, rules]) => {
+                if (rules.type === "checkboxGroup") {
+                    const errorMsg = validateField(null, rules, form);
+                    if (errorMsg) {
+                        errors.push(errorMsg);
+                        isValid = false;
+                        // Style all checkbox inputs as error
+                        rules.names.forEach(name => {
+                            const input = form.querySelector(`input[name="${name}"]`);
+                            if (input) applyErrorStyles(input);
+                        });
+                    } else {
+                        rules.names.forEach(name => {
+                            const input = form.querySelector(`input[name="${name}"]`);
+                            if (input) applySuccessStyles(input);
+                        });
+                    }
+                } else {
+                    const input = form.querySelector(`[name="${fieldName}"]`);
+                    const errorMsg = validateField(input, rules, form);
+                    if (errorMsg) {
+                        errors.push(`${capitalize(fieldName)}: ${errorMsg}`);
+                        isValid = false;
+                        if (input) applyErrorStyles(input);
+                    } else if (input) {
+                        applySuccessStyles(input);
+                    }
+                }
+            });
+
+            if (!isValid) {
+                if (errorElement) {
+                    errorElement.innerHTML = errors.join("<br />");
+                    errorElement.scrollIntoView({ behavior: "smooth" });
+                }
+                return;
+            }
+
+            // Form is valid
+            form.submit();
+        });
+    });
+});
