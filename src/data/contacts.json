@@ -30,7 +30,7 @@
                 "type": "email",
                 "id": "email",
                 "name": "email",
-                "placeholder": "Your email",
+                "placeholder": "example@gmail.com",
                 "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
                 "containerStyle": "flex flex-col gap-2",
                 "required": true
@@ -80,22 +80,22 @@
             "method": "POST",
             "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
             "forename": {
-                "labelText": "Forename",
+                "labelText": "Forename (Optional)",
                 "labelStyle": "font-inter text-2xl font-medium text-white",
                 "type": "text",
                 "id": "forename",
                 "name": "forename",
-                "placeholder": "Enter your forename",
+                "placeholder": "Enter Forename",
                 "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
                 "containerStyle": "flex flex-col gap-2"
             },
             "surname": {
-                "labelText": "Surname",
+                "labelText": "Surname (Optional)",
                 "labelStyle": "font-inter text-2xl font-medium text-white",
                 "type": "text",
                 "id": "surname",
                 "name": "surname",
-                "placeholder": "Enter your surname",
+                "placeholder": "Enter Surname",
                 "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
                 "containerStyle": "flex flex-col gap-2"
             },
@@ -105,7 +105,7 @@
                 "type": "email",
                 "id": "email",
                 "name": "email",
-                "placeholder": "Enter your email",
+                "placeholder": "example@gmail.com",
                 "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
                 "containerStyle": "flex flex-col gap-2 md:col-span-2",
                 "required": true

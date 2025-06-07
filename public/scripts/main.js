@@ -2,25 +2,12 @@
 
 // Form Validation
 document.addEventListener("DOMContentLoaded", () => {
-    // === Report ===
+    const contactForm = document.getElementById('contactForm');
+    const emailServiceForm = document.getElementById('emailServiceForm');
 
+    const validateField = (input) => {
 
-
-
-
-
-    
-    // === Contacts ===
-
-
-    // == Contact Form == 
-
-
-    // == Email Service Form == 
-    const emailServiceForm = document.querySelector('#emailService-form')
-
-
-
+    }
 
 
 
