@@ -20,7 +20,7 @@ const sendContactUsEmail = async (formData) => {
         from: `MajiMaps Message Service <${process.env.EMAIL}>`,
         to: process.env.EMAIL,
         subject: `MajiMaps Customer Enquiry: ${formData.reason} `,
-        text: `Sender: ${formData.email}.\n\n========== Content ==========\n\nReason: ${formData.reason} \n\nMessage:\n${formData.message}\n\n=============================`
+        text: `Sender: ${formData.contactUsEmail}.\n\n========== Content ==========\n\nReason: ${formData.reason} \n\nMessage:\n${formData.message}\n\n=============================`
     };
 
     try {
