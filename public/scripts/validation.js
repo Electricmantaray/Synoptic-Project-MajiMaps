@@ -1,16 +1,16 @@
 // Initialise form submission
 document.addEventListener("DOMContentLoaded", () => {
-        // ========== Validation config ==========
+// ========== Validation config ==========
     // Define all forms and their entries
     const formsConfig = {
         // Simple Forms
         contactForm: {
-            id: "contactForm",
+            id: "contactUsForm",
             errorId: "contactUsError",
             fields: {
                 reason: { required: true, type: "text" },
                 contactUsEmail: { required: true, type: "email" },
-                message: { required: true, type: "text" }
+                message: { required: true, type: "textarea" }
             }
         },
 
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             fields: {
                 forename: { required: false, type: "text" },
                 surname: { required: false, type: "text" },
-                email: { required: true, type: "email" },
+                emailServiceEmail: { required: true, type: "email" },
                 preferences: {
                     required: true,
                     type: "checkboxGroup",
@@ -32,10 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         reportForm: {
             id: "reportForm",
+            errorId: "reportError",
             fields: {
                 location: { required: true, type: "text" },
                 type: { required: true, type: "select" },
-                description: { required: true, type: "text" }
+                description: { required: true, type: "textarea" }
             }
         }
     };
@@ -103,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function validateField(input, rules, form) {
         if (rules.type === "checkboxGroup") {
             // Validate checkboxes, at least one checked if required
-            if (!rules.required) return null; // no validation needed if not required
+            if (!rules.required) return null;
 
             const checked = rules.names.some(name => {
                 const checkbox = form.querySelector(`input[name="${name}"]`);
@@ -129,6 +130,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return "Please enter a valid email address.";
         }
 
+        if (rules.type === "select"){
+            if (rules.required && (!input || !input.value || input.value === "")) {
+                return "This field is required.";
+            }
+        }
+
         // no errors
         return null; 
     }
@@ -139,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (!form) return;
 
-        form.addEventListener("submit", (e) => {
+        form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             let isValid = true;
@@ -173,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (errorMsg) {
                         errors.push(errorMsg);
                         isValid = false;
-                        // Style all checkbox inputs as error
                         rules.names.forEach(name => {
                             const input = form.querySelector(`input[name="${name}"]`);
                             if (input) applyErrorStyles(input);
@@ -188,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const input = form.querySelector(`[name="${fieldName}"]`);
                     const errorMsg = validateField(input, rules, form);
                     if (errorMsg) {
-                        errors.push(`${capitalize(fieldName)}: ${errorMsg}`);
+                        errors.push(`${(fieldName)}: ${errorMsg}`);
                         isValid = false;
                         if (input) applyErrorStyles(input);
                     } else if (input) {
@@ -200,13 +206,91 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isValid) {
                 if (errorElement) {
                     errorElement.innerHTML = errors.join("<br />");
-                    errorElement.scrollIntoView({ behavior: "smooth" });
                 }
                 return;
             }
 
-            // Form is valid
-            form.submit();
+
+            // Build JSON object from fields for submission
+            const json = {};
+
+            Object.entries(fields).forEach(([fieldName, rules]) => {
+                if (rules.type === "checkboxGroup") {
+                    // Collect all checked checkbox names into an array
+                    const checkedValues = [];
+                    rules.names.forEach(name => {
+                        const checkbox = form.querySelector(`input[name="${name}"]`);
+                        if (checkbox && checkbox.checked) {
+                            checkedValues.push(name);
+                        }
+                    });
+                    json[fieldName] = checkedValues;
+                } else {
+                    const input = form.querySelector(`[name="${fieldName}"]`);
+                    if (input) {
+                        json[fieldName] = input.value.trim();
+                    }
+                }
+                
+            });
+
+            try {
+                // Send POST request to form.action URL
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(json),
+                });
+
+                // Check HTTP status
+                if (!response.ok) {
+                    // Try to parse JSON errors from server
+                    const errorData = await response.json();
+                    if (errorData.error && Array.isArray(errorData.error)) {
+                        // Highlight server-validated fields with errors
+                        errorData.error.forEach(err => {
+                            const fieldInput = form.querySelector(`[name="${err.path}"]`);
+                            if (fieldInput) applyErrorStyles(fieldInput);
+                        });
+                        if (errorElement) {
+                            errorElement.innerHTML = "Please fix the highlighted fields.";
+                        }
+                    } else {
+                        if (errorElement) {
+                            errorElement.textContent = "Server error: Please try again later.";
+                        }
+                    }
+                    return;
+                }
+
+                // If success, parse response JSON
+                const successData = await response.json();
+
+                // Show success message
+                if (errorElement) {
+                    errorElement.textContent = successData.message || "Form submitted successfully!";
+                }
+
+                // Reset form and clear styles
+                form.reset();
+                Object.entries(fields).forEach(([fieldName, rules]) => {
+                    if (rules.type === "checkboxGroup") {
+                        rules.names.forEach(name => {
+                            const input = form.querySelector(`input[name="${name}"]`);
+                            if (input) clearValidationStyles(input);
+                        });
+                    } else {
+                        const input = form.querySelector(`[name="${fieldName}"]`);
+                        if (input) clearValidationStyles(input);
+                    }
+                });
+
+            } catch (err) {
+                if (errorElement) {
+                    errorElement.textContent = "Network error: Please try again later.";
+                }
+            }
         });
-    });
-});
+    },
+)});
+

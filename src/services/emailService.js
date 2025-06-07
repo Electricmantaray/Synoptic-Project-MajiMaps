@@ -1,8 +1,8 @@
 import { error } from "console";
 import fs from "fs";
 import nodeMailer from "nodemailer";
-require('dotenv').config();
-
+import dotenv from "dotenv";
+dotenv.config()
 
 // Configure email
 const transporter = nodeMailer.createTransport({
@@ -27,7 +27,7 @@ const sendContactUsEmail = async (formData) => {
         return await transporter.sendMail(mailOptions)
     } catch (err) {
         console.log(err);
-        throw error;
+        throw err;
     }     
 };
 
