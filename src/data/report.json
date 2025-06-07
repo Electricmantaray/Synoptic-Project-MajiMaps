@@ -79,6 +79,10 @@
             "type": "submit",
             "text": "Submit",
             "style": "rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba] focus:outline-none focus:ring-4 focus:ring-[#2f28ba]"
+        },
+        "error": {
+            "id": "reportError",
+            "style": "mt-2 text-red-600 text-lg"
         }
     }
 }

@@ -20,7 +20,7 @@
                 "id": "reason",
                 "name": "reason",
                 "placeholder": "Enter reason",
-                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
                 "containerStyle": "flex flex-col gap-2",
                 "required": true
             },
@@ -28,10 +28,10 @@
                 "labelText": "Email",
                 "labelStyle": "font-inter text-2xl font-medium text-white",
                 "type": "email",
-                "id": "email",
+                "id": "contactUsEmail",
                 "name": "email",
                 "placeholder": "example@gmail.com",
-                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
                 "containerStyle": "flex flex-col gap-2",
                 "required": true
             },
@@ -43,7 +43,7 @@
                 "name": "message",
                 "placeholder": "Your message...",
                 "rows": 5,
-                "inputStyle": "resize-none rounded-[20px] bg-[#d9d9d9] px-4 py-3 text-lg text-black placeholder:text-gray-600",
+                "inputStyle": "resize-none rounded-[20px] bg-[#d9d9d9] px-4 py-3 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
                 "containerStyle": "flex flex-col gap-2 md:col-span-2",
                 "required": true
             },
@@ -52,6 +52,10 @@
                 "type": "submit",
                 "style": "rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]",
                 "containerStyle": "flex w-full justify-center md:col-span-2"
+            },
+            "error": {
+                "id": "contactUsError",
+                "style": "mt-2 text-red-600 text-lg"
             }
         },
         "localResources": {
@@ -86,7 +90,7 @@
                 "id": "forename",
                 "name": "forename",
                 "placeholder": "Enter Forename",
-                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
                 "containerStyle": "flex flex-col gap-2"
             },
             "surname": {
@@ -96,17 +100,17 @@
                 "id": "surname",
                 "name": "surname",
                 "placeholder": "Enter Surname",
-                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
                 "containerStyle": "flex flex-col gap-2"
             },
             "email": {
                 "labelText": "Email",
                 "labelStyle": "font-inter text-2xl font-medium text-white",
                 "type": "email",
-                "id": "email",
+                "id": "emailServiceEmail",
                 "name": "email",
                 "placeholder": "example@gmail.com",
-                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600",
+                "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
                 "containerStyle": "flex flex-col gap-2 md:col-span-2",
                 "required": true
             },
@@ -139,6 +143,10 @@
                 "type": "submit",
                 "style": "relative rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]",
                 "containerStyle": "flex w-full justify-center md:col-span-2"
+            },
+            "error": {
+                "id": "emailServiceError",
+                "style": "mt-2 text-red-600 text-lg"
             }
         }
     }
