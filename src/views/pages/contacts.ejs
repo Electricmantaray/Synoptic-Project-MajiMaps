@@ -13,7 +13,7 @@
                 </div>
 
                 <!-- Form -->
-                <form id="<%= contacts.contactUs.form.id %>" action="<%= contacts.contactUs.form.action %>" method="<%= contacts.contactUs.form.method %>" class="<%= contacts.contactUs.form.style %>">
+                <form id="<%= contacts.contactUs.form.id %>" action="<%= contacts.contactUs.form.action %>" method="<%= contacts.contactUs.form.method %>" class="<%= contacts.contactUs.form.style %>" <%= contacts.contactUs.form.novalidate ? 'novalidate' : '' %>>
                     <% ['reason', 'email', 'message'].forEach((entry) => { const field = contacts.contactUs.form[entry]; %>
                         <div class="<%= field.containerStyle %>">
                             <label 
@@ -71,7 +71,7 @@
                 </div>
 
                 <!-- Form -->
-                <form id="<% contacts.emailService.form.id %>" action="<%= contacts.emailService.form.action %>" method="<%= contacts.emailService.form.method %>" class="<%= contacts.emailService.form.style %>">
+                <form id="<%= contacts.emailService.form.id %>" action="<%= contacts.emailService.form.action %>" method="<%= contacts.emailService.form.method %>" class="<%= contacts.emailService.form.style %>" <%= contacts.emailService.form.novalidate ? 'novalidate' : '' %>>
                     <% ['forename', 'surname', 'email'].forEach((entry) => { field = contacts.emailService.form[entry]; %> 
                         <div class="<%= field.containerStyle %>">
                             <label 

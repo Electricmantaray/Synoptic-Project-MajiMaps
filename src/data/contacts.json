@@ -13,6 +13,7 @@
             "action": "/contact",
             "method": "POST",
             "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
+            "novalidate": true,
             "reason": {
                 "labelText": "Reason for enquiry",
                 "labelStyle": "font-inter text-2xl font-medium text-white",
@@ -29,7 +30,7 @@
                 "labelStyle": "font-inter text-2xl font-medium text-white",
                 "type": "email",
                 "id": "contactUsEmail",
-                "name": "email",
+                "name": "contactUsEmail",
                 "placeholder": "example@gmail.com",
                 "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
                 "containerStyle": "flex flex-col gap-2",
@@ -83,6 +84,7 @@
             "action": "/subscribe",
             "method": "POST",
             "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
+            "novalidate": true,
             "forename": {
                 "labelText": "Forename (Optional)",
                 "labelStyle": "font-inter text-2xl font-medium text-white",
@@ -108,7 +110,7 @@
                 "labelStyle": "font-inter text-2xl font-medium text-white",
                 "type": "email",
                 "id": "emailServiceEmail",
-                "name": "email",
+                "name": "emailServiceEmail",
                 "placeholder": "example@gmail.com",
                 "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
                 "containerStyle": "flex flex-col gap-2 md:col-span-2",

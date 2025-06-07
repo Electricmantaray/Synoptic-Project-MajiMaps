@@ -10,6 +10,7 @@
         "action": "/report",
         "method": "POST",
         "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
+        "novalidate": true,
         "location": {
             "labelText": "Location",
             "labelStyle": "text-2xl font-medium text-black",
