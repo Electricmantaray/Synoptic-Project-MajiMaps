@@ -47,7 +47,7 @@
     
     # Email config
     EMAIL=majimaps@gmail.com
-    APP_PASSWORD=mlxufEtuy@swEchAphE3
+    APP_PASSWORD=nwgrhxbwbmosxqha
     
     # PostgreSQL (for later)
     DATABASE_URL=postgres://username:password@localhost:5432/majimaps
