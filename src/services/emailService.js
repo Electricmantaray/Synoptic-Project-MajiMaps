@@ -1,5 +1,3 @@
-import { error } from "console";
-import fs from "fs";
 import nodeMailer from "nodemailer";
 import dotenv from "dotenv";
 dotenv.config()

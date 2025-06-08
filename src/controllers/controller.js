@@ -38,7 +38,7 @@ export const renderHome = async (req, res) => {
     data[section] = sectionData
   }
 
-  res.render("pages/layout", data);
+  res.render("main/pages/layout", data);
 };
 
 

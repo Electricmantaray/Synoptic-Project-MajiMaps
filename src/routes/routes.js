@@ -4,8 +4,13 @@ import { body } from "express-validator";
 
 
 const router = Router();
+
+// Public SPA
 router.get("/", renderHome);
-//router.get("/admin-panel", renderAdmin);
+
+// Private admin pages
+router.get("/admin", renderAdminLogin);
+router.get("/admin/dashboard", renderAdminDashboard);
 
 
 router.post("/contact",
