@@ -4,8 +4,9 @@ import { validationResult } from "express-validator";
 import { getSectionData } from "../services/services.js";
 import { sendContactUsEmail } from "../services/emailService.js";
 
+// ========== Main Page Controller ==========
 // array of current sections to iterate through
-const sections = [
+const mainSections = [
   "common",
   "hero",
   "introduction",
@@ -19,10 +20,11 @@ const sections = [
 export const renderHome = async (req, res) => {
   const data = {};
 
-  console.warn("\n########## RENDER ##########\n############################")
+  console.warn("\n########## RENDER MAIN ##########\n#################################")
 
-  for (const section of sections) {
-    const sectionData = await getSectionData(section);
+  for (const section of mainSections) {
+
+    const sectionData = await getSectionData("main", section);
     // Check for empty object or json if so they return null
     // TODO: Improve this section
     const isEmpty = sectionData === null ||
@@ -46,14 +48,14 @@ export const renderHome = async (req, res) => {
 export const postForm = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-      const formattedErrors = errors.array().map(err => ({
-        path: err.param,
-        message: err.msg
+    const formattedErrors = errors.array().map(err => ({
+      path: err.param,
+      message: err.msg
     }));
     return res.status(400).json({ error: formattedErrors });
   }
 
-  if(req.path === "/contact") {
+  if (req.path === "/contact") {
     try {
       await sendContactUsEmail(req.body);
       return res.json({ message: "Contact message sent" });
@@ -67,17 +69,17 @@ export const postForm = async (req, res) => {
     // TODO : save subscription to DB
 
     return res.json({ message: "Subscription preferences saved" });
-  
+
   }
 
-    if (req.path == "/report") {
+  if (req.path == "/report") {
 
     // TODO : save report to DB
 
     return res.json({ message: "Report saved" });
-  
+
   }
 
   return res.status(400).json({ error: "Unknown form submission" });
-  
+
 };

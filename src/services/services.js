@@ -8,13 +8,13 @@ const cache = {};
 
 
 // Loading JSON from a specific "page"/section
-async function getSectionData(section) {
+async function getSectionData(page, section) {
 
   // returns cache if present
   if (useCache && cache[section]) { return cache[section] }
 
   // Initialise filepath
-  const filePath = `src/data/${section}.json`;
+  const filePath = `src/data/${page}/${section}.json`;
 
   // Checking if json file exists
   if (!fs.existsSync(filePath)) {
@@ -51,5 +51,6 @@ async function getSectionData(section) {
   }
   return {};
 }
+
 
 export { getSectionData }

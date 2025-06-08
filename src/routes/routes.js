@@ -8,11 +8,6 @@ const router = Router();
 // Public SPA
 router.get("/", renderHome);
 
-// Private admin pages
-router.get("/admin", renderAdminLogin);
-router.get("/admin/dashboard", renderAdminDashboard);
-
-
 router.post("/contact",
     [
         body("reason").notEmpty().withMessage("Reason is required"),
