@@ -41,22 +41,12 @@
     ```
 - Add .env file:
   - ```
-    # Environment
-    PORT=8000
-    NODE_ENV=development
-    
-    # Email config
-    EMAIL=majimaps@gmail.com
-    APP_PASSWORD=nwgrhxbwbmosxqha
-
-    # Admin Login details (Bcrypt to 14 rounds)
-    ADMIN_EMAIL=majimaps@gmail.com
-    ADMIN_PASSWORD_HASH=$2a$14$Kn31SzGtVqlPG735ttqJqO1saRAl1HdkrqYPiVOPFR89yDhHBsOri
-    
-    # PostgreSQL (for later)
-    DATABASE_URL=postgres://username:password@localhost:5432/majimaps
-    
-    # Feature flags
+    # ask hayden for any required
+    # .env.example
+    EMAIL=your-email@example.com
+    APP_PASSWORD=your-app-password
+    ADMIN_EMAIL=admin@example.com
+    ADMIN_PASSWORD_HASH=your-bcrypt-hash
     USE_CACHE=false
     ```
 ---   
