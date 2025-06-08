@@ -11,7 +11,7 @@
         {   
             "title": "Theft Functionality",
             "image": {
-                "src": "",
+                "src": "/images/TheftGif.gif",
                 "alt": "Theft Functionality"
             }
         },
@@ -19,7 +19,7 @@
         {   
             "title": "Leaking Functionality",
             "image": {
-                "src": "",
+                "src": "/images/LeakGif.gif",
                 "alt": "Leaking Functionality"
             }
         }        
