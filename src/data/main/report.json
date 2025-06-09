@@ -4,6 +4,7 @@
         "text": "Your reports help local teams identify areas needing attention. Submitted locations are anonymously stored and visualised to improve access and response planning.",
         "style": "max-w-[1200px] text-2xl font-normal text-black md:text-3xl"
     },
+    "dividerStyle": "h-[5px] w-full rounded-full bg-[#bebebe]",
 
     "form": {
         "id": "reportForm",

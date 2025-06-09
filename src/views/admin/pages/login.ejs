@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../../partialsGlobal/head") %>
+
+    <body class="scroll-smooth bg-gray-50 font-inter pb-13 sm:pb-0">
+        <main class="flex flex-col items-center justify-center">
+            <section id="<%= login.id %>" class="bg-bg-blue h-screen flex items-center justify-center px-6 py-12">
+                <div class="w-full max-w-[1102px] bg-[rgba(228,228,228,0.50)] rounded-[20px] shadow-lg backdrop-blur-sm px-[45px] py-[30px] flex flex-col gap-[30px] items-center justify-center relative">
+
+                    <!-- Header -->
+                    <div class="w-full flex flex-col items-center justify-center gap-3">
+                        <img 
+                            src="<%= login.header.logo.src %>" 
+                            alt="<%= login.header.logo.alt %>"
+                            class="<%= login.header.logo.style %>" />
+
+                        <h2 class="<%= login.header.titleStyle %>"><%= login.header.title %></h2>
+                        <p class="<%= login.header.descriptionStyle %>"><%= login.header.description %></p>
+
+                        <div class="<%= login.header.dividerStyle %>"></div>
+                    </div>
+
+                    <!-- login Form -->
+                    <form id="<%= login.form.id %>" action="<%= login.form.action %>" method="<%= login.form.method %>" class="<%= login.form.style %>" <%=login.form.novalidate ? 'novalidate' : '' %>>
+
+                        <% ['email', 'password' ].forEach((fieldName)=> {
+                            const field = login.form[fieldName]; %>
+                            <div class="<%= field.containerStyle %>">
+                                <label for="<%= field.id %>" class="<%= field.labelStyle %>">
+                                    <%= field.labelText %>
+                                </label>
+                                <input type="<%= field.type %>" id="<%= field.id %>" name="<%= field.name %>"
+                                    placeholder="<%= field.placeholder %>" class="<%= field.inputStyle %>"
+                                    <%=field.required ? 'required' : '' %> />
+                            </div>
+                            <% }) %>
+
+                                <!-- Submit Button -->
+                                <div class="<%= login.form.submitButton.containerStyle %>">
+                                    <button type="<%= login.form.submitButton.type %>"
+                                        class="<%= login.form.submitButton.style %>">
+                                        <%= login.form.submitButton.text %>
+                                    </button>
+                                </div>
+
+                                <!-- Error message -->
+                                <p id="<%= login.form.error.id %>" class="<%= login.form.error.style %>"></p>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+        <%- include("../../partialsGlobal/scripts") %>
+    </body>
+
+</html>

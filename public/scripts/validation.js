@@ -1,6 +1,6 @@
 // Initialise form submission
 document.addEventListener("DOMContentLoaded", () => {
-// ========== Validation config ==========
+    // ========== Validation config ==========
     // Define all forms and their entries
     const formsConfig = {
         // Simple Forms
@@ -37,6 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 location: { required: true, type: "text" },
                 type: { required: true, type: "select" },
                 description: { required: true, type: "textarea" }
+            }
+        },
+
+        adminLoginForm: {
+            id: "adminLoginForm",
+            errorId: "adminLoginError",
+            fields: {
+                adminEmail: { required: true, type: "email" },
+                adminPassword: { required: true, type: "text" }
             }
         }
     };
@@ -130,20 +139,20 @@ document.addEventListener("DOMContentLoaded", () => {
             return "Please enter a valid email address.";
         }
 
-        if (rules.type === "select"){
+        if (rules.type === "select") {
             if (rules.required && (!input || !input.value || input.value === "")) {
                 return "This field is required.";
             }
         }
 
         // no errors
-        return null; 
+        return null;
     }
 
     // ========== Main Code structure =========
-    Object.values(formsConfig).forEach( ({ id, fields, errorId }) => {
+    Object.values(formsConfig).forEach(({ id, fields, errorId }) => {
         const form = document.getElementById(id);
-        
+
         if (!form) return;
 
         form.addEventListener("submit", async (e) => {
@@ -166,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         const input = form.querySelector(`input[name="${name}"]`);
                         if (input) clearValidationStyles(input);
                     });
-                    
+
                 } else {
                     const input = form.querySelector(`[name="${fieldName}"]`);
                     if (input) clearValidationStyles(input);
@@ -231,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         json[fieldName] = input.value.trim();
                     }
                 }
-                
+
             });
 
             try {
@@ -292,5 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     },
-)});
+    )
+});
 

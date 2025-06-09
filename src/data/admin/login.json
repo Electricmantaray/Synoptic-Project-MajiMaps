@@ -1,0 +1,54 @@
+{
+  "id": "admin-login",
+  "header": {
+    "logo": {
+      "src": "/images/Minimal - MajiMapsIcon.png",
+      "alt": "logo",
+      "style": "h-[60px] w-auto object-contain mx-auto sm:mx-0"
+    },
+    "title": "Administrator Login",
+    "titleStyle": "text-4xl font-extrabold text-black font-inter drop-shadow-sm",
+    "description": "Secure access for internal use only",
+    "descriptionStyle": "max-w-xl text-lg font-medium text-gray-800 font-inter drop-shadow-sm",
+    "dividerStyle": "h-[5px] w-full max-w-[300px] my-6 mx-auto rounded-full bg-[#bebebe]"
+  },
+  "form": {
+    "id": "adminLoginForm",
+    "action": "/admin/login",
+    "method": "POST",
+    "style": "w-full max-w-md mx-auto flex flex-col gap-6",
+    "novalidate": true,
+    "email": {
+      "labelText": "Email Address",
+      "labelStyle": "font-inter text-xl font-medium text-gray-700",
+      "type": "email",
+      "id": "adminEmail",
+      "name": "adminEmail",
+      "placeholder": "admin@example.com",
+      "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
+      "containerStyle": "flex flex-col gap-2",
+      "required": true
+    },
+    "password": {
+      "labelText": "Password",
+      "labelStyle": "font-inter text-xl font-medium text-gray-700",
+      "type": "password",
+      "id": "adminPassword",
+      "name": "adminPassword",
+      "placeholder": "Example: abc123ABC",
+      "inputStyle": "h-[52px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
+      "containerStyle": "flex flex-col gap-2",
+      "required": true
+    },
+    "submitButton": {
+      "text": "Login",
+      "type": "submit",
+      "style": "rounded-[25px] bg-[#3a31d8] px-10 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-[#2f28ba]",
+      "containerStyle": "flex w-full justify-center md:col-span-2"
+    },
+    "error": {
+      "id": "adminLoginError",
+      "style": "mt-2 text-red-600 text-lg"
+    }
+  }
+}

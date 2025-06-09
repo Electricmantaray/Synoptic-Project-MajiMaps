@@ -23,8 +23,15 @@ export const renderHome = async (req, res) => {
   console.warn("\n########## RENDER MAIN ##########\n#################################")
 
   for (const section of mainSections) {
+    let sectionData;
 
-    const sectionData = await getSectionData("main", section);
+
+    if (section === "common") {
+      sectionData = await getSectionData("common", section)
+    } else {
+      sectionData = await getSectionData("main", section);
+    }
+
     // Check for empty object or json if so they return null
     // TODO: Improve this section
     const isEmpty = sectionData === null ||

@@ -7,9 +7,21 @@ const router = Router();
 
 // Private admin pages
 router.get("/login", getLoginPage);
-router.post("/login", postLogin);
+router.post("/login", 
+    [
+    body("adminEmail").isEmail().withMessage("Valid email required"),
+    body("adminPassword").notEmpty().withMessage("Password is required")
+    ],
+    postLogin
+);
 
 router.get("/dashboard", requireAdminAuth, getDashboard);
+
+router.get("/logout", (req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/admin/login")
+    })
+});
 
 
 
