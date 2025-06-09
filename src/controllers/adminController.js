@@ -103,7 +103,7 @@ export const postLogin = async (req, res) => {
     // Set session to store successful login credentials
     req.session.isAdmin = true;
     req.session.adminEmail = email;
-    return res.redirect("/admin/dashboard");
+    return res.json({ message: "Login successful", redirectUrl: "/admin/dashboard" });
 
   } catch (err) {
     console.error("Login error:", err);

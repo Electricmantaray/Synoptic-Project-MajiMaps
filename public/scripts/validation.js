@@ -274,6 +274,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // If success, parse response JSON
                 const successData = await response.json();
+                console.log("Login successData:", successData);
+                if (successData.redirectUrl) {
+                    window.location.href = successData.redirectUrl;
+                    return;
+                }
 
                 // Show success message
                 if (errorElement) {
