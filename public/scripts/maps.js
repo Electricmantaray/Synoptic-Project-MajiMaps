@@ -1,6 +1,8 @@
 
 // Map initialisation
 document.addEventListener('DOMContentLoaded', () => {
+    const mapElement = document.getElementById("map");
+  if (!mapElement) return;
     // Initialize the map centered roughly around Johannesburg
     var map = L.map('map', {
         scrollWheelZoom: false

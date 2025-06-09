@@ -12,13 +12,33 @@
         "leafletJS": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     },
     "logo": {
-        "link": "#home",
         "src": "/images/Minimal - MajiMapsIcon.png",
         "alt": "MajiMaps",
         "style": "h-[60px] w-auto object-contain mx-auto sm:mx-0"
     },
+    "adminHeader": {
+        "id": "adminHeader",
+        "container": {
+            "style": "flex items-center justify-between bg-[#e5e5eb] shadow-md px-6 py-4 rounded-b-[15px]"
+        },
+        "left": {
+            "text": {
+                "content": "Admin Panel",
+                "style": "text-gray-800 text-xl font-semibold ml-4 select-none"
+            },
+            "containerStyle": "flex items-center"
+        },
+        "right": {
+            "logoutButton": {
+                "text": "Logout",
+                "style": "bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200",
+                "type": "button",
+                "id": "logoutBtn"
+            }
+        }
+    },
     "navigation": {
-        "style": "ransition-colors hover:text-blue-600",
+        "style": "transition-colors hover:text-blue-600",
         "links": [
             {
                 "label": "Home",
@@ -38,7 +58,6 @@
             }
         ]
     },
-
     "footer": {
         "text": "Maji Maps. All rights reserved",
         "email": "majimaps@gmail.com"
