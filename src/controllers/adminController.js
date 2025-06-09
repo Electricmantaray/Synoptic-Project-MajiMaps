@@ -27,7 +27,11 @@ export const getLoginPage = async (req, res) => {
 // array of current sections to iterate through
 const adminSections = [
   "common",
-  "dashboard"
+  "dashboardStats",
+  "dashboardMap",
+  "dashboardGraph",
+  "dashboardCSV",
+  "dashboardSend"  
 ];
 
 // Gathers all component data

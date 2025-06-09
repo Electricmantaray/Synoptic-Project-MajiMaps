@@ -1,24 +1,20 @@
-<header id="<%= common.adminHeader.id %>" class="fixed top-0 left-0 z-[10000] w-full px-4 py-2 bg-[#e5e5eb] shadow-md">
-    <div class="
-    mx-auto flex max-w-6xl items-center justify-between rounded-[15px]
-    px-6 py-3
-    sm:flex-row flex-col sm:py-3 py-2
-  ">
+<header id="<%= common.adminHeader.id %>" class="fixed top-0 left-0 z-10000 w-full px-4 py-2 bg-[#e5e5eb] shadow-md">
+    <div class="<%= common.adminHeader.container.style%>">
         <!-- Left container: logo and admin text -->
-        <div class="flex items-center space-x-4">
+        <div class="<%= common.adminHeader.left.containerStyle%>">
             <img 
                 src="<%= common.logo.src %>" 
                 alt="<%= common.logo.alt %>" 
                 class="<%= common.logo.style %>" />
-            <span class="text-gray-800 text-xl font-semibold select-none">
-                Admin Panel
+            <span class="<%= common.adminHeader.left.text.content %>">
+                <%= common.adminHeader.left.text.content %>
             </span>
         </div>
 
         <!-- Right container: logout button -->
-        <button id="<%= common.adminHeader.right.logoutButton.id %>" type="button"
-            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200 mt-2 sm:mt-0">
-            Logout
+        <button id="<%= common.adminHeader.right.logoutButton.id %>" type="<%= common.adminHeader.right.logoutButton.type %>"
+            class="<%= common.adminHeader.right.logoutButton.style %>">
+            <%= common.adminHeader.right.logoutButton.text %>
         </button>
     </div>
 </header>

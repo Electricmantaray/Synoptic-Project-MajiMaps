@@ -1,22 +1,29 @@
 
 // Map initialisation
 document.addEventListener('DOMContentLoaded', () => {
-    const mapElement = document.getElementById("map");
-  if (!mapElement) return;
+    const publicMapId = "map";
+    const adminMapId = "dashboardMap";
+
+    const mapElement = document.getElementById(publicMapId) || document.getElementById(adminMapId);
+
+    if (!mapElement) return;
+
+    const isAdmin = mapElement.id === adminMapId;
+
     // Initialize the map centered roughly around Johannesburg
-    var map = L.map('map', {
+    const map = L.map(mapElement.id, {
         scrollWheelZoom: false
     }).setView([-26.193292, 28.072987], 15);
 
     // Add OpenStreetMap tile layer with attribution
     const street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
     const satillite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 19,
-        attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
     L.control.layers({
@@ -63,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentMarker = null;
 
     map.on('click', (e) => {
-        const {lat, lng} = e.latlng;
+        const { lat, lng } = e.latlng;
         if (currentMarker) {
             map.removeLayer(currentMarker);
         }
@@ -71,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         coordsDisplay.textContent = `Latitude: ${lat.toFixed(6)}, Longitude: ${lng.toFixed(6)}`;
-        if (coordsEntry) coordsEntry.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;    
-       
+        if (coordsEntry) coordsEntry.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+
     });
 
     // ############## Scroll whell behaviour and zoom ##############
@@ -118,15 +125,25 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const makersValley = L.polygon(makerValleyCoords, {
-        color:'#3a31d8',
+        color: '#3a31d8',
         fillColor: '#3a31d8',
         fillOpacity: 0.2,
         weight: 2
     }).addTo(map);
 
+    // ========== Admin-Only Features ==========
+    if (isAdmin) {
+        console.log("Admin dashboard map loaded");
+
+        // Placeholder for future features:
+        // - DB pin loading
+        // - Marker clustering
+        // - Heatmaps or user actions
+        // - Edit/delete control
 
 
 
+    }
 });
 
 

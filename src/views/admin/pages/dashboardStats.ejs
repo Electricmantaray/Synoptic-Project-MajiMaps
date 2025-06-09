@@ -1,0 +1,14 @@
+<section id="<%= dashboardStats.id %>" class="flex justify-center bg-transparent">
+    <div class="<%= dashboardStats.containerStyle %>">
+        <% dashboardStats.cards.forEach(card=> { %>
+            <article class="<%= dashboardStats.cardStyles.wrapperStyle %>">
+                <h3 class="<%= dashboardStats.cardStyles.titleStyle %>">
+                    <%= card.title %>
+                </h3>
+                <p class="<%= dashboardStats.cardStyles.statStyle %>">
+                    <%= card.stat %>
+                </p>
+            </article>
+        <% }) %>
+    </div>
+</section>

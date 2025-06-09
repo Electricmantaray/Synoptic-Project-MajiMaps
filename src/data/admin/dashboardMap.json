@@ -1,0 +1,13 @@
+{
+  "id": "dashboardMap",
+
+  "title": {
+    "text": "Map",
+    "style": "text-color-black text-left font-['Inter-Medium',_sans-serif] text-5xl font-medium w-full"
+  },
+
+  "mapContainer": {
+    "id": "adminMapLeaflet",
+    "style": "relative w-full max-w-[1400px] overflow-hidden rounded-[15px] bg-[#a7a7a7] aspect-[4/5] sm:aspect-[16/9] md:h-[550px]"
+  }
+}

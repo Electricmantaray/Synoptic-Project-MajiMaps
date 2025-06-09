@@ -19,7 +19,7 @@
     "adminHeader": {
         "id": "adminHeader",
         "container": {
-            "style": "flex items-center justify-between bg-[#e5e5eb] shadow-md px-6 py-4 rounded-b-[15px]"
+            "style": "mx-auto flex items-center justify-between bg-[#e5e5eb] shadow-md px-6 py-4 rounded-b-[15px] sm:flex-row flex-col sm:py-3 py-2"
         },
         "left": {
             "text": {
@@ -30,7 +30,7 @@
         },
         "right": {
             "logoutButton": {
-                "text": "Logout",
+                "text": "Public site",
                 "style": "bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200",
                 "type": "button",
                 "id": "logoutBtn"
