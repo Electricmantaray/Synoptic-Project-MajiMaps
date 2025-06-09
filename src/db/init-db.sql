@@ -5,7 +5,7 @@ SET search_path TO "MajiMaps";
 
 DO $$
 BEGIN
-    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'report_type_enum') THEN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typename = 'report_type_enum') THEN
         CREATE TYPE report_type_enum AS ENUM ('theft', 'leak', 'water_point');
     END IF;
 END
@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS contacts (
     email VARCHAR(255) NOT NULL UNIQUE,
     newsletter BOOLEAN DEFAULT FALSE,
     emergency BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT email_format_chk CHECK (
         email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
     )
