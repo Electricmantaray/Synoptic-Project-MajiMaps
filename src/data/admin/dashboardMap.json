@@ -1,5 +1,5 @@
 {
-  "id": "dashboardMap",
+  "id": "dashboardMaps",
 
   "title": {
     "text": "Map",
@@ -7,7 +7,7 @@
   },
 
   "mapContainer": {
-    "id": "adminMapLeaflet",
+    "id": "dashboardMap",
     "style": "relative w-full max-w-[1400px] overflow-hidden rounded-[15px] bg-[#a7a7a7] aspect-[4/5] sm:aspect-[16/9] md:h-[550px]"
   }
 }

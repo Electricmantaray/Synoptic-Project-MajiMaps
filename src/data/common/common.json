@@ -23,7 +23,7 @@
         },
         "left": {
             "text": {
-                "content": "Admin Panel",
+                "content": "◆ Admin Panel",
                 "style": "text-gray-800 text-xl font-semibold ml-4 select-none"
             },
             "containerStyle": "flex items-center"
