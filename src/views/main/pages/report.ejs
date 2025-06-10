@@ -66,9 +66,15 @@
                     placeholder="<%= report.form.description.placeholder %>"
                     <%= report.form.description.required ? 'required' : '' %>
                     aria-required="<%= report.form.description.ariaRequired %>"
+                    maxlength="<%= report.form.description.maxlength %>"
                     class="<%= report.form.description.style %> <%= report.form.description.placeholderStyle %>"></textarea>
             </div>
 
+            <div class="flex w-full md:col-span-2">
+                <!-- maxLimit counter -->
+                <p id="<%= report.form.maxlengthCounter.id %>" class="<%= report.form.maxlengthCounter.style %>"><%= report.form.maxlengthCounter.text %></p>
+            </div>
+    
             <!-- Submit Button -->
             <div class="flex w-full justify-center pt-6 md:col-span-2">
                 <button 

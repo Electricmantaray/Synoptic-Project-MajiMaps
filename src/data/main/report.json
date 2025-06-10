@@ -75,8 +75,16 @@
             "style": "resize-none rounded-[20px] bg-[#d9d9d9] px-4 py-3 text-lg text-black focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
             "rows": 4,
             "required": true,
-            "ariaRequired": true
+            "ariaRequired": true,
+            "maxlength": 255
         },
+
+        "maxlengthCounter":{
+            "id": "descriptionCounter",
+            "style": "w-full text-right text-sm text-gray-500",
+            "text": "0 / 255"
+        },
+
         "submitButton": {
             "type": "submit",
             "text": "Submit",

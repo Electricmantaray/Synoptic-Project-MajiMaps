@@ -39,7 +39,7 @@ export async function saveReport(data) {
     report_type,
     latitude,
     longitude,
-    context
+    description
   } = data;
 
   const query = `
@@ -48,7 +48,7 @@ export async function saveReport(data) {
     RETURNING *;
   `;
 
-  const values = [report_type, latitude, longitude, context];
+  const values = [report_type, latitude, longitude, description];
 
   try {
     const result = await pool.query(query, values);

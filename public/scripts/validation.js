@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
             fields: {
                 reason: { required: true, type: "text" },
                 contactUsEmail: { required: true, type: "email" },
-                message: { required: true, type: "textarea" }
+                message: { required: true, type: "textarea", }
             }
         },
 
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             fields: {
                 location: { required: true, type: "text" },
                 report_type: { required: true, type: "select" },
-                description: { required: true, type: "textarea" }
+                description: { required: true, type: "textarea", maxlength: 255 }
             }
         },
 
@@ -143,6 +143,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (rules.required && (!input || !input.value || input.value === "")) {
                 return "This field is required.";
             }
+        }
+
+        if (rules.maxlength && value.length > rules.maxlength) {
+            return `Maximum length is ${rules.maxlength} characters.`;
         }
 
         // no errors
