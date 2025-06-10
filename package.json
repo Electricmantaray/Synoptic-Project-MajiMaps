@@ -7,7 +7,7 @@
   "scripts": {
     "build:css": "postcss public/css/styles.css -o public/css/output.css",
     "watch:css": "postcss public/css/styles.css -o public/css/output.css --watch",
-    "build:db": "node db/initialise-db.js",
+    "build:db": "node src/db/initialise-db.js",
     "start": "node src/index.js",
     "dev": "nodemon -i data/user_data.json src/index.js"
   },
