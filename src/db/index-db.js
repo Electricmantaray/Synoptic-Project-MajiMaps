@@ -10,4 +10,8 @@ export const pool = new Pool({
     ssl: {
         rejectUnauthorized: false
     }
-})
+});
+
+pool.on('connect', async (client) => {
+    await client.query('SET search_path TO "MajiMaps"');
+});

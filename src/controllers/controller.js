@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 
 import { getSectionData } from "../services/services.js";
 import { sendContactUsEmail } from "../services/emailService.js";
+import { saveEmailService, saveReport } from "../services/pgService.js";
 
 // ========== Main Page Controller ==========
 // array of current sections to iterate through
@@ -73,18 +74,27 @@ export const postForm = async (req, res) => {
 
   if (req.path == "/subscribe") {
 
-    // TODO : save subscription to DB
-
-    return res.json({ message: "Subscription preferences saved" });
+    try {
+      const saved = await saveEmailService(req.body);
+      return res.status(200).json({ success: true, saved });
+    } catch (error) {
+      console.error("Email Service Save Failed:", error);
+      let statusCode = error.status || 500;
+  
+      return res.status(statusCode).json({ error: error.message || "Internal Server Error" });
+    }
 
   }
 
   if (req.path == "/report") {
 
-    // TODO : save report to DB
-
-    return res.json({ message: "Report saved" });
-
+    try {
+      const saved = await saveReport(req.body);
+      return res.status(200).json({ success: true, saved });
+    } catch (error) {
+      console.error("Report Save Failed:", error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
   }
 
   return res.status(400).json({ error: "Unknown form submission" });

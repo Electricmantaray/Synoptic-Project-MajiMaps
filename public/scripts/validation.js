@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             errorId: "reportError",
             fields: {
                 location: { required: true, type: "text" },
-                type: { required: true, type: "select" },
+                report_type: { required: true, type: "select" },
                 description: { required: true, type: "textarea" }
             }
         },
@@ -225,23 +225,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
             Object.entries(fields).forEach(([fieldName, rules]) => {
                 if (rules.type === "checkboxGroup") {
-                    // Collect all checked checkbox names into an array
-                    const checkedValues = [];
                     rules.names.forEach(name => {
                         const checkbox = form.querySelector(`input[name="${name}"]`);
-                        if (checkbox && checkbox.checked) {
-                            checkedValues.push(name);
+                        if (checkbox) {
+                            json[name] = checkbox.checked;
                         }
                     });
-                    json[fieldName] = checkedValues;
                 } else {
                     const input = form.querySelector(`[name="${fieldName}"]`);
                     if (input) {
                         json[fieldName] = input.value.trim();
                     }
                 }
-
             });
+
+
+            // Location splitting for database
+            if (id === "reportForm" && json.location) {
+                const parts = json.location.split(",").map(s => s.trim());
+                if (parts.length === 2) {
+                    const lat = parseFloat(parts[0]);
+                    const lon = parseFloat(parts[1]);
+                    if (!isNaN(lat) && !isNaN(lon)) {
+                        json.latitude = lat;
+                        json.longitude = lon;
+                    } else {
+                        if (errorElement) {
+                            errorElement.textContent = "Location format is invalid. Use: latitude, longitude";
+                        }
+                        return;
+                    }
+                } else {
+                    if (errorElement) {
+                        errorElement.textContent = "Location must be in 'latitude, longitude' format.";
+                    }
+                    return;
+                }
+                // remove original string field
+                delete json.location;
+            }
 
             try {
                 // Send POST request to form.action URL
@@ -255,20 +277,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!response.ok) {
                     // Try to parse JSON errors from server
                     const errorData = await response.json();
-                    if (errorData.error && Array.isArray(errorData.error)) {
-                        // Highlight server-validated fields with errors
-                        errorData.error.forEach(err => {
-                            const fieldInput = form.querySelector(`[name="${err.path}"]`);
-                            if (fieldInput) applyErrorStyles(fieldInput);
-                        });
-                        if (errorElement) {
-                            errorElement.innerHTML = "Please fix the highlighted fields.";
+                    if (errorData.error) {
+                        if (Array.isArray(errorData.error)) {
+                            // Highlight server-validated fields with errors
+                            errorData.error.forEach(err => {
+                                const fieldInput = form.querySelector(`[name="${err.path}"]`);
+                                if (fieldInput) applyErrorStyles(fieldInput);
+                            });
+                            if (errorElement) {
+                                errorElement.innerHTML = "Please fix the highlighted fields.";
+                            }
+                        } else if (typeof errorData.error === "string") {
+                            // Show the error string from backend (e.g. duplicate email)
+                            if (errorElement) {
+                                errorElement.textContent = errorData.error;
+                            }
+                        } else {
+                            if (errorElement) {
+                                errorElement.textContent = "Server error: Please try again later.";
+                            }
                         }
                     } else {
                         if (errorElement) {
                             errorElement.textContent = "Server error: Please try again later.";
                         }
                     }
+
                     return;
                 }
 
@@ -305,7 +339,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         });
-    },
-    )
+    });
 });
 

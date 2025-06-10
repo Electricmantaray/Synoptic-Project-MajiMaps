@@ -8,7 +8,7 @@
 
     "form": {
         "id": "reportForm",
-        "action": "/api/report",
+        "action": "/report",
         "method": "POST",
         "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
         "novalidate": true,
@@ -33,8 +33,8 @@
             "labelStyle": "text-2xl font-medium text-black",
             
             "type": "select",
-            "id": "type",
-            "name": "type",
+            "id": "report_type",
+            "name": "report_type",
             "style": "h-[84px] rounded-[20px] bg-[#d9d9d9] px-4 text-lg text-black focus:outline-none focus:ring-2 focus:ring-[#3a31d8]",
             "required": true,
             "autocomplete": "off",
@@ -57,7 +57,7 @@
                     "text": "Theft"
                 },
                 {
-                    "value": "waterPoint",
+                    "value": "water_point",
                     "text": "New water collection points"
                 }
             ]

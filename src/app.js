@@ -2,7 +2,6 @@ import express from "express";
 import expressRateLimit from "express-rate-limit";
 import { router as mainRouter } from "./routes/routes.js";
 import { router as adminRouter } from "./routes/adminRoute.js";
-import { router as dbRouter } from "./routes/dbFormRoute.js"
 import session from "express-session"
 import dotenv from "dotenv";
 dotenv.config()
@@ -37,7 +36,6 @@ app.use(
 
 app.use("/", mainRouter);
 app.use('/admin', adminRouter);
-app.use("/api", dbRouter);
 
 
 export { app };

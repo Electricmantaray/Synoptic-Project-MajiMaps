@@ -17,5 +17,24 @@ router.post("/contact",
     postForm
 );
 
+// Admin MPA
+router.post("/subscribe",
+    [
+        body("emailServiceEmail").isEmail().withMessage("Valid email required"),
+    ],
+    postForm
+);
+
+router.post("/report",
+    [
+        body("latitude").notEmpty().withMessage("latitude is required"),
+        body("longitude").notEmpty().withMessage("longitude is required"),
+        body("report_type").notEmpty().withMessage("Report type is required"),
+        body("description").notEmpty().withMessage("Description is required")
+    ],
+    postForm
+);
+
+
 
 export { router };

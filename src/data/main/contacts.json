@@ -81,7 +81,7 @@
         },
         "form": {
             "id": "emailServiceForm",
-            "action": "/api/subscribe",
+            "action": "/subscribe",
             "method": "POST",
             "style": "grid grid-cols-1 gap-8 md:grid-cols-2",
             "novalidate": true,
@@ -123,7 +123,7 @@
                     {
                         "type": "checkbox",
                         "name": "emergencies",
-                        "value": "yes",
+                        "value": "true",
                         "text": "Emergencies",
                         "labelStyle": "font-inter flex cursor-pointer items-center gap-2 text-xl text-white",
                         "inputStyle": "h-5 w-5 rounded border-gray-300 bg-white"
@@ -131,7 +131,7 @@
                     {
                         "type": "checkbox",
                         "name": "newsletter",
-                        "value": "yes",
+                        "value": "true",
                         "text": "Newsletter",
                         "labelStyle": "font-inter flex cursor-pointer items-center gap-2 text-xl text-white",
                         "inputStyle": "h-5 w-5 rounded border-gray-300 bg-white"
