@@ -1,7 +1,9 @@
-<section id="<%= dashboardGraph.id %>" class="bg-[rgba(228,228,228,0.50)] rounded-[20px] border-2 border-[#d7d7d7] p-[15px] flex flex-col items-center justify-between h-[800px] w-full">
+<section id="<%= dashboardGraph.id %>" class="bg-[rgba(228,228,228,0.50)] rounded-[20px] border-2 border-[#d7d7d7] p-[15px] flex flex-col items-center justify-between h-auto w-full">
   <!-- Section Title -->
   <h2 class="<%= dashboardGraph.title.style %>"><%= dashboardGraph.title.text %></h2>
 
     <!-- Graph section -->
-     <canvas id="<%= dashboardGraph.graphContainer.id %>" class="<%= dashboardGraph.graphContainer.style %>"></canvas>
+    <div class="w-full h-full flex-1 overflow-hidden">
+        <canvas id="<%= dashboardGraph.graphContainer.id %>" class="<%= dashboardGraph.graphContainer.style %>"></canvas>
+    </div>
 </section>
