@@ -8,7 +8,7 @@ export async function saveEmailService(data) {
     surname = null,
     emailServiceEmail,
     newsletter = false,
-    emergency = false
+    emergencies = false
   } = data;
 
   const query = `
@@ -17,7 +17,7 @@ export async function saveEmailService(data) {
     RETURNING *;
   `;
 
-  const values = [forename, surname, emailServiceEmail, newsletter, emergency];
+  const values = [forename, surname, emailServiceEmail, newsletter, emergencies];
 
   try {
     const result = await pool.query(query, values);
