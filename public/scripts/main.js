@@ -1,3 +1,4 @@
+// Handles the interactions of the main page
 document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById("logoutBtn");
 
