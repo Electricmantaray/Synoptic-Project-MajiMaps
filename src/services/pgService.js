@@ -135,7 +135,6 @@ export async function fetchAllReports() {
   const query = `
     SELECT id, report_type, latitude, longitude, context, verified, created_at
     FROM report
-    WHERE verified = TRUE -- or omit if you want all
     ORDER BY created_at DESC;
   `;
 

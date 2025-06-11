@@ -2,7 +2,7 @@ import express from "express";
 import { validationResult } from "express-validator";
 import { getSectionData } from "../services/services.js";
 import { fetchReportCountsData, fetchReportStats, fetchAllReports, saveEmailService, saveReport } from "../services/pgService.js";
-
+import { Parser } from "json2csv";
 
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
@@ -32,8 +32,7 @@ const adminSections = [
   "dashboardStats",
   "dashboardMap",
   "dashboardGraph",
-  "dashboardCSV",
-  "dashboardSend"  
+  "dashboardData"  
 ];
 
 // Gathers all component data
@@ -176,6 +175,37 @@ export const getReportAll = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch reports" });
   }
 };
+
+export const exportReportsCSV = async (req, res) => {
+  try {
+    const reports = await fetchAllReports();
+
+    if (!reports || reports.length === 0) {
+      return res.status(404).send('No report data to export.');
+    }
+
+    const fields = [
+      { label: 'ID', value: 'id' },
+      { label: 'Report Type', value: 'report_type' },
+      { label: 'Latitude', value: 'latitude' },
+      { label: 'Longitude', value: 'longitude' },
+      { label: 'Context', value: 'context' },
+      { label: 'Created At', value: 'created_at' },
+      { label: 'Verified', value: 'verified' },
+    ];
+
+    const parser = new Parser({ fields });
+    const csv = parser.parse(reports);
+
+    const fileName = 'dashboard.csv';
+    res.header('Content-Type', 'text/csv');
+    res.attachment(fileName);
+    return res.send(csv);
+  } catch (err) {
+    console.error('Error exporting CSV:', err);
+    return res.status(500).send('Server error generating CSV');
+  }
+}
 
 
 
