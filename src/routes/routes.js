@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { renderHome, postForm } from "../controllers/controller.js";
+import { renderHome, postForm, getPublicReports } from "../controllers/controller.js";
 import { body } from "express-validator";
 
 
@@ -7,6 +7,8 @@ const router = Router();
 
 // Public SPA
 router.get("/", renderHome);
+
+router.get("/reports-map", getPublicReports)
 
 router.post("/contact",
     [

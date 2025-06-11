@@ -9,7 +9,8 @@
         "tailwindCSS": "/css/output.css"
     },
     "scripts": {
-        "leafletJS": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        "leafletJS": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+        "leafletJSHeatMap": "https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"
     },
     "logo": {
         "src": "/images/Minimal - MajiMapsIcon.png",

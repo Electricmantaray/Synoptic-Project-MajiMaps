@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isAdmin = mapElement.id === adminMapId;
 
-    // Initialize the map centered roughly around Johannesburg
+    // Initialise the map centered roughly around Johannesburg
     const map = L.map(mapElement.id, {
         scrollWheelZoom: false
     }).setView([-26.193292, 28.072987], 15);
@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-    const satillite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
+    });
 
     L.control.layers({
-        'Satillite View': satillite,
+        'Satillite View': satellite,
         'Street View': street
     }).addTo(map)
 
@@ -131,19 +131,124 @@ document.addEventListener('DOMContentLoaded', () => {
         weight: 2
     }).addTo(map);
 
-    // ========== Admin-Only Features ==========
-    if (isAdmin) {
-        console.log("Admin dashboard map loaded");
+    // ========== Report pins & Heatmap Integration ==========
 
-        // Placeholder for future features:
-        // - DB pin loading
-        // - Marker clustering
-        // - Heatmaps or user actions
-        // - Edit/delete control
+    let reportMarkersLayer = L.layerGroup().addTo(map);
+    let heatmapLayer = null;
+
+    async function loadReportPins() {
+        try {
+            if (!isAdmin) {
+                // Public should never load pins - just clear any pins if they exist
+                reportMarkersLayer.clearLayers();
+                return;
+            }
+            const res = await fetch("/reports-map");
+            const data = await res.json();
+
+            reportMarkersLayer.clearLayers();
+
+            data.reports.forEach(report => {
+                const { latitude, longitude, report_type, context } = report;
+
+                // Determine marker color based on type
+                let color = 'blue'; // default for water_point
+                if (report_type === 'theft') color = 'red';
+                else if (report_type === 'leak') color = 'green';
+
+                // Create custom colored marker using a Leaflet DivIcon
+                const coloredMarker = L.divIcon({
+                    className: 'custom-div-icon',
+                    html: `<div style="background-color: ${color}; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>`,
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10]
+                });
+
+                const marker = L.marker([latitude, longitude], { icon: coloredMarker });
+
+                marker.bindPopup(`
+                <b>Type:</b> ${report_type}<br>
+                <b>Description:</b> ${context || 'No details'}`);
 
 
+                reportMarkersLayer.addLayer(marker);
+            });
+        } catch (err) {
+            console.error('Error loading report pins:', err);
+        }
+    }
 
+    async function loadHeatMap() {
+        try {
+            const res = await fetch('/reports-map');
+            const data = await res.json();
+
+            if (heatmapLayer) {
+                map.removeLayer(heatmapLayer);
+            }
+
+            const heatPoints = data.reports.map(report => [
+                report.latitude,
+                report.longitude,
+                2.0  // intensity, tweak as needed
+            ]);
+
+            heatmapLayer = L.heatLayer(heatPoints, {
+                radius: 25,
+                blur: 15,
+                maxZoom: 17,
+            }).addTo(map);
+        } catch (err) {
+            console.error('Error loading heatmap:', err);
+        }
+    }
+
+    // Start showing heatmap by default
+    let showingHeatmap = true;
+
+    async function toggleHeatmap() {
+        const toggleHeatmapBtn = document.getElementById('toggleHeatmapBtn');
+        if (showingHeatmap) {
+            // Switch to pins (admin only)
+            if (heatmapLayer) map.removeLayer(heatmapLayer);
+
+            await loadReportPins();
+
+            if (isAdmin) {
+                if (!map.hasLayer(reportMarkersLayer)) {
+                    map.addLayer(reportMarkersLayer);
+                }
+                if (toggleHeatmapBtn) toggleHeatmapBtn.textContent = "Show Heatmap";
+            } else {
+                // Public map: ensure pins are removed
+                if (map.hasLayer(reportMarkersLayer)) {
+                    map.removeLayer(reportMarkersLayer);
+                }
+            }
+            showingHeatmap = false;
+        } else {
+            // Switch to heatmap
+            if (map.hasLayer(reportMarkersLayer)) {
+                map.removeLayer(reportMarkersLayer);
+            }
+            await loadHeatMap();
+
+            if (toggleHeatmapBtn) toggleHeatmapBtn.textContent = "Show Pins";
+            showingHeatmap = true;
+        }
+    }
+
+    // Initial load
+    loadHeatMap();
+
+    // Setup toggle button listener on **both** maps, if button exists
+    const toggleHeatmapBtn = document.getElementById('toggleHeatmapBtn');
+    if (toggleHeatmapBtn) {
+        // Initialize button text correctly at load time:
+        toggleHeatmapBtn.textContent = "Show Pins";
+
+        toggleHeatmapBtn.addEventListener('click', async () => {
+            await toggleHeatmap();
+        });
     }
 });
-
-

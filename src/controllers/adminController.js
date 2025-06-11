@@ -1,7 +1,7 @@
 import express from "express";
 import { validationResult } from "express-validator";
 import { getSectionData } from "../services/services.js";
-import { fetchReportCountsData, fetchReportStats, saveEmailService, saveReport } from "../services/pgService.js";
+import { fetchReportCountsData, fetchReportStats, fetchAllReports, saveEmailService, saveReport } from "../services/pgService.js";
 
 
 import bcrypt from "bcrypt";
@@ -166,4 +166,16 @@ export const getReportStats = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch report stats" });
   }
 };
+
+export const getReportAll = async (req, res) => {
+  try {
+    const reports = await fetchAllReports();
+    res.json({ reports });
+  } catch (err) {
+    console.error("Error fetching reports:", err);
+    res.status(500).json({ error: "Failed to fetch reports" });
+  }
+};
+
+
 

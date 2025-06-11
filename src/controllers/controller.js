@@ -3,7 +3,7 @@ import { validationResult } from "express-validator";
 
 import { getSectionData } from "../services/services.js";
 import { sendContactUsEmail } from "../services/emailService.js";
-import { saveEmailService, saveReport } from "../services/pgService.js";
+import { saveEmailService, saveReport, fetchAllReports } from "../services/pgService.js";
 
 // ========== Main Page Controller ==========
 // array of current sections to iterate through
@@ -99,4 +99,15 @@ export const postForm = async (req, res) => {
 
   return res.status(400).json({ error: "Unknown form submission" });
 
+};
+
+
+export const getPublicReports = async (req, res) => {
+  try {
+    const reports = await fetchAllReports();
+    res.json({ reports });
+  } catch (err) {
+    console.error("Failed to fetch public reports:", err);
+    res.status(500).json({ error: "Failed to fetch reports" });
+  }
 };

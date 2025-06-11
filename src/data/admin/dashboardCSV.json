@@ -1,0 +1,42 @@
+{
+    "id": "dashboardCSV",
+    "containerStyle": "flex w-full max-w-6xl flex-col gap-6 px-4 py-6 md:flex-row md:justify-between md:gap-8",
+    "cardStyles": {
+        "wrapperStyle": "flex flex-col justify-between items-start bg-[rgba(228,228,228,0.5)] border-2 border-[#d7d7d7] rounded-[20px] px-6 py-4 shadow-sm md:w-1/3 w-full h-[250px]",
+        "titleStyle": "text-color-black text-left font-['Inter-Medium',sans-serif] text-[28px] font-medium",
+        "linkStyle": "flex items-center gap-3 mt-auto hover:underline",
+        "iconStyle": "w-6 h-6",
+        "textStyle": "text-color-black font-['Inter-Medium',sans-serif] text-[20px]"
+    },
+    "cards": {
+        "export": {
+            "title": "Export All Reports",
+            "action": {
+                "type": "link",
+                "text": "Export as CSV",
+                "href": "/admin/export-reports",
+                "icon": {
+                    "stroke": "#000000",
+                    "strokeWidth": "1.5",
+                    "d": "M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                }
+            }
+        },
+        "upload": {
+            "title": "Upload Mass Reports",
+            "action": {
+                "type": "form",
+                "text": "Upload CSV",
+                "method": "POST",
+                "action": "/admin/upload-reports",
+                "inputName": "csvFile",
+                "accept": ".csv",
+                "icon": {
+                    "stroke": "#000000",
+                    "strokeWidth": "1.5",
+                    "d": "M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1 m-4-8l-4-4m0 0l-4 4m4-4v8"
+                }
+            }
+        }
+    }
+}

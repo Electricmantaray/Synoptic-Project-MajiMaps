@@ -111,6 +111,7 @@ export async function fetchReportCountsData() {
   return { labels, data };
 }
 
+// fetchest the 3 report stats from the database
 export async function fetchReportStats() {
   const query = `
     SELECT
@@ -128,5 +129,20 @@ export async function fetchReportStats() {
     lastWeekVerifiedReports: parseInt(rows[0].last_week_verified_reports, 10),
   };
 }
+
+// Fetch all pins from database for map.js
+export async function fetchAllReports() {
+  const query = `
+    SELECT id, report_type, latitude, longitude, context, verified, created_at
+    FROM report
+    WHERE verified = TRUE -- or omit if you want all
+    ORDER BY created_at DESC;
+  `;
+
+  const { rows } = await pool.query(query);
+  return rows; 
+}
+
+
 
 

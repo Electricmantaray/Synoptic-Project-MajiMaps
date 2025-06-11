@@ -9,5 +9,11 @@
   "mapContainer": {
     "id": "dashboardMap",
     "style": "relative w-full max-w-[1400px] overflow-hidden rounded-[15px] bg-[#a7a7a7] aspect-[4/5] sm:aspect-[16/9] md:h-[550px]"
+  },
+
+  "toggleHeatmapButton": {
+    "id": "toggleHeatmapBtn",
+    "text": "Toggle Heatmap",
+    "style": "rounded-[25px] bg-red-600 px-8 py-5 text-2xl font-medium text-white shadow-md transition hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-red-700"
   }
 }
