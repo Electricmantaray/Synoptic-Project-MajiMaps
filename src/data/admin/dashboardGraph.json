@@ -1,0 +1,11 @@
+{
+    "id": "dashboardGraph",
+    "title": {
+        "text": "Report Insights Over Time",
+        "style": "text-[32px] text-black font-bold mb-6 text-center"
+    },
+    "graphContainer": {
+        "id": "reportChart",
+        "style": "h-[400px] w-full"
+    }
+}

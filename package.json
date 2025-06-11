@@ -31,6 +31,7 @@
   "homepage": "https://github.com/Electricmantaray/Synoptic-Project-MajiMaps#readme",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "chart.js": "^4.4.9",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^4.21.2",

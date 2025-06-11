@@ -1,6 +1,8 @@
 import express from "express";
 import { validationResult } from "express-validator";
 import { getSectionData } from "../services/services.js";
+import { fetchReportCountsData, saveEmailService, saveReport } from "../services/pgService.js";
+
 
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
@@ -112,5 +114,17 @@ export const postLogin = async (req, res) => {
   } catch (err) {
     console.error("Login error:", err);
     return res.status(500).json({ error: "Internal server error" });
+  }
+
+};
+
+// grabs report data
+export const getReportCounts = async (req, res) => {
+  try {
+    const data = await fetchReportCountsData();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching report counts:", err);
+    res.status(500).json({ error: "Failed to fetch report counts" });
   }
 };

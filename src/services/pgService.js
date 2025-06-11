@@ -58,3 +58,41 @@ export async function saveReport(data) {
     throw err;
   }
 }
+
+// Get daily counts of verified/unverified reports for last 30 days
+export async function fetchReportCountsData() {
+  const query = `
+    SELECT
+      TO_CHAR(created_at::DATE, 'YYYY-MM-DD') AS date,
+      verified,
+      COUNT(*) AS count
+    FROM report
+    GROUP BY date, verified
+    ORDER BY date ASC;
+  `;
+
+  const { rows } = await pool.query(query);
+
+  const datesSet = new Set();
+  const verifiedMap = new Map();
+  const unverifiedMap = new Map();
+
+  rows.forEach(({ date, verified, count }) => {
+    datesSet.add(date);
+    if (verified) {
+      verifiedMap.set(date, parseInt(count, 10));
+    } else {
+      unverifiedMap.set(date, parseInt(count, 10));
+    }
+  });
+
+  const labels = Array.from(datesSet).sort();
+  const verifiedData = labels.map(date => verifiedMap.get(date) || 0);
+  const unverifiedData = labels.map(date => unverifiedMap.get(date) || 0);
+
+  return {
+    labels,
+    verifiedCounts: verifiedData,
+    unverifiedCounts: unverifiedData,
+  };
+}

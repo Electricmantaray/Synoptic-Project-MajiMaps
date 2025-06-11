@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getLoginPage, postLogin, getDashboard, requireAdminAuth } from "../controllers/adminController.js";
+import { getLoginPage, postLogin, getDashboard, requireAdminAuth, getReportCounts } from "../controllers/adminController.js";
 import { body } from "express-validator";
 
 
@@ -16,6 +16,7 @@ router.post("/login",
 );
 
 router.get("/dashboard", requireAdminAuth, getDashboard);
+router.get("/dashboard/report-data",requireAdminAuth, getReportCounts)
 
 router.get("/logout", (req, res) => {
     req.session.destroy(() => {
