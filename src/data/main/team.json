@@ -2,27 +2,27 @@
     "id": "team",
     "members": [
         {
-            "name": "Name 1",
+            "name": "Hayden Jones - 100%",
+            "image": "/images/Photoshot.jpg"
+        },
+        {
+            "name": "Ali Mohammadi - 0%",
             "image": "/images/1 1 - placeholder.jpg"
         },
         {
-            "name": "Name 2",
+            "name": "Blake Patchett - 0%",
             "image": "/images/1 1 - placeholder.jpg"
         },
         {
-            "name": "Name 3",
+            "name": "Conrad Omokheoa - 0%",
             "image": "/images/1 1 - placeholder.jpg"
         },
         {
-            "name": "Name 4",
+            "name": "Nedas Araka - 0%",
             "image": "/images/1 1 - placeholder.jpg"
         },
         {
-            "name": "Name 5",
-            "image": "/images/1 1 - placeholder.jpg"
-        },
-        {
-            "name": "Name 6",
+            "name": "Nedas Labokas - 0%",
             "image": "/images/1 1 - placeholder.jpg"
         }
     ]
