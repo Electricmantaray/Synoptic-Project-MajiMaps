@@ -22,11 +22,14 @@
 
                             <% if (field.type === 'textarea') { %>
                                 <textarea 
+                                    type="<%= field.type %>"
                                     id="<%= field.id %>" 
                                     name="<%= field.name %>" 
                                     placeholder="<%= field.placeholder %>"
                                     class="<%= field.inputStyle %>"
-                                    <%= field.required ? 'required' : '' %>></textarea>
+                                    rows="<%= field.rows %>"
+                                    <%= field.required ? 'required' : '' %>
+                                    maxlength="<%= field.maxlength %>"></textarea>
                             <% } else { %>
                                 <input 
                                     type="<%= field.type %>" 
