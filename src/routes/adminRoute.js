@@ -16,7 +16,10 @@ router.post("/login",
 );
 
 router.get("/dashboard", requireAdminAuth, getDashboard);
+
+
 router.get("/dashboard/report-data",requireAdminAuth, getReportCounts)
+
 
 router.get("/logout", (req, res) => {
     req.session.destroy(() => {

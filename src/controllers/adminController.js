@@ -1,7 +1,7 @@
 import express from "express";
 import { validationResult } from "express-validator";
 import { getSectionData } from "../services/services.js";
-import { fetchReportCountsData, saveEmailService, saveReport } from "../services/pgService.js";
+import { fetchReportCountsData, fetchReportStats, saveEmailService, saveReport } from "../services/pgService.js";
 
 
 import bcrypt from "bcrypt";
@@ -62,6 +62,33 @@ export const getDashboard = async (req, res) => {
       console.warn(`Skipping empty/missing section: ${section}`)
       // Skips
       continue
+    }
+    // Update state cards with live information
+    if (section === "dashboardStats") {
+      try {
+        // Fetch the live stats from the DB
+        const stats = await fetchReportStats();
+
+        // Replace the cards array with real data dynamically:
+        sectionData.cards = [
+          {
+            title: "Total Reports",
+            stat: stats.totalReports ?? 0,  // fallback to 0 if undefined
+          },
+          {
+            title: "Reports in Last Week",
+            stat: stats.lastWeekReports ?? 0,
+          },
+          {
+            title: "Verified Reports Last Week",
+            stat: stats.lastWeekVerifiedReports ?? 0,
+          },
+        ];
+      } catch (err) {
+        console.error("Failed to fetch report stats for dashboardStats:", err);
+        // Optionally keep the old cards or set fallback empty stats here
+        sectionData.cards = sectionData.cards || [];
+      }
     }
 
     data[section] = sectionData
@@ -128,3 +155,15 @@ export const getReportCounts = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch report counts" });
   }
 };
+
+// grabs the report stats
+export const getReportStats = async (req, res) => {
+  try {
+    const stats = await fetchReportStats();
+    res.json(stats);
+  } catch (err) {
+    console.error("Error fetching report stats:", err);
+    res.status(500).json({ error: "Failed to fetch report stats" });
+  }
+};
+

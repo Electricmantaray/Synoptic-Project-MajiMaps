@@ -9,15 +9,15 @@
   "cards": [
     {
       "title": "Total Reports",
-      "stat": "999"
+      "stat": "0"
     },
     {
       "title": "Reports This Week",
-      "stat": "999"
+      "stat": "0"
     },
     {
       "title": "Reports This Week Validated",
-      "stat": "333/999"
+      "stat": "0"
     }
   ]
 }

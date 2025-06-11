@@ -64,35 +64,69 @@ export async function fetchReportCountsData() {
   const query = `
     SELECT
       TO_CHAR(created_at::DATE, 'YYYY-MM-DD') AS date,
+      report_type,
       verified,
       COUNT(*) AS count
     FROM report
-    GROUP BY date, verified
+    GROUP BY date, report_type, verified
     ORDER BY date ASC;
   `;
 
   const { rows } = await pool.query(query);
 
+  // Prepare containers
   const datesSet = new Set();
-  const verifiedMap = new Map();
-  const unverifiedMap = new Map();
+  const reportTypes = ["theft", "leak", "water_point"];
 
-  rows.forEach(({ date, verified, count }) => {
+
+  const dataMaps = {};
+  for (const type of reportTypes) {
+    dataMaps[type] = {
+      verified: new Map(),
+      unverified: new Map(),
+    };
+  }
+
+  // Fill maps and collect all dates
+  rows.forEach(({ date, report_type, verified, count }) => {
     datesSet.add(date);
-    if (verified) {
-      verifiedMap.set(date, parseInt(count, 10));
-    } else {
-      unverifiedMap.set(date, parseInt(count, 10));
-    }
+    if (!reportTypes.includes(report_type)) return;
+
+    const key = verified ? "verified" : "unverified";
+    dataMaps[report_type][key].set(date, parseInt(count, 10));
   });
 
+  // Sort dates to form labels
   const labels = Array.from(datesSet).sort();
-  const verifiedData = labels.map(date => verifiedMap.get(date) || 0);
-  const unverifiedData = labels.map(date => unverifiedMap.get(date) || 0);
 
+  // Map counts per date, default to 0 if no data
+  const data = {};
+  for (const type of reportTypes) {
+    data[type] = {
+      verified: labels.map(date => dataMaps[type].verified.get(date) || 0),
+      unverified: labels.map(date => dataMaps[type].unverified.get(date) || 0),
+    };
+  }
+
+  return { labels, data };
+}
+
+export async function fetchReportStats() {
+  const query = `
+    SELECT
+      COUNT(*) AS total_reports,
+      COUNT(CASE WHEN created_at >= NOW() - INTERVAL '7 days' THEN 1 END) AS last_week_reports,
+      COUNT(CASE WHEN created_at >= NOW() - INTERVAL '7 days' AND verified = TRUE THEN 1 END) AS last_week_verified_reports
+    FROM report;
+  `;
+
+  const { rows } = await pool.query(query);
+  // rows[0] will contain the counts as strings, convert to number
   return {
-    labels,
-    verifiedCounts: verifiedData,
-    unverifiedCounts: unverifiedData,
+    totalReports: parseInt(rows[0].total_reports, 10),
+    lastWeekReports: parseInt(rows[0].last_week_reports, 10),
+    lastWeekVerifiedReports: parseInt(rows[0].last_week_verified_reports, 10),
   };
 }
+
+
