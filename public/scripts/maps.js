@@ -63,27 +63,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ############## Click to mark ##############
-    // TODO REFACTOR THIS
-    const coordsDisplay = document.getElementById('coordsPlaceholder');
-    const coordsEntry = document.getElementById('location');
+    if (!isAdmin) {
+        const coordsDisplay = document.getElementById('coordsPlaceholder');
+        const coordsEntry = document.getElementById('location');
 
-    let currentMarker = null;
+        let currentMarker = null;
 
-    map.on('click', (e) => {
-        const { lat, lng } = e.latlng;
-        if (currentMarker) {
-            map.removeLayer(currentMarker);
-        }
-        currentMarker = L.marker([lat, lng]).addTo(map);
+        map.on('click', (e) => {
+            const { lat, lng } = e.latlng;
+            if (currentMarker) {
+                map.removeLayer(currentMarker);
+            }
+            currentMarker = L.marker([lat, lng]).addTo(map);
 
 
-        coordsDisplay.textContent = `Latitude: ${lat.toFixed(6)}, Longitude: ${lng.toFixed(6)}`;
-        if (coordsEntry) coordsEntry.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+            coordsDisplay.textContent = `Latitude: ${lat.toFixed(6)}, Longitude: ${lng.toFixed(6)}`;
+            if (coordsEntry) coordsEntry.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
 
-    });
+        });
+    };
+    
 
     // ############## Scroll whell behaviour and zoom ##############
-    // TODO REFACTOR
     const mapContainer = map.getContainer();
 
 
