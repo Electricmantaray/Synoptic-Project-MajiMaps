@@ -38,7 +38,7 @@
                     "d": "M2.5 19.5l19-7-19-7 4 7-4 7z"
                 },
                 "route": "/admin/dashboard/email-csv"
-                
+            
             }
         },
         "emailSubscribers": {
@@ -51,7 +51,8 @@
                     "stroke": "#ffffff",
                     "strokeWidth": "2",
                     "d": "M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2V6a2 2 0 00-2-2H3a2 2 0 00-2 2v8a2 2 0 002 2z"
-                }
+                },
+                "route": "/admin/dashboard/email-subscribers"
             }
         }
     }

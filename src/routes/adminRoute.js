@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getLoginPage, postLogin, getDashboard, requireAdminAuth, getReportCounts, getReportAll, exportReportsCSV, sendCSVToResources } from "../controllers/adminController.js";
+import { getLoginPage, postLogin, getDashboard, requireAdminAuth, getReportCounts, getReportAll, exportReportsCSV, sendCSVToResources, sendSubscriberEmails, handleUnsubscribe } from "../controllers/adminController.js";
 import { body } from "express-validator";
 
 
@@ -23,7 +23,8 @@ router.get("/dashboard/report-data",requireAdminAuth, getReportCounts);
 router.get("/dashboard/reports-map",requireAdminAuth, getReportAll);
 router.get("/dashboard/reports-export",requireAdminAuth, exportReportsCSV);
 router.get("/dashboard/email-csv",requireAdminAuth, sendCSVToResources);
-// router.get("/dashboard/email-subscribers",requireAdminAuth, emailAllSubscribers);
+router.get("/dashboard/email-subscribers",requireAdminAuth, sendSubscriberEmails);
+router.get("/unsubscribe", handleUnsubscribe)
 
 router.get("/logout", (req, res) => {
     req.session.destroy(() => {

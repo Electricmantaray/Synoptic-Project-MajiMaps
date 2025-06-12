@@ -52,6 +52,49 @@ const sendCSVEmail = async (csvData) => {
     }
 };
 
+const sendEmailsToSubscribers = async (subscribers) => {
+    try {
+        const sendPromises = [];
 
-export { sendContactUsEmail, sendCSVEmail };
+        for (const user of subscribers) {
+            const name = user.first_name || "there";
+            const unsubscribeLink = `https://hayden-jones.dev/unsubscribe?email=${encodeURIComponent(user.email)}`;
+
+            let emailBody = `Hi ${name},\n\n`;
+            if (user.emailnewsletter) {
+                emailBody += `Thanks for subscribing to the MajiMaps Newsletter!\nStay tuned for updates, tips, and news about water in your community.\n\n`;
+            }
+            if (user.emailemergency) {
+                emailBody += `This is a placeholder emergency alert from MajiMaps.\nPlease stay alert and follow safety guidelines.\n\n`;
+            }
+            emailBody += `- The MajiMaps Team`;
+
+            sendPromises.push(
+                transporter.sendMail({
+                    from: `MajiMaps Notifications <${process.env.EMAIL}>`,
+                    to: user.email,
+                    subject: "MajiMaps Notifications",
+                    text: emailBody,
+                    headers: {
+                        'List-Unsubscribe': `<mailto:${process.env.EMAIL}>, <${unsubscribeLink}>`
+                    }
+                })
+            );
+        }
+
+        await Promise.all(sendPromises);
+
+        return {
+            totalSent: sendPromises.length,
+            totalRecipients: subscribers.length
+        };
+
+    } catch (err) {
+        console.error("Failed to send subscriber emails:", err);
+        throw err;
+    }
+};
+
+
+export { sendContactUsEmail, sendCSVEmail, sendEmailsToSubscribers };
     

@@ -140,7 +140,27 @@ export async function fetchAllReports() {
 
   const { rows } = await pool.query(query);
   return rows; 
-}
+};
+
+// fetches all contacts
+export async function fetchEmailSubscribers() {
+
+  const query = `
+    SELECT email, first_name, emailnewsletter, emailemergency
+    FROM contacts
+    WHERE emailnewsletter = true OR emailemergency = true
+  `;
+
+  const { rows } = await pool.query(query);
+  return rows;
+  
+};
+
+export async function deleteContactByEmail(email) {
+  const query = `DELETE FROM "MajiMaps".contacts WHERE email = $1`;
+  const values = [ email ];
+  await pool.query(query, values);
+};
 
 
 

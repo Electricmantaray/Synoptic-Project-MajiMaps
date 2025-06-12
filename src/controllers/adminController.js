@@ -1,8 +1,8 @@
 import express from "express";
 import { validationResult } from "express-validator";
 import { getSectionData } from "../services/services.js";
-import { fetchReportCountsData, fetchReportStats, fetchAllReports } from "../services/pgService.js";
-import { sendCSVEmail } from "../services/emailService.js";
+import { fetchReportCountsData, fetchReportStats, fetchAllReports, fetchEmailSubscribers, deleteContactByEmail } from "../services/pgService.js";
+import { sendCSVEmail, sendEmailsToSubscribers } from "../services/emailService.js";
 import { Parser } from "json2csv";
 
 import bcrypt from "bcrypt";
@@ -229,6 +229,40 @@ export const sendCSVToResources = async (req, res) => {
     res.status(500).json({ success: false, error: "Failed to send CSV email." });
   }
 };
+
+export const sendSubscriberEmails = async (req, res) => {
+  try {
+    const subscribers = await fetchEmailSubscribers();
+
+    if (!subscribers.length) {
+      return res.status(200).json({ success: false, message: "No subscribers to email." });
+    }
+
+    const sendResult = await sendEmailsToSubscribers(subscribers);
+    return res.status(200).json({ success: true, ...sendResult });
+  } catch (error) {
+    console.error("Error in sendSubscriberEmails:", error);
+    return res.status(500).json({ success: false, message: "Failed to send subscriber emails." });
+  }
+};
+
+// deletes record from database
+export const handleUnsubscribe = async (req, res) => {
+  const { email } = req.query;
+
+  if (!email) {
+    return res.status(400).send("Invalid unsubscribe link.");
+  }
+
+  try {
+    await deleteContactByEmail(email);
+
+  } catch (err) {
+    console.error("Unsubscribe error:", err);
+    res.status(500).send("An error occurred while processing your request.");
+  }
+};
+
 
 
 
