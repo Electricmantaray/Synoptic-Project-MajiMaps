@@ -13,6 +13,7 @@ const transporter = nodeMailer.createTransport({
     }
 });
 
+// Self sends email and records users email and content
 const sendContactUsEmail = async (formData) => {
     const mailOptions = {
         from: `MajiMaps Message Service <${process.env.EMAIL}>`,
@@ -26,9 +27,10 @@ const sendContactUsEmail = async (formData) => {
     } catch (err) {
         console.log(err);
         throw err;
-    }     
+    }
 };
 
+// Sends email with csv attachment to joburg water
 const sendCSVEmail = async (csvData) => {
     const mailOptions = {
         from: `MajiMaps Report Export <${process.env.EMAIL}>`,
@@ -52,6 +54,7 @@ const sendCSVEmail = async (csvData) => {
     }
 };
 
+// Sends emails out to all current subscribers specifying the body depending on users subscription type
 const sendEmailsToSubscribers = async (subscribers) => {
     try {
         const sendPromises = [];
@@ -97,4 +100,4 @@ const sendEmailsToSubscribers = async (subscribers) => {
 
 
 export { sendContactUsEmail, sendCSVEmail, sendEmailsToSubscribers };
-    
+

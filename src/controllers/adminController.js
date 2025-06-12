@@ -1,4 +1,4 @@
-import express from "express";
+// Imports
 import { validationResult } from "express-validator";
 import { getSectionData } from "../services/services.js";
 import { fetchReportCountsData, fetchReportStats, fetchAllReports, fetchEmailSubscribers, deleteContactByEmail } from "../services/pgService.js";
@@ -20,9 +20,9 @@ export const getLoginPage = async (req, res) => {
     return res.redirect("/admin/dashboard");
   }
 
-    const loginData = await getSectionData("admin", "login");
-    const commonData = await getSectionData("common", "common");
-    res.render("admin/pages/login", { login:loginData, common: commonData });
+  const loginData = await getSectionData("admin", "login");
+  const commonData = await getSectionData("common", "common");
+  res.render("admin/pages/login", { login: loginData, common: commonData });
 };
 
 
@@ -33,7 +33,7 @@ const adminSections = [
   "dashboardStats",
   "dashboardMap",
   "dashboardGraph",
-  "dashboardData"  
+  "dashboardData"
 ];
 
 // Gathers all component data
@@ -53,27 +53,26 @@ export const getDashboard = async (req, res) => {
     }
 
     // Check for empty object or json if so they return null
-    // TODO: Improve this section
     const isEmpty = sectionData === null ||
       (Array.isArray(sectionData) && sectionData.length === 0) ||
       (typeof sectionData === "object" && Object.keys(sectionData).length === 0)
 
     if (isEmpty) {
       console.warn(`Skipping empty/missing section: ${section}`)
-      // Skips
       continue
     }
     // Update state cards with live information
     if (section === "dashboardStats") {
       try {
-        // Fetch the live stats from the DB
+        // Fetch the live stats from the Database
         const stats = await fetchReportStats();
 
         // Replace the cards array with real data dynamically:
+        // Returning to 0 if fails
         sectionData.cards = [
           {
             title: "Total Reports",
-            stat: stats.totalReports ?? 0,  // fallback to 0 if undefined
+            stat: stats.totalReports ?? 0,
           },
           {
             title: "Reports in Last Week",
@@ -86,7 +85,6 @@ export const getDashboard = async (req, res) => {
         ];
       } catch (err) {
         console.error("Failed to fetch report stats for dashboardStats:", err);
-        // Optionally keep the old cards or set fallback empty stats here
         sectionData.cards = sectionData.cards || [];
       }
     }
@@ -97,13 +95,14 @@ export const getDashboard = async (req, res) => {
   res.render("admin/pages/dashboard", data);
 };
 
+// Checks Whether user has logged in using session secret
 export const requireAdminAuth = (req, res, next) => {
-    if (req.session && req.session.isAdmin) {
-      return next();
-    }
+  if (req.session && req.session.isAdmin) {
+    return next();
+  }
 
-    // ####################################
-    return res.redirect("/admin/login")
+  // ####################################
+  return res.redirect("/admin/login")
 };
 
 
@@ -127,7 +126,7 @@ export const postLogin = async (req, res) => {
       return res.status(401).json({ error: [{ path: "adminEmail", message: "Email not found" }] });
     }
 
-    // Compare hashed password
+    // Compare hashed password to the entered password
     const isMatch = await bcrypt.compare(password, ADMIN_PASSWORD_HASH);
     if (!isMatch) {
       return res.status(401).json({ error: [{ path: "adminPassword", message: "Invalid password" }] });
@@ -145,7 +144,7 @@ export const postLogin = async (req, res) => {
 
 };
 
-// grabs report data
+// grabs report counts from database
 export const getReportCounts = async (req, res) => {
   try {
     const data = await fetchReportCountsData();
@@ -156,7 +155,7 @@ export const getReportCounts = async (req, res) => {
   }
 };
 
-// grabs the report stats
+// grabs the report stats from database
 export const getReportStats = async (req, res) => {
   try {
     const stats = await fetchReportStats();
@@ -167,6 +166,7 @@ export const getReportStats = async (req, res) => {
   }
 };
 
+// gets report data for futher functionality
 export const getReportAll = async (req, res) => {
   try {
     const reports = await fetchAllReports();
@@ -179,7 +179,7 @@ export const getReportAll = async (req, res) => {
 
 // turns all reports into a csv 
 const generateCSVFromReports = async () => {
-  
+
   const reports = await fetchAllReports();
 
   if (!reports || reports.length === 0) {
@@ -201,6 +201,7 @@ const generateCSVFromReports = async () => {
 
 };
 
+// Downloads it to admins computer
 export const exportReportsCSV = async (req, res) => {
   try {
     const csv = await generateCSVFromReports();
@@ -230,6 +231,7 @@ export const sendCSVToResources = async (req, res) => {
   }
 };
 
+// Sends placeholder email to all subscribers
 export const sendSubscriberEmails = async (req, res) => {
   try {
     const subscribers = await fetchEmailSubscribers();

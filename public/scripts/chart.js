@@ -8,15 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const ctx = document.getElementById("reportChart").getContext("2d");
 
             const reportChart = new Chart(ctx, {
+                // Line Graph
                 type: "line",
                 data: {
                     labels: chartData.labels,
+                    // Applies data to the chart seperating via colour and line style
+                    // Data is records inserted from the database
                     datasets: [
-                        // Theft
+                        // Theft - red
                         {
                             label: "Theft (Verified)",
                             data: chartData.data.theft.verified,
-                            borderColor: "rgba(255, 0, 0, 1)", // red
+                            borderColor: "rgba(255, 0, 0, 1)",
                             borderWidth: 2,
                             fill: false,
                             tension: 0.1,
@@ -25,18 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         {
                             label: "Theft (Unverified)",
                             data: chartData.data.theft.unverified,
-                            borderColor: "rgba(255, 0, 0, 1)", // red
+                            borderColor: "rgba(255, 0, 0, 1)",
                             borderWidth: 2,
                             fill: false,
                             tension: 0.1,
                             borderDash: [5, 5]
                         },
 
-                        // Leak
+                        // Leak - blue
                         {
                             label: "Leak (Verified)",
                             data: chartData.data.leak.verified,
-                            borderColor: "rgba(0, 0, 255, 1)", // blue
+                            borderColor: "rgba(0, 0, 255, 1)",
                             borderWidth: 2,
                             fill: false,
                             tension: 0.1,
@@ -45,18 +48,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         {
                             label: "Leak (Unverified)",
                             data: chartData.data.leak.unverified,
-                            borderColor: "rgba(0, 0, 255, 1)", // blue
+                            borderColor: "rgba(0, 0, 255, 1)",
                             borderWidth: 2,
                             fill: false,
                             tension: 0.1,
                             borderDash: [5, 5]
                         },
 
-                        // Water Point
+                        // Water Point - green
                         {
                             label: "Water Point (Verified)",
                             data: chartData.data.water_point.verified,
-                            borderColor: "rgba(0, 128, 0, 1)", // green
+                            borderColor: "rgba(0, 128, 0, 1)",
                             borderWidth: 2,
                             fill: false,
                             tension: 0.1,
@@ -65,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         {
                             label: "Water Point (Unverified)",
                             data: chartData.data.water_point.unverified,
-                            borderColor: "rgba(0, 128, 0, 1)", // green
+                            borderColor: "rgba(0, 128, 0, 1)",
                             borderWidth: 2,
                             fill: false,
                             tension: 0.1,
@@ -73,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     ]
                 },
+                // Handles how labels are styled and how the canvas responds to changes in viewport
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,

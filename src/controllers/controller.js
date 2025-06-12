@@ -33,7 +33,6 @@ export const renderHome = async (req, res) => {
       sectionData = await getSectionData("main", section);
     }
 
-    // Check for empty object or json if so they return null
     // TODO: Improve this section
     const isEmpty = sectionData === null ||
       (Array.isArray(sectionData) && sectionData.length === 0) ||
@@ -41,7 +40,6 @@ export const renderHome = async (req, res) => {
 
     if (isEmpty) {
       console.warn(`Skipping empty/missing section: ${section}`)
-      // Skips
       continue
     }
 
@@ -52,7 +50,7 @@ export const renderHome = async (req, res) => {
 };
 
 
-// Handling Form Posts
+// Handling Form Posts - 3 froms used on public page
 export const postForm = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -80,7 +78,7 @@ export const postForm = async (req, res) => {
     } catch (error) {
       console.error("Email Service Save Failed:", error);
       let statusCode = error.status || 500;
-  
+
       return res.status(statusCode).json({ error: error.message || "Internal Server Error" });
     }
 
@@ -101,7 +99,7 @@ export const postForm = async (req, res) => {
 
 };
 
-
+// Displays the heatmap 
 export const getPublicReports = async (req, res) => {
   try {
     const reports = await fetchAllReports();

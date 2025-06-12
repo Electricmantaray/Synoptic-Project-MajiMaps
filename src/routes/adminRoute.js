@@ -8,22 +8,22 @@ const router = Router();
 
 // Private admin pages
 router.get("/login", getLoginPage);
-router.post("/login", 
+router.post("/login",
     [
-    body("adminEmail").isEmail().withMessage("Valid email required"),
-    body("adminPassword").notEmpty().withMessage("Password is required")
+        body("adminEmail").isEmail().withMessage("Valid email required"),
+        body("adminPassword").notEmpty().withMessage("Password is required")
     ],
     postLogin
 );
 
 router.get("/dashboard", requireAdminAuth, getDashboard);
 
-
-router.get("/dashboard/report-data",requireAdminAuth, getReportCounts);
-router.get("/dashboard/reports-map",requireAdminAuth, getReportAll);
-router.get("/dashboard/reports-export",requireAdminAuth, exportReportsCSV);
-router.get("/dashboard/email-csv",requireAdminAuth, sendCSVToResources);
-router.get("/dashboard/email-subscribers",requireAdminAuth, sendSubscriberEmails);
+// Functionality
+router.get("/dashboard/report-data", requireAdminAuth, getReportCounts);
+router.get("/dashboard/reports-map", requireAdminAuth, getReportAll);
+router.get("/dashboard/reports-export", requireAdminAuth, exportReportsCSV);
+router.get("/dashboard/email-csv", requireAdminAuth, sendCSVToResources);
+router.get("/dashboard/email-subscribers", requireAdminAuth, sendSubscriberEmails);
 router.get("/unsubscribe", handleUnsubscribe)
 
 router.get("/logout", (req, res) => {

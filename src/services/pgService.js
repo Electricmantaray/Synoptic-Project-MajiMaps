@@ -2,6 +2,7 @@
 import { pool } from "../db/index-db.js";
 
 // Save email subscription
+// assigns data to types to prevent sql insertion
 export async function saveEmailService(data) {
   const {
     forename = null,
@@ -122,7 +123,6 @@ export async function fetchReportStats() {
   `;
 
   const { rows } = await pool.query(query);
-  // rows[0] will contain the counts as strings, convert to number
   return {
     totalReports: parseInt(rows[0].total_reports, 10),
     lastWeekReports: parseInt(rows[0].last_week_reports, 10),
@@ -156,8 +156,9 @@ export async function fetchEmailSubscribers() {
   
 };
 
+// Deletes subscriber via email
 export async function deleteContactByEmail(email) {
-  const query = `DELETE FROM "MajiMaps".contacts WHERE email = $1`;
+  const query = `DELETE FROM contacts WHERE email = $1`;
   const values = [ email ];
   await pool.query(query, values);
 };

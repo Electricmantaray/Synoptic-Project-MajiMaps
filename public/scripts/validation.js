@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
 
+        // Form config for the report sections
         reportForm: {
             id: "reportForm",
             errorId: "reportError",
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
 
+        // Config for initial validation fo login form
         adminLoginForm: {
             id: "adminLoginForm",
             errorId: "adminLoginError",
@@ -55,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // === Utility functions === 
 
     // focus styling to provide validation feedback
+    // Provides feedback when user interacts
     function clearValidationStyles(input) {
         input.classList.remove(
             "border-2",
@@ -68,15 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }
 
-    function applyBaseFocusStyles(input) {
-        clearValidationStyles(input);
-        input.classList.add(
-            "focus:outline-none",
-            "focus:ring-2",
-            "focus:ring-[#3a31d8]"
-        );
-    }
-
+    // Provides feedback when form has error, on exact entry
     function applyErrorStyles(input) {
         clearValidationStyles(input);
         input.classList.add(
@@ -88,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }
 
+    // Provides feedback when form has success, on exact entry
     function applySuccessStyles(input) {
         clearValidationStyles(input);
         input.classList.add(
@@ -103,13 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Email validator
+    // Checks against regex to see if email is properly formatted
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
     // Main Validation Helper
-
+    // Validates against all entries with bonus validation for specialised entries such as checkbox
     function validateField(input, rules, form) {
         if (rules.type === "checkboxGroup") {
             // Validate checkboxes, at least one checked if required
@@ -129,22 +126,27 @@ document.addEventListener("DOMContentLoaded", () => {
             return "Field not found";
         }
 
+        // General validation - contains redundent check to see if entry is present as precaution
         const value = input.value.trim();
 
+        // Valie
         if (rules.required && value === "") {
             return "This field is required.";
         }
 
+        // Email
         if (rules.type === "email" && value !== "" && !isValidEmail(value)) {
             return "Please enter a valid email address.";
         }
 
+        // Drop Down box
         if (rules.type === "select") {
             if (rules.required && (!input || !input.value || input.value === "")) {
                 return "This field is required.";
             }
         }
 
+        // Max Length text box
         if (rules.maxlength && value.length > rules.maxlength) {
             return `Maximum length is ${rules.maxlength} characters.`;
         }
@@ -159,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!form) return;
 
+        // Triggers when submit button for that form is clicked
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
@@ -186,13 +189,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // Validate fields
+            // Validate fields - using previous helper functions
             Object.entries(fields).forEach(([fieldName, rules]) => {
+                // checkbox checks
                 if (rules.type === "checkboxGroup") {
                     const errorMsg = validateField(null, rules, form);
+                    // Logs all error messages to be output if form fails
                     if (errorMsg) {
                         errors.push(errorMsg);
                         isValid = false;
+                        // Applies predefined styles as feedback
                         rules.names.forEach(name => {
                             const input = form.querySelector(`input[name="${name}"]`);
                             if (input) applyErrorStyles(input);
@@ -244,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
 
-            // Location splitting for database
+            // Location splitting for database - splites location into lat and lon
             if (id === "reportForm" && json.location) {
                 const parts = json.location.split(",").map(s => s.trim());
                 if (parts.length === 2) {
@@ -283,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const errorData = await response.json();
                     if (errorData.error) {
                         if (Array.isArray(errorData.error)) {
-                            // Highlight server-validated fields with errors
+                            // Highlight server validated fields with errors
                             errorData.error.forEach(err => {
                                 const fieldInput = form.querySelector(`[name="${err.path}"]`);
                                 if (fieldInput) applyErrorStyles(fieldInput);
@@ -292,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 errorElement.innerHTML = "Please fix the highlighted fields.";
                             }
                         } else if (typeof errorData.error === "string") {
-                            // Show the error string from backend (e.g. duplicate email)
+                            // Show the error string from backend (duplicate email ect)
                             if (errorElement) {
                                 errorElement.textContent = errorData.error;
                             }
@@ -323,7 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     errorElement.textContent = successData.message || "Form submitted successfully!";
                 }
 
-                // Reset form and clear styles
+                // Reset form and clear all styles
                 form.reset();
                 Object.entries(fields).forEach(([fieldName, rules]) => {
                     if (rules.type === "checkboxGroup") {

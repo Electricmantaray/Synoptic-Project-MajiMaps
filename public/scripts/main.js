@@ -2,11 +2,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById("logoutBtn");
 
-
+    // Handles the lougout button and rerouting on the admin screen
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
-            
-            fetch('/logout', { method: 'POST' })
+
+            fetch('/logout', { method: 'get' })
                 .then(() => {
                     window.location.href = '/';
                 })
@@ -15,14 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-        // Live character counter
-        const descriptionTextarea = document.getElementById("description");
-        const counter = document.getElementById("descriptionCounter");
+    // Live character counter - counts down from 255
+    const descriptionTextarea = document.getElementById("description");
+    const counter = document.getElementById("descriptionCounter");
 
-        if (descriptionTextarea && counter) {
-            descriptionTextarea.addEventListener("input", () => {
-                const currentLength = descriptionTextarea.value.length;
-                counter.textContent = `${currentLength} / 255`;
-            });
-        }
-    });
+    if (descriptionTextarea && counter) {
+        descriptionTextarea.addEventListener("input", () => {
+            // responds dynamically to users typing
+            const currentLength = descriptionTextarea.value.length;
+            counter.textContent = `${currentLength} / 255`;
+        });
+    }
+});

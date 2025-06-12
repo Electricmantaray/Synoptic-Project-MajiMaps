@@ -26,13 +26,13 @@ async function getSectionData(page, section) {
   if (fs.existsSync(filePath)) {
 
     // Reads file
-  const content = fs.readFileSync(filePath, "utf-8")  
+    const content = fs.readFileSync(filePath, "utf-8")
 
-  // Checking if json file has content
-  if (!content.trim()) {
-    console.warn(`\n====== WARNING =====\n${section}.json is empty. Skipping.`);
-    return null;
-  }
+    // Checking if json file has content
+    if (!content.trim()) {
+      console.warn(`\n====== WARNING =====\n${section}.json is empty. Skipping.`);
+      return null;
+    }
 
     const parsedData = JSON.parse(content);
 

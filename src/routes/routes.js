@@ -19,7 +19,7 @@ router.post("/contact",
     postForm
 );
 
-// Admin MPA
+// Submits data to database
 router.post("/subscribe",
     [
         body("emailServiceEmail").isEmail().withMessage("Valid email required"),

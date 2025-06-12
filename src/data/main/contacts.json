@@ -76,7 +76,7 @@
         "header": {
             "title": "Email Service",
             "titleStyle": "font-inter text-4xl font-medium",
-            "description": "We’ll email you in case of urgent disruptions",
+            "description": "We’ll email you in case of urgent disruptions (Use Outlook)",
             "descriptionStyle": "font-inter max-w-[900px] text-2xl font-medium",
             "dividerStyle": "h-[5px] w-full max-w-[600px] rounded-full bg-white/30"
         },

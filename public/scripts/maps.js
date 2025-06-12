@@ -1,6 +1,7 @@
 
 // Map initialisation
 document.addEventListener('DOMContentLoaded', () => {
+    // Map id declaration
     const publicMapId = "map";
     const adminMapId = "dashboardMap";
 
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).setView([-26.193292, 28.072987], 15);
 
     // Add OpenStreetMap tile layer with attribution
+    // both default and satellite
     const street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -27,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     L.control.layers({
-        'Satillite View': satellite,
+        'Satellite View': satellite,
         'Street View': street
     }).addTo(map)
 
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let userMarker = null;
     let accuracyCircle = null;
 
+    // listens to maps container and if locate button is clicked it locates users location
     const locateButton = document.getElementById('locateButton');
     if (locateButton) {
         locateButton.addEventListener('click', () => {
@@ -42,15 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // marks where the current locator is
     map.on('locationfound', (e) => {
         const { latlng, accuracy } = e;
 
         if (userMarker) map.removeLayer(userMarker);
+        // draws a geometric circle around the users location
         if (accuracyCircle) map.removeLayer(accuracyCircle);
 
         userMarker = L.marker(latlng).addTo(map)
             .bindPopup("You are currently here").openPopup();
 
+        // accuracy circle styleing
         accuracyCircle = L.circle(latlng, {
             radius: accuracy,
             color: '#3a31d8',
@@ -64,11 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ############## Click to mark ##############
     if (!isAdmin) {
+        // only user needs to get location data not admin
         const coordsDisplay = document.getElementById('coordsPlaceholder');
         const coordsEntry = document.getElementById('location');
 
         let currentMarker = null;
 
+        // Upon click pulls location data
         map.on('click', (e) => {
             const { lat, lng } = e.latlng;
             if (currentMarker) {
@@ -76,18 +84,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             currentMarker = L.marker([lat, lng]).addTo(map);
 
-
+            // Inserts data into label below the map
             coordsDisplay.textContent = `Latitude: ${lat.toFixed(6)}, Longitude: ${lng.toFixed(6)}`;
             if (coordsEntry) coordsEntry.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
 
         });
     };
-    
+
 
     // ############## Scroll whell behaviour and zoom ##############
     const mapContainer = map.getContainer();
 
-
+    // Prevents scroll from effecting map until after interaction begins
     mapContainer.addEventListener('focus', () => {
         map.scrollWheelZoom.enable();
     });
@@ -98,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ############## Zone out makers valley ##############
+    // Uses data available on resources to mark out current makers valley
     const makerValleyCoords = [
         [-26.187812, 28.0691181],
         [-26.190638, 28.062201],
@@ -125,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [-26.187812, 28.0691181]
     ];
 
+    // Draws boudaries based on the lnglang data from before
     const makersValley = L.polygon(makerValleyCoords, {
         color: '#3a31d8',
         fillColor: '#3a31d8',
@@ -134,9 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ========== Report pins & Heatmap Integration ==========
 
+    // Initiallises the 2 layers that provide visual feedback
     let reportMarkersLayer = L.layerGroup().addTo(map);
     let heatmapLayer = null;
 
+    // Loads all current pins from database to map container
     async function loadReportPins() {
         try {
             if (!isAdmin) {
@@ -149,15 +161,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             reportMarkersLayer.clearLayers();
 
+            // Styles pins
             data.reports.forEach(report => {
                 const { latitude, longitude, report_type, context } = report;
 
-                // Determine marker color based on type
-                let color = 'blue'; // default for water_point
+                // Determine marker colour based on type
+                let color = 'blue';
                 if (report_type === 'theft') color = 'red';
                 else if (report_type === 'leak') color = 'green';
 
-                // Create custom colored marker using a Leaflet DivIcon
+                // Create custom coloured marker using a Leaflet packages
                 const coloredMarker = L.divIcon({
                     className: 'custom-div-icon',
                     html: `<div style="background-color: ${color}; width: 16px; height: 16px; border-radius: 50%; border: 2px solid white;"></div>`,
@@ -165,8 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     iconAnchor: [10, 10]
                 });
 
+                // Applies custom marker to location markers
                 const marker = L.marker([latitude, longitude], { icon: coloredMarker });
-
+                
+                // Provides report information linked to report id
                 marker.bindPopup(`
                 <b>Type:</b> ${report_type}<br>
                 <b>Description:</b> ${context || 'No details'}`);
@@ -179,6 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Loads the heatmap a leaflet plugin
     async function loadHeatMap() {
         try {
             const res = await fetch('/reports-map');
@@ -191,9 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const heatPoints = data.reports.map(report => [
                 report.latitude,
                 report.longitude,
-                2.0  // intensity, tweak as needed
+                // Intensity - effects visual feedback of # of reports
+                2.0
             ]);
 
+            // Fades out data to give gradient of heat
             heatmapLayer = L.heatLayer(heatPoints, {
                 radius: 25,
                 blur: 15,
@@ -204,13 +222,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Start showing heatmap by default
+    // Start showing heatmap by default as used by both user and admin
     let showingHeatmap = true;
 
     async function toggleHeatmap() {
         const toggleHeatmapBtn = document.getElementById('toggleHeatmapBtn');
         if (showingHeatmap) {
-            // Switch to pins (admin only)
+            // Switch to pins - security issue (admin only)
             if (heatmapLayer) map.removeLayer(heatmapLayer);
 
             await loadReportPins();
@@ -221,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (toggleHeatmapBtn) toggleHeatmapBtn.textContent = "Show Heatmap";
             } else {
-                // Public map: ensure pins are removed
+                // Public map - ensure pins are removed
                 if (map.hasLayer(reportMarkersLayer)) {
                     map.removeLayer(reportMarkersLayer);
                 }
@@ -239,10 +257,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initial load
+    // Initialisation
     loadHeatMap();
 
-    // Setup toggle button listener on **both** maps, if button exists
+    // Setup toggle button listener on both maps, if button exists
     const toggleHeatmapBtn = document.getElementById('toggleHeatmapBtn');
     if (toggleHeatmapBtn) {
         // Initialize button text correctly at load time:
