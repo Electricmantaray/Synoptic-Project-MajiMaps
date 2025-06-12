@@ -29,5 +29,29 @@ const sendContactUsEmail = async (formData) => {
     }     
 };
 
-export { sendContactUsEmail };
+const sendCSVEmail = async (csvData) => {
+    const mailOptions = {
+        from: `MajiMaps Report Export <${process.env.EMAIL}>`,
+        to: "joburggenericwater@gmail.com",
+        subject: "MajiMaps: All Reports CSV Export",
+        text: "Attached is the latest report data exported from the admin dashboard.",
+        attachments: [
+            {
+                filename: "maji-reports.csv",
+                content: csvData,
+                contentType: "text/csv"
+            }
+        ]
+    };
+
+    try {
+        return await transporter.sendMail(mailOptions);
+    } catch (err) {
+        console.error("Failed to send CSV email:", err);
+        throw err;
+    }
+};
+
+
+export { sendContactUsEmail, sendCSVEmail };
     

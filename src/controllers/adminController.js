@@ -1,7 +1,8 @@
 import express from "express";
 import { validationResult } from "express-validator";
 import { getSectionData } from "../services/services.js";
-import { fetchReportCountsData, fetchReportStats, fetchAllReports, saveEmailService, saveReport } from "../services/pgService.js";
+import { fetchReportCountsData, fetchReportStats, fetchAllReports } from "../services/pgService.js";
+import { sendCSVEmail } from "../services/emailService.js";
 import { Parser } from "json2csv";
 
 import bcrypt from "bcrypt";
@@ -176,26 +177,33 @@ export const getReportAll = async (req, res) => {
   }
 };
 
+// turns all reports into a csv 
+const generateCSVFromReports = async () => {
+  
+  const reports = await fetchAllReports();
+
+  if (!reports || reports.length === 0) {
+    throw new Error('No report data to export.')
+  }
+
+  const fields = [
+    { label: 'ID', value: 'id' },
+    { label: 'Report Type', value: 'report_type' },
+    { label: 'Latitude', value: 'latitude' },
+    { label: 'Longitude', value: 'longitude' },
+    { label: 'Context', value: 'context' },
+    { label: 'Created At', value: 'created_at' },
+    { label: 'Verified', value: 'verified' },
+  ];
+
+  const parser = new Parser({ fields });
+  return parser.parse(reports);
+
+};
+
 export const exportReportsCSV = async (req, res) => {
   try {
-    const reports = await fetchAllReports();
-
-    if (!reports || reports.length === 0) {
-      return res.status(404).send('No report data to export.');
-    }
-
-    const fields = [
-      { label: 'ID', value: 'id' },
-      { label: 'Report Type', value: 'report_type' },
-      { label: 'Latitude', value: 'latitude' },
-      { label: 'Longitude', value: 'longitude' },
-      { label: 'Context', value: 'context' },
-      { label: 'Created At', value: 'created_at' },
-      { label: 'Verified', value: 'verified' },
-    ];
-
-    const parser = new Parser({ fields });
-    const csv = parser.parse(reports);
+    const csv = await generateCSVFromReports();
 
     const fileName = 'dashboard.csv';
     res.header('Content-Type', 'text/csv');
@@ -205,7 +213,22 @@ export const exportReportsCSV = async (req, res) => {
     console.error('Error exporting CSV:', err);
     return res.status(500).send('Server error generating CSV');
   }
-}
+};
+
+
+// sends csv to resources
+export const sendCSVToResources = async (req, res) => {
+  try {
+    const csv = await generateCSVFromReports();
+    await sendCSVEmail(csv);
+
+    // Respond with success to be handled by SPA
+    res.json({ success: true, message: "CSV emailed successfully." });
+  } catch (err) {
+    console.error("Failed to send CSV email:", err);
+    res.status(500).json({ success: false, error: "Failed to send CSV email." });
+  }
+};
 
 
 

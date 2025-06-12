@@ -1,23 +1,29 @@
 <section id="<%= dashboardData.id %>" class="flex justify-center bg-transparent">
     <div class="<%= dashboardData.containerStyle %>">
 
-        <!-- Export dashboardData Card -->
-        <article class="<%= dashboardData.cardStyles.wrapperStyle %>">
-            <h3 class="<%= dashboardData.cardStyles.titleStyle %>">
-                <%= dashboardData.cards.export.title %>
-            </h3>
-            <a href="<%= dashboardData.cards.export.action.href %>" class="<%= dashboardData.cardStyles.linkStyle %>">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke="<%= dashboardData.cards.export.action.icon.stroke %>"
-                    stroke-width="<%= dashboardData.cards.export.action.icon.strokeWidth %>"
-                    class="<%= dashboardData.cardStyles.iconStyle %>">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="<%= dashboardData.cards.export.action.icon.d %>" />
-                </svg>
-                <span class="<%= dashboardData.cardStyles.textStyle %>">
-                    <%= dashboardData.cards.export.action.text %>
-                </span>
-            </a>
-        </article>
+        <% Object.entries(dashboardData.cards).forEach(([key, card])=> { %>
+            <article class="<%= dashboardData.cardStyles.wrapperStyle %>">
+                <h3 class="<%= dashboardData.cardStyles.titleStyle %>">
+                    <%= card.title %>
+                </h3>
+
+                <% if (card.action.type==='button' ) { %>
+                    <button id="<%= card.action.id %>"
+                        class="<%= dashboardData.cardStyles.submitButton.style %> flex items-center justify-center gap-3"
+                        data-route="<%= card.action.route %>">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="<%= card.action.icon.stroke %>" stroke-width="<%= card.action.icon.strokeWidth %>"
+                            class="<%= dashboardData.cardStyles.iconStyle %>">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="<%= card.action.icon.d %>" />
+                        </svg>
+                        <span>
+                            <%= card.action.text %>
+                        </span>
+                    </button>
+                    <% } %>
+
+            </article>
+            <% }) %>
+
     </div>
 </section>
