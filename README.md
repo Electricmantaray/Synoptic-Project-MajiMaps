@@ -4,6 +4,7 @@
 
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en)
 
+[Visit my portfolio website](https://www.hayden-jones.dev/)
 
 ## GitHub setup:
 ---
@@ -91,87 +92,98 @@ MajiMaps is an interactive web-based platform for showcasing water infrastructur
 ---
 
 ## Project Structure
-
 ```
-📁 Synoptic-Project-MajiMaps               # Root project folder
-├── 📁 db                                   # Database initialization scripts
-│   └── init-db.sql                         
-├── 📁 public                               # Static assets served to client
-│   ├── 📁 css                              # Compiled and source stylesheets
-│   │   ├── output.css                      
-│   │   └── styles.css                      
-│   ├── 📁 images                           # Static image assets
-│   └── 📁 scripts                          # Frontend JavaScript files
-│       ├── main.js                         # Core client-side logic
-│       ├── maps.js                         # Map-specific frontend code
-│       └── validation.js                   # Form validation logic
-├── 📁 src                                  # Server-side source code
-│   ├── 📁 controllers                      # Controller logic for route handling
-│   │   ├── adminController.js              
-│   │   └── controller.js                   
-│   ├── 📁 data                             # Static data used by views/controllers
-│   │   ├── 📁 admin                        # Admin dashboard data
-│   │   │   ├── dashboardCSV.json           
-│   │   │   ├── dashboardGraph.json         
-│   │   │   ├── dashboardMap.json           
-│   │   │   ├── dashboardSend.json          
-│   │   │   ├── dashboardStats.json         
-│   │   │   └── login.json                  
-│   │   ├── 📁 common                       # Shared/global static data
-│   │   │   └── common.json                 
-│   │   └── 📁 main                         # Main site page data
-│   │       ├── contacts.json               
-│   │       ├── hero.json                   
-│   │       ├── introduction.json           
-│   │       ├── maps.json                   
-│   │       ├── report.json                 
-│   │       └── team.json                   
-│   ├── 📁 routes                           # Express routing modules
-│   │   ├── adminRoute.js                   
-│   │   └── routes.js                       
-│   ├── 📁 services                         # Backend utility services
-│   │   ├── emailService.js                 # Email dispatch logic
-│   │   ├── pgService.js                    # PostgreSQL interaction logic
-│   │   └── services.js                     # Shared/general service functions
-│   ├── 📁 views                            # EJS templates for rendering pages
-│   │   ├── 📁 admin                        # Admin views and partials
-│   │   │   ├── 📁 pages                    # Full admin page templates
-│   │   │   │   ├── dashboard.ejs           
-│   │   │   │   ├── dashboardCSV.ejs        
-│   │   │   │   ├── dashboardGraph.ejs      
-│   │   │   │   ├── dashboardMap.ejs        
-│   │   │   │   ├── dashboardSend.ejs       
-│   │   │   │   ├── dashboardStats.ejs      
-│   │   │   │   └── login.ejs               
-│   │   │   └── 📁 partials                 # Admin partial templates
-│   │   │       └── header.ejs              # Admin shared header
-│   │   ├── 📁 main                         # Main site views and partials
-│   │   │   ├── 📁 pages                    # Main public-facing pages
-│   │   │   │   ├── contacts.ejs            
-│   │   │   │   ├── hero.ejs                
-│   │   │   │   ├── introduction.ejs        
-│   │   │   │   ├── layout.ejs              # Shared layout wrapper
-│   │   │   │   ├── maps.ejs                
-│   │   │   │   ├── report.ejs              
-│   │   │   │   └── team.ejs                
-│   │   │   └── 📁 partials                 # Public page partials
-│   │   │       ├── footer.ejs              
-│   │   │       └── header.ejs              
-│   │   └── 📁 partialsGlobal               # Global partials used across views
-│   │       ├── head.ejs                    # Head tag content (meta, title)
-│   │       └── scripts.ejs                 # Shared JS includes
-│   ├── app.js                              # Main Express app config and middleware
-├── └── index.js                            # Application entry point
-├── .env                                    # Environment variable definitions
-├── .env.example                            # Example .env for reference/config
-├── .gitignore                              
-├── package-lock.json                       # Locked package versions (auto-generated)
-├── package.json                            # Project metadata, scripts, dependencies
-├── postcss.config.cjs                      # PostCSS configuration (used by Tailwind)
-├── README.md                               
-└── tailwind.config.cjs                     # Tailwind CSS configuration
-
+📁 Synoptic-Project-MajiMaps
+├── 📁 public                         # Static assets served to the client
+│   ├── 📁 css                        # Compiled and source stylesheets
+│   │   ├── output.css
+│   │   └── styles.css
+│   ├── 📁 images                     # Static image assets (omitted here)
+│   └── 📁 scripts                    # Frontend JavaScript files
+│       ├── admin.js
+│       ├── chart.js
+│       ├── main.js
+│       ├── maps.js
+│       └── validation.js
+│
+├── 📁 src                           # Server-side source code
+│   ├── 📁 controllers                # Route controller logic
+│   │   ├── adminController.js
+│   │   └── controller.js
+│   │
+│   ├── 📁 data                       # Static JSON used in rendering
+│   │   ├── 📁 admin
+│   │   │   ├── dashboardData.json
+│   │   │   ├── dashboardGraph.json
+│   │   │   ├── dashboardMap.json
+│   │   │   ├── dashboardStats.json
+│   │   │   └── login.json
+│   │   ├── 📁 common
+│   │   │   └── common.json
+│   │   └── 📁 main
+│   │       ├── contacts.json
+│   │       ├── hero.json
+│   │       ├── introduction.json
+│   │       ├── maps.json
+│   │       ├── report.json
+│   │       └── team.json
+│   │
+│   ├── 📁 db                         # Database initialization and config
+│   │   ├── DDL-db.sql
+│   │   ├── index-db.js
+│   │   └── initialise-db.js
+│   │
+│   ├── 📁 routes                     # Express route modules
+│   │   ├── adminRoute.js
+│   │   └── routes.js
+│   │
+│   ├── 📁 services                   # Backend service utilities
+│   │   ├── emailService.js
+│   │   ├── pgService.js
+│   │   └── services.js
+│   │
+│   ├── 📁 views                      # EJS templating for server-side rendering
+│   │   ├── 📁 admin
+│   │   │   ├── 📁 pages
+│   │   │   │   ├── dashboard.ejs
+│   │   │   │   ├── dashboardData.ejs
+│   │   │   │   ├── dashboardGraph.ejs
+│   │   │   │   ├── dashboardMap.ejs
+│   │   │   │   ├── dashboardStats.ejs
+│   │   │   │   └── login.ejs
+│   │   │   └── 📁 partials
+│   │   │       └── header.ejs
+│   │   │
+│   │   ├── 📁 main
+│   │   │   ├── 📁 pages
+│   │   │   │   ├── contacts.ejs
+│   │   │   │   ├── hero.ejs
+│   │   │   │   ├── introduction.ejs
+│   │   │   │   ├── layout.ejs
+│   │   │   │   ├── maps.ejs
+│   │   │   │   ├── report.ejs
+│   │   │   │   └── team.ejs
+│   │   │   └── 📁 partials
+│   │   │       ├── footer.ejs
+│   │   │       └── header.ejs
+│   │   │
+│   │   └── 📁 partialsGlobal         # Global partials reused across views
+│   │       ├── head.ejs
+│   │       └── scripts.ejs
+│   │
+│   ├── app.js                        # Main Express app setup
+│   └── index.js                      # Entry point
+│
+├── .env                              # Runtime environment variables
+├── .env.example                      # Sample .env file
+├── .gitignore                        # Ignored files and folders
+├── package-lock.json                 # Lockfile for npm installs
+├── package.json                      # Project metadata and dependencies
+├── postcss.config.cjs                # Tailwind/PostCSS config
+├── README.md                         # This file
+└── tailwind.config.cjs              # Tailwind custom configuration
 ```
+
 
 
 
