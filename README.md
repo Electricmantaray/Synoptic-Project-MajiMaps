@@ -65,52 +65,75 @@ MajiMaps is an interactive web-based platform for showcasing water infrastructur
 
 <details open>
   <summary><b>Interactive Maps</b></summary>
-  <li>Leaflet.js API integration</li>
-  <li>Highlighted Makers Valley area</li>
-  <li>Display location based pins</li>
-  <li>Dynamically updates via backend database</li>
-  <li>HeatMap based distribution</li>
-  <li>Changing view layers</li>
+  <ul>
+    <li>Leaflet.js API integration</li>
+    <li>Highlighted Makers Valley area</li>
+    <li>Display location based pins</li>
+    <li>Dynamically updates via backend database</li>
+    <li>HeatMap based distribution</li>
+    <li>Changing view layers</li>
+  </ul>
+
+  
   
 </details>
+
+---
 
 <details open>
   <summary><b>Report Submission System</b></summary>
 </details>
 
+---
+
 <details open>
   <summary><b>Navigation and Layout System</b></summary>
 </details>
+
+---
 
 <details open>
   <summary><b>Team and Contact Info</b></summary>
 </details>
 
+---
+
 <details open>
   <summary><b>Newsletter System</b></summary>
 </details>
+
+---
 
 <details open>
   <summary><b>Validation Submission Layer</b></summary>
 </details>
 
+---
+
 <details open>
   <summary><b>Database data storage</b></summary>
 </details>
 
+---
 
 ### Admin based features
 <details open>
   <summary><b>Secure Server Side Login System</b></summary>
 </details>
 
+---
+
 <details open>
-  <summary><b>Session based access</b></summary>
+  <summary><b>Session Based Access</b></summary>
 </details>
+
+---
 
 <details open>
   <summary><b>Chart.JS Data Analytics</b></summary>
 </details>
+
+---
 
 <details open>
   <summary><b>Data Export to CSV</b></summary>
