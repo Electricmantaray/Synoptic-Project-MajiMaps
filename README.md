@@ -3,8 +3,15 @@
 [![alt text][logo]][Website Link]
 
 ---
+<p align="center">
+<b>All data seen in demo and on website is dummy data (fake) for demonstration purposes</b>
+</p>
+
+---
 
 # MAJIMAPS - Synoptic Project Year 1
+
+
 
 
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en)
@@ -58,6 +65,31 @@ MajiMaps is an interactive web-based platform for showcasing water infrastructur
 | **Auth**      | Express-Session / Cookie-based      | Simple admin authentication                      |
 | **Testing**   | Manual / Peer testing               | Functional verification                          |
 | **Hosting**   | Render Website Hosting              | Provide a real web environment for live marking  |
+
+---
+## Table of Contents
+
+- [Website](#website)
+- [Purpose](#purpose)
+- [MajiMaps](#majimaps)
+  - [Tech Stack](#tech-stack)
+  - [Feature Breakdown](#feature-breakdown)
+  - [Project Structure](#project-structure)
+  - [Demonstrations](#demonstrations)
+    - [Hero / Landing Page](#hero-landing-page)
+    - [Mobile First Design](#mobile-first-design)
+    - [Maps](#maps)
+    - [Report Form](#report-form)
+    - [Contact Us](#contact-us)
+    - [Email Service](#email-service)
+    - [Admin Login](#admin-login)
+    - [Admin Map](#admin-map)
+    - [Chart](#chart)
+    - [CSV Export](#csv-export)
+- [GitHub Setup](#github-setup)
+- [Development](#development)
+
+---
 
 ## Feature Breakdown
 
@@ -367,20 +399,154 @@ MajiMaps is an interactive web-based platform for showcasing water infrastructur
   ```
 </details>
 
-## Pages
+## Demonstrations
 
 <details open>
-  <summary><b>Hero</b></summary>
+  <summary><b>Hero/Landing page</b></summary>
   <img width="1866" height="1040" alt="image" src="https://github.com/user-attachments/assets/52ead421-8cd4-4e2d-877f-0fa063e15094" />
-  Features Used:
   
-
+  Features Used:
+  - [Navigation and Layout System](#navigation-and-layout-system)
 </details>
 
-[Navigation and Layout System](#live-statistics)
+---
 
+<details open>
+  <summary><b>Mobile First Design</b></summary>
+
+
+  https://github.com/user-attachments/assets/ccc1b68f-ca5d-46e1-9500-519c4dc81a77
+
+
+  Features Used:
+  - [](#)
+</details>
 
 ---
+
+<details open>
+  <summary><b>Maps</b></summary>
+  
+
+  https://github.com/user-attachments/assets/c064f154-c850-44e3-9579-608ff20ce73e
+
+
+  https://github.com/user-attachments/assets/a7d8f0a2-d1d5-490f-a779-2201ebe5eb1d
+
+
+
+
+  Features Used:
+  - [](#)
+</details>
+
+---
+
+<details open>
+  <summary><b>Report Form</b></summary>
+
+
+  https://github.com/user-attachments/assets/b26db884-5243-4945-8635-100452e25614
+
+
+
+  Features Used:
+  - [](#)
+</details>
+
+---
+
+
+<details open>
+  <summary><b>Contact Us</b></summary>
+
+
+  https://github.com/user-attachments/assets/a48b4197-2e5a-448d-b5c1-f289b051098b
+
+
+
+  Features Used:
+  - [](#)
+</details>
+
+---
+
+
+<details open>
+  <summary><b>Email service</b></summary>
+
+
+  https://github.com/user-attachments/assets/d639e6c5-91f5-4277-9179-f6ab8b6d9d9a
+  <img width="844" height="417" alt="SubscriberEmail" src="https://github.com/user-attachments/assets/8b58524d-3099-4236-bbe7-6fbb3c94847f" />
+
+
+  Features Used:
+  - [](#)
+</details>
+
+---
+
+
+<details open>
+  <summary><b>Admin Login</b></summary>
+
+
+
+  https://github.com/user-attachments/assets/15494cd8-9ee2-421c-be80-b031dd614cff
+
+
+  Features Used:
+  - [](#)
+</details>
+
+---
+
+
+<details open>
+  <summary><b>Admin Map</b></summary>
+
+
+  https://github.com/user-attachments/assets/f2e87c06-f294-47e1-a8d5-29b8ea4a9846
+
+  Features Used:
+  - [](#)
+</details>
+
+---
+
+
+<details open>
+  <summary><b>Chart</b></summary>
+
+
+  https://github.com/user-attachments/assets/a695dbe2-083c-4fd0-a674-d53eed3936d8
+
+
+  Features Used:
+  - [](#)
+</details>
+
+---
+
+
+<details open>
+  <summary><b>CSV Export</b></summary>
+
+
+
+  https://github.com/user-attachments/assets/f302b477-f356-44d2-b7d7-57f8cb58feff
+
+
+  https://github.com/user-attachments/assets/41f29f33-6658-4a44-8879-8f405b55013e
+
+
+
+  Features Used:
+  - [](#)
+</details>
+
+---
+
 
 
 ## GitHub setup:
