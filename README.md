@@ -374,9 +374,10 @@ MajiMaps is an interactive web-based platform for showcasing water infrastructur
   <img width="1866" height="1040" alt="image" src="https://github.com/user-attachments/assets/52ead421-8cd4-4e2d-877f-0fa063e15094" />
   Features Used:
   
-  [Navigation and Layout System](#navigation-and-layout-system)
 
 </details>
+
+[Navigation and Layout System](#live-statistics)
 
 
 ---
