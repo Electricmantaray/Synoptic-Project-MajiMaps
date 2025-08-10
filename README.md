@@ -59,84 +59,212 @@ MajiMaps is an interactive web-based platform for showcasing water infrastructur
 | **Testing**   | Manual / Peer testing               | Functional verification                          |
 | **Hosting**   | Render Website Hosting              | Provide a real web environment for live marking  |
 
-## Features
+## Feature Breakdown
+
 
 ### Home based features
 
+<a id="interactive-maps"></a>
 <details open>
   <summary><b>Interactive Maps</b></summary>
   <ul>
-    <li>Leaflet.js API integration</li>
-    <li>Highlighted Makers Valley area</li>
-    <li>Display location based pins</li>
-    <li>Dynamically updates via backend database</li>
-    <li>HeatMap based distribution</li>
-    <li>Changing view layers</li>
+    <li>Leaflet.js API integration with OpenStreetMaps for accurate, mobile-first mapping</li>
+    <li>Highlighted Makers Valley area to focus on general target location</li>
+    <li>Dynamic pins showing user-submitted reports which dynamically updates via backend database</li>
+    <li>Heatmap distribution view to anonymise sensitive location data while showing problematic areas</li>
+    <li>Layer switching between map styles for better accuracy reporting</li>
+    <li>"Locate Me" function which prompts user for location permissions and directs the user to their exact location, displaying a circle of uncertainty around them</li>
+    <li>Mobile first, aimed to support low-end mobile devices and offline caching for areas of poor connectivity</li>
   </ul>
-
-  
-  
 </details>
 
 ---
 
+<a id="report-submission-system"></a>
 <details open>
   <summary><b>Report Submission System</b></summary>
+  <ul>
+    <li>Map based form allowing both GPS and manual pin placement</li>
+    <li>Fields:</li>
+    <ul>
+      <li>Location Data</li>
+      <li>Drop down report type</li>
+      <li>Description</li>
+    </ul>
+    <li>Validation on client and server</li>
+    <ul>
+      <li>Client side for quick feedback</li>
+      <li>Server side for SQL injection prevention and spam control on submissions</li>
+    </ul>
+    <li>Anonymous submissions</li>
+    <li>Immediate data upload to database for instant map updates</li>
+  </ul>
 </details>
 
 ---
 
+<a id="navigation-and-layout-system"></a>
 <details open>
   <summary><b>Navigation and Layout System</b></summary>
+  <ul>
+    <li>Shared/Global EJS partials (header, footer) for consistent navigation</li>
+    <li>Tailwind CSS responsive design to improve on the mobile first approach</li>
+  </ul>
 </details>
 
 ---
 
+<a id="team-and-contact-info"></a>
 <details open>
   <summary><b>Team and Contact Info</b></summary>
+  <ul>
+    <li>Team Page layout showing contributors and the amount they contributed</li>
+    <li>Contact Form:</li>
+    <ul>
+      <li>Intergrated with nodemailer which sends email to MAJIMAPS official email address</li>
+      <li>Validated email address using validation layer, custom validation requiring atleast one checkbox selection</li>
+    </ul>
+  </ul>
 </details>
 
 ---
 
+<a id="newsletter-system"></a>
 <details open>
   <summary><b>Newsletter System</b></summary>
+  <ul>
+    <li>Subscription form which stores emails securely in database</li>
+    <li>Admin can send personalised emails to all subscribers and filter by subscription type (Newsletter and Emergency)</li>
+    <li>Email alerts for emergencies (e.g., droughts, leaks)</li>
+  </ul>
 </details>
 
 ---
 
+<a id="validation-submission-layer"></a>
 <details open>
   <summary><b>Validation Submission Layer</b></summary>
+  <ul>
+    <li>Validation Layer:</li>
+    <ul>
+      <li>Generalised validation layer intended for all forms to pass through</li>
+      <li>Live feedback highlighting correct/incorrect fields and providing a clarifying message</li>
+      <li>Modular by design making additions to validation easy to incorporate</li>
+      <li>Prevents duplicate submissions and enforces required fields</li>
+    </ul>
+    <li>Database Validation:</li>
+    <ul>
+      <li>Tables have appropriate constraints and enforce correct data formatting and types</li>
+    </ul>
+    <li>SQL injection prevention and rate limiting:</li>
+    <ul>
+      <li>Utilising 'Bind Variables'/parameterised queries preventing malicious code from being injected</li>
+      <li>Form submission have a limited number of requests in a set time frame using express, if this limit is surpassed then user will be timed out for 5 minutes</li>
+    </ul>
+  </ul>
 </details>
 
 ---
 
+<a id="database-data-storage"></a>
 <details open>
   <summary><b>Database data storage</b></summary>
+  <ul>
+    <li>PostgreSQL database for:</li>
+    <ul>
+      <li>Reports</li>
+      <li>Contact form</li>
+      <li>Newsletter</li>
+    </ul>
+    <li>Offline cachining so recent maps and report data is available without a connection once successfully loaded</li>
+  </ul>
 </details>
 
 ---
-
+<br></br>
 ### Admin based features
+
+<a id="secure-server-side-login-system"></a>
 <details open>
   <summary><b>Secure Server Side Login System</b></summary>
+  <ul>
+    <li>Bcrypt password hashing (Comparing hashed entry to .env stored password)</li>
+    <li>Session cookie based authentication</li>
+    <li>Redirects all active admin routes to login page if unathorised</li>
+    <li>Credentials and all sensitive data securely stored in .env and referenced in scripts</li>
+  </ul>
 </details>
 
 ---
 
+<a id="session-based-access"></a>
 <details open>
   <summary><b>Session Based Access</b></summary>
+  <ul>
+    <li>Access to admin page retained until session expiration/cookie termination (browser closed)</li>
+    <li>Prevents unauthorised data viewing or modification</li>
+  </ul>
 </details>
 
 ---
 
+<a id="live-statistics"></a>
 <details open>
-  <summary><b>Chart.JS Data Analytics</b></summary>
+  <summary><b>Live Statistics</b></summary>
+  <ul>
+    <li>Counters which display various important statistics</li>
+    <li>Displayed Statistics:</li>
+    <ul>
+      <li>Total Reports</li>
+      <li>Reports This Week</li>
+      <li>Reports This Week (Validated)</li>
+    </ul>
+  </ul>
 </details>
 
 ---
 
+<a id="admin-map"></a>
+<details open>
+  <summary><b>Leaflet.js Admin Map</b></summary>
+  <ul>
+    <li>Consistent with public map but with pin accuracy access instead of generalised heatmap anonymisation</li>
+    <li>Custom colour coded pins for easier visual sorting with expandable information details upon hovering over report</li>
+  </ul>
+</details>
+
+---
+
+<a id="data-analytics"></a>
+<details open>
+  <summary><b>Chart.js Data Analytics</b></summary>
+  <ul>
+    <li>Graphical output showing data trends over the previous 30 days</li>
+    <li>Report type seperated by colour</li>
+    <li>Verification status seperated by line style</li>
+  </ul>
+</details>
+
+---
+
+<a id="data-export-to-csv"></a>
 <details open>
   <summary><b>Data Export to CSV</b></summary>
+  <ul>
+    <li>Button generates CSV of reports from database and downloads it to device</li>
+    <li>Functionality to auto email current CSV to stakeholders/partners (e.g., Johannesburg Water for easier repairs)</li>
+  </ul>
+</details>
+
+---
+
+<a id="mass-email-to-subscribers"></a>
+<details open>
+  <summary><b>Mass Email to Subscribers</b></summary>
+  <ul>
+    <li>Sends templated personalised updates to newsletter subscribers</li>
+    <li>Sends urgent updates to emergency subscribers</li>
+  </ul>
 </details>
 
 ---
@@ -239,11 +367,15 @@ MajiMaps is an interactive web-based platform for showcasing water infrastructur
   ```
 </details>
 
-## Pages / Features
+## Pages
 
 <details open>
   <summary><b>Hero</b></summary>
+  <img width="1866" height="1040" alt="image" src="https://github.com/user-attachments/assets/52ead421-8cd4-4e2d-877f-0fa063e15094" />
+  Features Used:
   
+  [Navigation and Layout System](#navigation-and-layout-system)
+
 </details>
 
 
